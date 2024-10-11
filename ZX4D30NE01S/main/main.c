@@ -15,15 +15,17 @@
 #include "freertos/semphr.h"
 #include "freertos/event_groups.h"
 
-#include "rom/gpio.h"
-#include "driver/gpio.h"
 #include "lvgl.h"
 #include "board.h"
 
 #include "cJSON.h"
 
+#include "config.h"
 #include "gui.h"
-#include "my_data.h"
+
+float temperature = 0, humidity = 0, latitude = 0, longitude = 0;
+int relay = 0;
+bool state = false;
 
 static const char *TAG = "WEBSOCKET";
 
@@ -34,24 +36,59 @@ static void websocket_event_handler(void *handler_args, esp_event_base_t base, i
     {
     case WEBSOCKET_EVENT_CONNECTED:
         ESP_LOGI(TAG, "WEBSOCKET_EVENT_CONNECTED");
+        char ip_str[16];
+        strcpy(ip_str, websever_url);
+        update_ip(ip_str);
         break;
     case WEBSOCKET_EVENT_DATA:
         ESP_LOGW(TAG, "Received=%.*s\n", data->data_len, (char *)data->data_ptr);
-        // Xử lý dữ liệu nhận đượcs
         if (data->data_len > 0)
         {
             cJSON *json = cJSON_Parse((char *)data->data_ptr);
             if (json != NULL)
             {
-                float temperature = cJSON_GetObjectItem(json, "temperature")->valuedouble;
-                float humidity = cJSON_GetObjectItem(json, "humidity")->valuedouble;
-                float latitude = cJSON_GetObjectItem(json, "latitude")->valuedouble;
-                float longitude = cJSON_GetObjectItem(json, "longitude")->valuedouble;
+                cJSON *timeItem = cJSON_GetObjectItem(json, "current");
+                cJSON *tempItem = cJSON_GetObjectItem(json, "temperature");
+                cJSON *humidItem = cJSON_GetObjectItem(json, "humidity");
+                cJSON *latItem = cJSON_GetObjectItem(json, "latitude");
+                cJSON *longItem = cJSON_GetObjectItem(json, "longitude");
+                cJSON *relayItem = cJSON_GetObjectItem(json, "index");
+                cJSON *stateItem = cJSON_GetObjectItem(json, "state");
 
-                // Cập nhật GUI
-                update_gui(temperature, humidity, latitude, longitude);
+                if (timeItem != NULL)
+                {
+                    char time_str[30];
+                    strcpy(time_str, timeItem->valuestring);
+                    update_time(time_str);
+                }
 
-                cJSON_Delete(json);
+                if (tempItem != NULL && humidItem != NULL)
+                {
+                    temperature = tempItem->valuedouble;
+                    humidity = humidItem->valuedouble;
+                    update_gui(temperature, humidity, latitude, longitude);
+                }
+
+                if (latItem != NULL && longItem != NULL)
+                {
+                    latitude = latItem->valuedouble;
+                    longitude = longItem->valuedouble;
+                    update_gui(temperature, humidity, latitude, longitude);
+                }
+
+                if (stateItem != NULL && relayItem != NULL)
+                {
+                    relay = relayItem->valueint;
+                    if (cJSON_IsString(stateItem) && strcmp(stateItem->valuestring, "ON") == 0)
+                    {
+                        state = true;
+                    }
+                    else
+                    {
+                        state = false;
+                    }
+                    update_relay(relay, state);
+                }
             }
         }
         break;
@@ -61,7 +98,9 @@ static void websocket_event_handler(void *handler_args, esp_event_base_t base, i
 static void websocket_app_start(void)
 {
     esp_websocket_client_config_t websocket_cfg = {};
-    websocket_cfg.uri = "ws://192.168.1.5/ws";
+    char websocket_uri[50];
+    sprintf(websocket_uri, "ws://%s/ws", websever_url);
+    websocket_cfg.uri = websocket_uri;
     ESP_LOGI(TAG, "Connecting to %s ...", websocket_cfg.uri);
 
     esp_websocket_client_handle_t client = esp_websocket_client_init(&websocket_cfg);
@@ -97,7 +136,6 @@ static void wifi_event_handler(void *event_handler_arg, esp_event_base_t event_b
         printf("WiFi lost connection ... \n");
         break;
     case IP_EVENT_STA_GOT_IP:
-        printf("WiFi got IP ... \n\n");
         websocket_app_start();
         break;
     default:
@@ -135,7 +173,6 @@ void lvgl_task(void *arg)
 {
     screen_init();
 
-    // Tick interface for LVGL
     const esp_timer_create_args_t periodic_timer_args = {
         .callback = increase_lvgl_tick,
         .name = "periodic_gui"};

@@ -10,18 +10,18 @@ if(NOT EXISTS "/Users/lilnat/esp-idf/components/bootloader/subproject")
   file(MAKE_DIRECTORY "/Users/lilnat/esp-idf/components/bootloader/subproject")
 endif()
 file(MAKE_DIRECTORY
-  "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/bootloader"
-  "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/bootloader-prefix"
-  "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/bootloader-prefix/tmp"
-  "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/bootloader-prefix/src/bootloader-stamp"
-  "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/bootloader-prefix/src"
-  "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/bootloader-prefix/src/bootloader-stamp"
+  "/Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/build/bootloader"
+  "/Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/build/bootloader-prefix"
+  "/Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/build/bootloader-prefix/tmp"
+  "/Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/build/bootloader-prefix/src/bootloader-stamp"
+  "/Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/build/bootloader-prefix/src"
+  "/Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

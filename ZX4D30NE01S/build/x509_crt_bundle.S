@@ -1,4 +1,4 @@
-/* * Data converted from /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from /Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 #if !defined (__APPLE__) && !defined (__linux__)

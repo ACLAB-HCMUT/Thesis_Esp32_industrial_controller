@@ -1,4 +1,4 @@
-# Install script for directory: /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master
+# Install script for directory: /Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/esp-idf/cmake_install.cmake")
+  include("/Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/build/esp-idf/cmake_install.cmake")
 
 endif()
 
@@ -58,6 +58,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

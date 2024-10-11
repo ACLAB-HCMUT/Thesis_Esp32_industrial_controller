@@ -1,4 +1,4 @@
-# Install script for directory: /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/main
+# Install script for directory: /Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

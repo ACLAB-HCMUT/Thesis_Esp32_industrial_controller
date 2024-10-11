@@ -1,7 +1,0 @@
-[1/4] cd "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/esp-idf/esptool_py" && /Users/lilnat/.espressif/python_env/idf5.4_py3.12_env/bin/python /Users/lilnat/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /Users/lilnat/HK241/Đồ\ án\ KTMT/Web/ZX4D30NE01S-master/build/partition_table/partition-table.bin /Users/lilnat/HK241/Đồ\ án\ KTMT/Web/ZX4D30NE01S-master/build/ZX4D30NE01S.bin
-ZX4D30NE01S.bin binary size 0x1091c0 bytes. Smallest app partition is 0x300000 bytes. 0x1f6e40 bytes (65%) free.
-[2/4] Performing build step for 'bootloader'
-[1/1] cd "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/bootloader/esp-idf/esptool_py" && /Users/lilnat/.espressif/python_env/idf5.4_py3.12_env/bin/python /Users/lilnat/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /Users/lilnat/HK241/Đồ\ án\ KTMT/Web/ZX4D30NE01S-master/build/bootloader/bootloader.bin
-Bootloader binary size 0x5a70 bytes. 0x2590 bytes (29%) free.
-[3/4] No install step for 'bootloader'
-[4/4] Completed 'bootloader'

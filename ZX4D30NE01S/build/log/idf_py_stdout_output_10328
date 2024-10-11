@@ -1,0 +1,284 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xb (SPI_FAST_FLASH_BOOT)
+Saved PC:0x400490d7
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1a00
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xec4
+load:0x403cb700,len:0x314c
+entry 0x403c8950
+[0;32mI (26) boot: ESP-IDF v5.4-dev-3489-g6e5a178b31-dirty 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Oct 11 2024 12:35:29[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (32) boot: chip revision: v0.1[0m
+[0;32mI (36) boot: efuse block revision: v1.2[0m
+[0;32mI (40) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (45) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (50) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (55) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (60) boot: Enabling RNG early entropy source...[0m
+[0;32mI (65) boot: Partition Table:[0m
+[0;32mI (69) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (76) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (84) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (91) boot:  2 factory          factory app      00 00 00010000 00300000[0m
+[0;32mI (99) boot: End of partition table[0m
+[0;32mI (103) esp_image: segment 0: paddr=00010020 vaddr=3c0d0020 size=2a388h (172936) map[0m
+[0;32mI (137) esp_image: segment 1: paddr=0003a3b0 vaddr=3fca2800 size=05250h ( 21072) load[0m
+[0;32mI (141) esp_image: segment 2: paddr=0003f608 vaddr=40378000 size=00a10h (  2576) load[0m
+[0;32mI (143) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=c1798h (792472) map[0m
+[0;32mI (269) esp_image: segment 4: paddr=001017c0 vaddr=40378a10 size=19d6ch (105836) load[0m
+[0;32mI (289) esp_image: segment 5: paddr=0011b534 vaddr=600fe100 size=00018h (    24) load[0m
+[0;32mI (300) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (300) boot: Disabling RNG early entropy source...[0m
+[0;32mI (312) octal_psram: ECC is enabled[0m
+[0;32mI (312) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (312) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (316) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (321) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (326) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (332) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (337) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (342) octal_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (348) octal_psram: BurstLen     : 0x03 (1024 Byte)[0m
+[0;32mI (353) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (360) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (365) MSPI Timing: PSRAM timing tuning index: 5[0m
+[0;32mI (370) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (375) esp_psram: Speed: 80MHz[0m
+[0;32mI (454) mmu_psram: Instructions copied and mapped to SPIRAM[0m
+[0;32mI (454) cpu_start: Multicore app[0m
+[0;32mI (829) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (838) cpu_start: Pro cpu start user code[0m
+[0;32mI (838) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (838) app_init: Application information:[0m
+[0;32mI (841) app_init: Project name:     ZX4D30NE01S[0m
+[0;32mI (846) app_init: App version:      ef40d61-dirty[0m
+[0;32mI (852) app_init: Compile time:     Oct 11 2024 12:35:20[0m
+[0;32mI (857) app_init: ELF file SHA256:  53ab09e77ed8260c...[0m
+[0;32mI (863) app_init: ESP-IDF:          v5.4-dev-3489-g6e5a178b31-dirty[0m
+[0;32mI (870) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (875) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (880) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (885) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (892) heap_init: At 3FCB81F8 len 00031518 (197 KiB): RAM[0m
+[0;32mI (898) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (904) heap_init: At 600FE118 len 00001ED0 (7 KiB): RTCRAM[0m
+[0;32mI (911) esp_psram: Adding pool of 6848K of PSRAM memory to heap allocator[0m
+[0;32mI (919) spi_flash: detected chip: generic[0m
+[0;32mI (923) spi_flash: flash io: qio[0m
+[0;32mI (927) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (934) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (942) main_task: Started on CPU0[0m
+[0;32mI (946) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (955) main_task: Calling app_main()[0m
+[0;32mI (970) pp: pp rom version: e7ae62f[0m
+[0;32mI (971) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (972) wifi:wifi driver task: 3fccb470, prio:23, stack:6656, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 10e68d5[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (983) wifi:config NVS flash: enabled[0m
+[0;32mI (986) wifi:config nano formatting: disabled[0m
+[0;32mI (990) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (995) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (999) wifi:Init management short buffer num: 32[0m
+[0;32mI (1004) wifi:Init static tx buffer num: 16[0m
+[0;32mI (1008) wifi:Init tx cache buffer num: 32[0m
+[0;32mI (1012) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1016) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1020) wifi:Init static rx buffer num: 10[0m
+[0;32mI (1024) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (1028) wifi_init: rx ba win: 6[0m
+[0;32mI (1032) wifi_init: accept mbox: 6[0m
+[0;32mI (1036) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1040) wifi_init: udp mbox: 6[0m
+[0;32mI (1044) wifi_init: tcp mbox: 6[0m
+[0;32mI (1047) wifi_init: tcp tx win: 5744[0m
+[0;32mI (1052) wifi_init: tcp rx win: 5744[0m
+[0;32mI (1056) wifi_init: tcp mss: 1440[0m
+[0;32mI (1060) wifi_init: WiFi/LWIP prefer SPIRAM[0m
+[0;32mI (1065) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1069) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;33mW (1074) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2[0m
+[0;32mI (1084) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;32mI (1119) wifi:mode : sta (68:b6:b3:22:fd:44)[0m
+[0;32mI (1120) wifi:enable tsf[0m
+WiFi connecting ... 
+[0;32mI (1120) main_task: Returned from app_main()[0m
+[0;32mI (1121) gpio: GPIO[45]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (1125) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1139) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (1147) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (1151) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (1166) wifi:connected with ACLAB, aid = 3, channel 11, BW20, bssid = 84:d4:7e:65:98:e0[0m
+[0;32mI (1167) wifi:security: WPA2-PSK, phy: bgn, rssi: -67[0m
+[0;32mI (1169) wifi:pm start, type: 1[0m
+
+[0;32mI (1171) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (1179) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000[0m
+[0;32mI (1187) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+WiFi connected ... 
+[0;32mI (1200) wifi:<ba-add>idx:0 (ifx:0, 84:d4:7e:65:98:e0), tid:0, ssn:2, winSize:64[0m
+[0;32mI (1903) wifi:<ba-add>idx:1 (ifx:0, 84:d4:7e:65:98:e0), tid:6, ssn:1, winSize:64[0m
+[0;32mI (2904) esp_netif_handlers: sta ip: 10.28.129.83, mask: 255.255.254.0, gw: 10.28.128.1[0m
+WiFi got IP ... 
+
+[0;32mI (2904) WEBSOCKET: Connecting to ws://10.28.128.211/ws ...[0m
+[0;33mW (2910) websocket_client: `reconnect_timeout_ms` is not set, or it is less than or equal to zero, using default time out 10000 (milliseconds)[0m
+[0;33mW (2923) websocket_client: `network_timeout_ms` is not set, or it is less than or equal to zero, using default time out 10000 (milliseconds)[0m
+[0;32mI (2936) WEBSOCKET: WebSocket not connected, waiting...[0m
+[0;32mI (3533) WEBSOCKET: WEBSOCKET_EVENT_CONNECTED[0m
+[0;33mW (9575) WEBSOCKET: Received={"temperature":29.80,"humidity":55.00}
+[0m
+Guru Meditation Error: Core  0 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x4200b327  PS      : 0x00060e30  A0      : 0x820be668  A1      : 0x3fce4250  
+A2      : 0x3fcbcc44  A3      : 0x00000000  A4      : 0x41ee6666  A5      : 0x3fce4778  
+A6      : 0x00000000  A7      : 0x3fce47d0  A8      : 0x3fca8200  A9      : 0x3fce4240  
+A10     : 0x425c0000  A11     : 0x404b8000  A12     : 0x00000000  A13     : 0x425c0000  
+A14     : 0x00000000  A15     : 0x00000026  SAR     : 0x0000001d  EXCCAUSE: 0x0000001c  
+EXCVADDR: 0x0000001c  LBEG    : 0x400570e8  LEND    : 0x400570f3  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x4200b324:0x3fce4250 0x420be665:0x3fce4280 0x42032606:0x3fce42e0 0x42032a6f:0x3fce4340
+
+
+
+
+ELF file SHA256: 53ab09e77ed8260c
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xb (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40379f00
+[0;32mI (835) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (843) cpu_start: Pro cpu start user code[0m
+[0;32mI (844) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (844) app_init: Application information:[0m
+[0;32mI (846) app_init: Project name:     ZX4D30NE01S[0m
+[0;32mI (852) app_init: App version:      ef40d61-dirty[0m
+[0;32mI (857) app_init: Compile time:     Oct 11 2024 12:35:20[0m
+[0;32mI (863) app_init: ELF file SHA256:  53ab09e77ed8260c...[0m
+[0;32mI (869) app_init: ESP-IDF:          v5.4-dev-3489-g6e5a178b31-dirty[0m
+[0;32mI (876) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (881) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (886) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (890) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (898) heap_init: At 3FCB81F8 len 00031518 (197 KiB): RAM[0m
+[0;32mI (904) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (910) heap_init: At 600FE118 len 00001ED0 (7 KiB): RTCRAM[0m
+[0;32mI (916) esp_psram: Adding pool of 6848K of PSRAM memory to heap allocator[0m
+[0;32mI (924) spi_flash: detected chip: generic[0m
+[0;32mI (928) spi_flash: flash io: qio[0m
+[0;32mI (932) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (939) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (947) main_task: Started on CPU0[0m
+[0;32mI (951) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (960) main_task: Calling app_main()[0m
+[0;32mI (975) pp: pp rom version: e7ae62f[0m
+[0;32mI (976) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (977) wifi:wifi driver task: 3fccb470, prio:23, stack:6656, core=0[0m
+[0;32mI (986) wifi:wifi firmware version: 10e68d5[0m
+[0;32mI (986) wifi:wifi certification version: v7.0[0m
+[0;32mI (988) wifi:config NVS flash: enabled[0m
+[0;32mI (991) wifi:config nano formatting: disabled[0m
+[0;32mI (995) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (1000) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1005) wifi:Init management short buffer num: 32[0m
+[0;32mI (1009) wifi:Init static tx buffer num: 16[0m
+[0;32mI (1013) wifi:Init tx cache buffer num: 32[0m
+[0;32mI (1017) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1021) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1025) wifi:Init static rx buffer num: 10[0m
+[0;32mI (1029) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (1033) wifi_init: rx ba win: 6[0m
+[0;32mI (1037) wifi_init: accept mbox: 6[0m
+[0;32mI (1041) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1045) wifi_init: udp mbox: 6[0m
+[0;32mI (1049) wifi_init: tcp mbox: 6[0m
+[0;32mI (1053) wifi_init: tcp tx win: 5744[0m
+[0;32mI (1057) wifi_init: tcp rx win: 5744[0m
+[0;32mI (1061) wifi_init: tcp mss: 1440[0m
+[0;32mI (1065) wifi_init: WiFi/LWIP prefer SPIRAM[0m
+[0;32mI (1070) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1075) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;33mW (1080) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2[0m
+[0;32mI (1089) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;32mI (1126) wifi:mode : sta (68:b6:b3:22:fd:44)[0m
+[0;32mI (1126) wifi:enable tsf[0m
+WiFi connecting ... 
+[0;32mI (1127) main_task: Returned from app_main()[0m
+[0;32mI (1127) gpio: GPIO[45]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (1130) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1145) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (1152) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (1155) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (1172) wifi:connected with ACLAB, aid = 3, channel 11, BW20, bssid = 84:d4:7e:65:98:e0[0m
+[0;32mI (1172) wifi:security: WPA2-PSK, phy: bgn, rssi: -64[0m
+[0;32mI (1175) wifi:pm start, type: 1[0m
+
+[0;32mI (1177) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (1185) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000[0m
+[0;32mI (1193) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+WiFi connected ... 
+[0;32mI (1206) wifi:<ba-add>idx:0 (ifx:0, 84:d4:7e:65:98:e0), tid:0, ssn:2, winSize:64[0m
+[0;32mI (1808) wifi:<ba-add>idx:1 (ifx:0, 84:d4:7e:65:98:e0), tid:6, ssn:1, winSize:64[0m
+[0;32mI (2809) esp_netif_handlers: sta ip: 10.28.129.83, mask: 255.255.254.0, gw: 10.28.128.1[0m
+WiFi got IP ... 
+
+[0;32mI (2809) WEBSOCKET: Connecting to ws://10.28.128.211/ws ...[0m
+[0;33mW (2814) websocket_client: `reconnect_timeout_ms` is not set, or it is less than or equal to zero, using default time out 10000 (milliseconds)[0m
+[0;33mW (2828) websocket_client: `network_timeout_ms` is not set, or it is less than or equal to zero, using default time out 10000 (milliseconds)[0m
+[0;32mI (2841) WEBSOCKET: WebSocket not connected, waiting...[0m
+[0;32mI (3010) WEBSOCKET: WEBSOCKET_EVENT_CONNECTED[0m
+[0;33mW (10302) WEBSOCKET: Received={"latitude":10.8797797,"longitude":106.8061403}
+[0m
+Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  1 register dump:
+PC      : 0x4200b307  PS      : 0x00060d30  A0      : 0x820be668  A1      : 0x3fce4250  
+A2      : 0x3fcbcc68  A3      : 0x3c0d6a04  A4      : 0x00000000  A5      : 0x3fce4774  
+A6      : 0x3fce47a0  A7      : 0x00000000  A8      : 0x8200b307  A9      : 0x3fce4230  
+A10     : 0x3fce47cc  A11     : 0x3c0d5ac4  A12     : 0x3c0d5a78  A13     : 0x0000283e  
+A14     : 0x3c0d59cc  A15     : 0x0000002f  SAR     : 0x00000019  EXCCAUSE: 0x0000001c  
+EXCVADDR: 0x0000001c  LBEG    : 0x40054bf0  LEND    : 0x40054c0f  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x4200b304:0x3fce4250 0x420be665:0x3fce4280 0x42032606:0x3fce42e0 0x42032a6f:0x3fce4340
+
+
+
+
+ELF file SHA256: 53ab09e77ed8260c
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xb (SPI_FAST_FLASH_BOOT)
+Saved PC:0x403832f6
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1a00
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xec4
+load:0x403cb700,len:0x314c
+entry 0x403c8950
+[0;32mI (26) boot: ESP-IDF v5.4-dev-3489-g6e5a178b31-dirty 2nd stage bootloader[0m
+[0;32mI (26) boot: compile time Oct 11 2024 12:35:29[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v0.1[0m
+[0;32mI (35) boot: efuse block revision: v1.2[0m
+[0;32mI (40) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (45) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (50) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (54) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (59) boot: Enabling RNG early entropy source...[0m
+[0;32mI (65) boot: Partition Table:[0m
+[0;32mI (68) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (76) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (83) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (91) boot:  2 factory          factory app     

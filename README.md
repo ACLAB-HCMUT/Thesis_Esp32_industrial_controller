@@ -123,7 +123,7 @@ After installing the PlatformIO extension, clone the project repository from Git
 > After successfully connecting, you can control the relays via a web interface. You can retrieve the `IP address` of the ESP32 from the ***Serial Monitor*** in your development environment.
 > Access the ESP32 server using its `IP address`, and manage the relays.
 
-# Question?
+# Congratulation !
 ---
 
 :confetti_ball: You have finished reading the introduction and user manual of the **ESP32-S3 Relay 6CH**. In the future, we will continue to improve and upgrade to provide you with the best values.:confetti_ball: 

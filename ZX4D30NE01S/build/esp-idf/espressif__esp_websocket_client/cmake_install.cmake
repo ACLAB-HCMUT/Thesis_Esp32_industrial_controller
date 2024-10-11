@@ -1,4 +1,4 @@
-# Install script for directory: /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client
+# Install script for directory: /Users/lilnat/HK241/Đồ án KTMT/Web/hardware/ZX4D30NE01S/managed_components/espressif__esp_websocket_client
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
