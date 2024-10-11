@@ -1,0 +1,439 @@
+[0;33m--- esp-idf-monitor 1.5.0 on /dev/cu.usbmodem2101 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0;33m--- 0x40048d14: uart_rx_one_char in ROM
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/components/newlib/assert.c:80
+0x42057ea1: tcpip_send_msg_wait_sem at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/tcpip.c:454 (discriminator 1)
+0x420632ad: netconn_gethostbyname_addrtype at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/api_lib.c:1333
+0x42056440: lwip_getaddrinfo at /Users/lilnat/esp-idf/components/lwip/lwip/src/api/netdb.c:495
+0x42013ad5: getaddrinfo at /Users/lilnat/esp-idf/components/lwip/include/lwip/netdb.h:23
+ (inlined by) esp_tls_hostname_to_fd at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:210
+ (inlined by) tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:359
+0x42014299: esp_tls_plain_tcp_connect at /Users/lilnat/esp-idf/components/esp-tls/esp_tls.c:533
+0x4201580b: tcp_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ssl.c:148 (discriminator 1)
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x42015d09: ws_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport_ws.c:201
+0x42087115: esp_transport_connect at /Users/lilnat/esp-idf/components/tcp_transport/transport.c:123
+0x4200b442: esp_websocket_client_task at /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/managed_components/espressif__esp_websocket_client/esp_websocket_client.c:938
+[0m
+[0;33m--- 0x40379e48: esp_restart_noos at /Users/lilnat/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:160
+[0m
+[0;33m--- 0x40379ee5: panic_abort at /Users/lilnat/esp-idf/components/esp_system/panic.c:454
+0x40381a01: esp_system_abort at /Users/lilnat/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4038913d: __assert_func at /Users/lilnat/esp-idf/comp

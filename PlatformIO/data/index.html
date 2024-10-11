@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>ESP32_WEB_SERVER</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <div class="topnav">
+    <h1>ESP WebSocket Server</h1>
+  </div>
+  <div class="content">
+    <div class="card">
+      <p><span id="current">00:00</span></p>
+    </div>
+  </div>
+  <div class="content">
+    <div class="card">
+      <p>Temperature : <span id="temperature">0.00</span> &deg;C</p>
+      <p>Humidity : <span id="humidity">0.00</span> %</p>
+      <p>Coordinate X : <span id="latitude">0.00</span></p>
+      <p>Coordinate Y : <span id="longitude">0.00</span></p>
+    </div>
+  </div>
+  <div class="content content-container">
+    <div class="card">
+      <h2>Relay 1</h2>
+      <p class="state">State : <span id="state1">OFF</span></p>
+      <p><button onclick="toggleButton(1)" class="button">Toggle</button></p>
+    </div>
+    <div class="card">
+      <h2>Relay 2</h2>
+      <p class="state">State : <span id="state2">OFF</span></p>
+      <p><button onclick="toggleButton(2)" class="button">Toggle</button></p>
+    </div>
+    <div class="card">
+      <h2>Relay 3</h2>
+      <p class="state">State : <span id="state3">OFF</span></p>
+      <p><button onclick="toggleButton(3)" class="button">Toggle</button></p>
+    </div>
+    <div class="card">
+      <h2>Relay 4</h2>
+      <p class="state">State : <span id="state4">OFF</span></p>
+      <p><button onclick="toggleButton(4)" class="button">Toggle</button></p>
+    </div>
+    <div class="card">
+      <h2>Relay 5</h2>
+      <p class="state">State : <span id="state5">OFF</span></p>
+      <p><button onclick="toggleButton(5)" class="button">Toggle</button></p>
+    </div>
+    <div class="card">
+      <h2>Relay 6</h2>
+      <p class="state">State : <span id="state6">OFF</span></p>
+      <p><button onclick="toggleButton(6)" class="button">Toggle</button></p>
+    </div>
+  </div>
+  <div class="content">
+    <div class="card">
+      <h2>Schedule</h2>
+      <div id="scheduleContainer"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

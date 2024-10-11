@@ -1,0 +1,305 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xb (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40048d00
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1a00
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xec4
+load:0x403cb700,len:0x314c
+entry 0x403c8950
+[0;32mI (26) boot: ESP-IDF v5.4-dev-3489-g6e5a178b31-dirty 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Oct 10 2024 14:36:50[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (32) boot: chip revision: v0.1[0m
+[0;32mI (36) boot: efuse block revision: v1.2[0m
+[0;32mI (40) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (45) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (50) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (55) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (60) boot: Enabling RNG early entropy source...[0m
+[0;32mI (65) boot: Partition Table:[0m
+[0;32mI (69) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (76) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (84) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (91) boot:  2 factory          factory app      00 00 00010000 00300000[0m
+[0;32mI (99) boot: End of partition table[0m
+[0;32mI (103) esp_image: segment 0: paddr=00010020 vaddr=3c0a0020 size=24e0ch (151052) map[0m
+[0;32mI (134) esp_image: segment 1: paddr=00034e34 vaddr=3fc9e200 size=051b0h ( 20912) load[0m
+[0;32mI (138) esp_image: segment 2: paddr=00039fec vaddr=40378000 size=0602ch ( 24620) load[0m
+[0;32mI (144) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=959a4h (612772) map[0m
+[0;32mI (239) esp_image: segment 4: paddr=000d59cc vaddr=4037e02c size=10188h ( 65928) load[0m
+[0;32mI (252) esp_image: segment 5: paddr=000e5b5c vaddr=600fe100 size=00018h (    24) load[0m
+[0;32mI (261) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (261) boot: Disabling RNG early entropy source...[0m
+[0;32mI (273) octal_psram: ECC is enabled[0m
+[0;32mI (273) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (273) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (277) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (282) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (287) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (293) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (298) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (304) octal_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (309) octal_psram: BurstLen     : 0x03 (1024 Byte)[0m
+[0;32mI (315) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (321) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (326) MSPI Timing: PSRAM timing tuning index: 5[0m
+[0;32mI (331) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (336) esp_psram: Speed: 80MHz[0m
+[0;32mI (397) mmu_psram: Instructions copied and mapped to SPIRAM[0m
+[0;32mI (398) cpu_start: Multicore app[0m
+[0;32mI (784) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (792) cpu_start: Pro cpu start user code[0m
+[0;32mI (792) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (792) app_init: Application information:[0m
+[0;32mI (795) app_init: Project name:     ZX4D30NE01S[0m
+[0;32mI (800) app_init: App version:      1[0m
+[0;32mI (805) app_init: Compile time:     Oct 10 2024 19:05:22[0m
+[0;32mI (811) app_init: ELF file SHA256:  69600b656e04a735...[0m
+[0;32mI (817) app_init: ESP-IDF:          v5.4-dev-3489-g6e5a178b31-dirty[0m
+[0;32mI (824) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (828) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (833) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (838) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (845) heap_init: At 3FCA7650 len 000420C0 (264 KiB): RAM[0m
+[0;32mI (851) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (858) heap_init: At 600FE118 len 00001ED0 (7 KiB): RTCRAM[0m
+[0;32mI (864) esp_psram: Adding pool of 7040K of PSRAM memory to heap allocator[0m
+[0;32mI (872) spi_flash: detected chip: generic[0m
+[0;32mI (876) spi_flash: flash io: qio[0m
+[0;32mI (880) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (887) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (895) main_task: Started on CPU0[0m
+[0;32mI (899) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (908) main_task: Calling app_main()[0m
+[0;32mI (923) pp: pp rom version: e7ae62f[0m
+[0;32mI (923) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (925) wifi:wifi driver task: 3fcbac10, prio:23, stack:6656, core=0[0m
+[0;32mI (934) wifi:wifi firmware version: 10e68d5[0m
+[0;32mI (934) wifi:wifi certification version: v7.0[0m
+[0;32mI (936) wifi:config NVS flash: enabled[0m
+[0;32mI (939) wifi:config nano formatting: disabled[0m
+[0;32mI (943) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (948) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (952) wifi:Init management short buffer num: 32[0m
+[0;32mI (957) wifi:Init static tx buffer num: 16[0m
+[0;32mI (961) wifi:Init tx cache buffer num: 32[0m
+[0;32mI (964) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (968) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (972) wifi:Init static rx buffer num: 10[0m
+[0;32mI (976) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (980) wifi_init: rx ba win: 6[0m
+[0;32mI (984) wifi_init: accept mbox: 6[0m
+[0;32mI (988) wifi_init: tcpip mbox: 32[0m
+[0;32mI (992) wifi_init: udp mbox: 6[0m
+[0;32mI (996) wifi_init: tcp mbox: 6[0m
+[0;32mI (999) wifi_init: tcp tx win: 5744[0m
+[0;32mI (1003) wifi_init: tcp rx win: 5744[0m
+[0;32mI (1008) wifi_init: tcp mss: 1440[0m
+[0;32mI (1012) wifi_init: WiFi/LWIP prefer SPIRAM[0m
+[0;32mI (1017) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1021) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;33mW (1026) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2[0m
+[0;32mI (1035) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;32mI (1071) wifi:mode : sta (68:b6:b3:22:fd:44)[0m
+[0;32mI (1072) wifi:enable tsf[0m
+WiFi connecting ... 
+[0;32mI (1075) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1076) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (1102) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (1165) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (1272) wifi:connected with Vuon Lan, aid = 4, channel 1, BW20, bssid = 4c:12:e8:89:e6:a8[0m
+[0;32mI (1272) wifi:security: WPA2-PSK, phy: bgn, rssi: -49[0m
+[0;32mI (1275) wifi:pm start, type: 1[0m
+
+[0;32mI (1277) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (1285) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000[0m
+[0;32mI (1293) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+WiFi connected ... 
+[0;32mI (2072) main_task: Returned from app_main()[0m
+[0;32mI (2593) esp_netif_handlers: sta ip: 192.168.1.19, mask: 255.255.255.0, gw: 192.168.1.1[0m
+WiFi got IP ... 
+
+[0;32mI (2593) WEBSOCKET: Connecting to ws://192.168.1.5/ws ...[0m
+[0;33mW (2598) websocket_client: `reconnect_timeout_ms` is not set, or it is less than or equal to zero, using default time out 10000 (milliseconds)[0m
+[0;33mW (2612) websocket_client: `network_timeout_ms` is not set, or it is less than or equal to zero, using default time out 10000 (milliseconds)[0m
+[0;32mI (2819) wifi:<ba-add>idx:0 (ifx:0, 4c:12:e8:89:e6:a8), tid:0, ssn:4, winSize:64[0m
+[0;32mI (2930) WEBSOCKET: WEBSOCKET_EVENT_CONNECTED[0m
+[0;32mI (3625) WEBSOCKET: Sending Hello 0000[0m
+[0;32mI (4626) WEBSOCKET: Sending Hello 0001[0m
+[0;33mW (4925) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (5627) WEBSOCKET: Sending Hello 0002[0m
+[0;32mI (6628) WEBSOCKET: Sending Hello 0003[0m
+[0;32mI (7629) WEBSOCKET: Sending Hello 0004[0m
+[0;32mI (8630) WEBSOCKET: Sending Hello 0005[0m
+[0;32mI (9631) WEBSOCKET: Sending Hello 0006[0m
+[0;33mW (9988) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (10632) WEBSOCKET: Sending Hello 0007[0m
+[0;33mW (10637) WEBSOCKET: Received={"index":2,"state":"OFF"}
+[0m
+[0;33mW (11624) WEBSOCKET: Received={"index":1,"state":"ON"}
+[0m
+[0;32mI (11633) WEBSOCKET: Sending Hello 0008[0m
+[0;33mW (11829) WEBSOCKET: Received={"index":2,"state":"ON"}
+[0m
+[0;33mW (12341) WEBSOCKET: Received={"index":1,"state":"OFF"}
+[0m
+[0;32mI (12634) WEBSOCKET: Sending Hello 0009[0m
+[0;33mW (12637) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;32mI (13635) WEBSOCKET: Sending Hello 0010[0m
+[0;32mI (14636) WEBSOCKET: Sending Hello 0011[0m
+[0;33mW (15006) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (15637) WEBSOCKET: Sending Hello 0012[0m
+[0;32mI (16638) WEBSOCKET: Sending Hello 0013[0m
+[0;32mI (17639) WEBSOCKET: Sending Hello 0014[0m
+[0;32mI (18640) WEBSOCKET: Sending Hello 0015[0m
+[0;32mI (19641) WEBSOCKET: Sending Hello 0016[0m
+[0;33mW (20023) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (20642) WEBSOCKET: Sending Hello 0017[0m
+[0;32mI (21643) WEBSOCKET: Sending Hello 0018[0m
+[0;32mI (22644) WEBSOCKET: Sending Hello 0019[0m
+[0;33mW (22991) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;32mI (23645) WEBSOCKET: Sending Hello 0020[0m
+[0;32mI (24646) WEBSOCKET: Sending Hello 0021[0m
+[0;33mW (25039) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (25647) WEBSOCKET: Sending Hello 0022[0m
+[0;32mI (26648) WEBSOCKET: Sending Hello 0023[0m
+[0;32mI (27649) WEBSOCKET: Sending Hello 0024[0m
+[0;32mI (28650) WEBSOCKET: Sending Hello 0025[0m
+[0;32mI (29651) WEBSOCKET: Sending Hello 0026[0m
+[0;33mW (30065) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (30652) WEBSOCKET: Sending Hello 0027[0m
+[0;32mI (31653) WEBSOCKET: Sending Hello 0028[0m
+[0;32mI (32654) WEBSOCKET: Sending Hello 0029[0m
+[0;33mW (33257) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;32mI (33655) WEBSOCKET: Sending Hello 0030[0m
+[0;32mI (34656) WEBSOCKET: Sending Hello 0031[0m
+[0;33mW (34974) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (35657) WEBSOCKET: Sending Hello 0032[0m
+[0;32mI (36658) WEBSOCKET: Sending Hello 0033[0m
+[0;32mI (37659) WEBSOCKET: Sending Hello 0034[0m
+[0;32mI (38660) WEBSOCKET: Sending Hello 0035[0m
+[0;32mI (39661) WEBSOCKET: Sending Hello 0036[0m
+[0;33mW (39992) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (40501) WEBSOCKET: Received={"current":"Thursday 19:23"}
+[0m
+[0;32mI (40662) WEBSOCKET: Sending Hello 0037[0m
+[0;33mW (40709) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;32mI (41663) WEBSOCKET: Sending Hello 0038[0m
+[0;32mI (42664) WEBSOCKET: Sending Hello 0039[0m
+[0;32mI (43665) WEBSOCKET: Sending Hello 0040[0m
+[0;33mW (43668) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;32mI (44666) WEBSOCKET: Sending Hello 0041[0m
+[0;33mW (45009) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (45667) WEBSOCKET: Sending Hello 0042[0m
+[0;32mI (46668) WEBSOCKET: Sending Hello 0043[0m
+[0;32mI (47669) WEBSOCKET: Sending Hello 0044[0m
+[0;32mI (48670) WEBSOCKET: Sending Hello 0045[0m
+[0;32mI (49671) WEBSOCKET: Sending Hello 0046[0m
+[0;33mW (50032) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (50672) WEBSOCKET: Sending Hello 0047[0m
+[0;32mI (51673) WEBSOCKET: Sending Hello 0048[0m
+[0;32mI (52674) WEBSOCKET: Sending Hello 0049[0m
+[0;32mI (53675) WEBSOCKET: Sending Hello 0050[0m
+[0;33mW (54018) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;32mI (54676) WEBSOCKET: Sending Hello 0051[0m
+[0;33mW (55042) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (55677) WEBSOCKET: Sending Hello 0052[0m
+[0;32mI (56678) WEBSOCKET: Sending Hello 0053[0m
+[0;32mI (57680) WEBSOCKET: Sending Hello 0054[0m
+[0;32mI (58681) WEBSOCKET: Sending Hello 0055[0m
+[0;32mI (59682) WEBSOCKET: Sending Hello 0056[0m
+[0;33mW (60060) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (60683) WEBSOCKET: Sending Hello 0057[0m
+[0;32mI (61684) WEBSOCKET: Sending Hello 0058[0m
+[0;32mI (62685) WEBSOCKET: Sending Hello 0059[0m
+[0;32mI (63686) WEBSOCKET: Sending Hello 0060[0m
+[0;33mW (64258) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;32mI (64687) WEBSOCKET: Sending Hello 0061[0m
+[0;33mW (65077) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (65688) WEBSOCKET: Sending Hello 0062[0m
+[0;32mI (66689) WEBSOCKET: Sending Hello 0063[0m
+[0;32mI (67690) WEBSOCKET: Sending Hello 0064[0m
+[0;32mI (68691) WEBSOCKET: Sending Hello 0065[0m
+[0;32mI (69692) WEBSOCKET: Sending Hello 0066[0m
+[0;33mW (70095) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (70693) WEBSOCKET: Sending Hello 0067[0m
+[0;32mI (71694) WEBSOCKET: Sending Hello 0068[0m
+[0;32mI (72695) WEBSOCKET: Sending Hello 0069[0m
+[0;32mI (73696) WEBSOCKET: Sending Hello 0070[0m
+[0;33mW (74600) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;32mI (74697) WEBSOCKET: Sending Hello 0071[0m
+[0;33mW (75012) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (75698) WEBSOCKET: Sending Hello 0072[0m
+[0;32mI (76699) WEBSOCKET: Sending Hello 0073[0m
+[0;32mI (77700) WEBSOCKET: Sending Hello 0074[0m
+[0;32mI (78701) WEBSOCKET: Sending Hello 0075[0m
+[0;32mI (79702) WEBSOCKET: Sending Hello 0076[0m
+[0;33mW (80031) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (80703) WEBSOCKET: Sending Hello 0077[0m
+[0;32mI (81704) WEBSOCKET: Sending Hello 0078[0m
+[0;32mI (82705) WEBSOCKET: Sending Hello 0079[0m
+[0;32mI (83706) WEBSOCKET: Sending Hello 0080[0m
+[0;32mI (84707) WEBSOCKET: Sending Hello 0081[0m
+[0;33mW (84945) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (85045) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (85708) WEBSOCKET: Sending Hello 0082[0m
+[0;32mI (86709) WEBSOCKET: Sending Hello 0083[0m
+[0;32mI (87710) WEBSOCKET: Sending Hello 0084[0m
+[0;32mI (88711) WEBSOCKET: Sending Hello 0085[0m
+[0;32mI (89712) WEBSOCKET: Sending Hello 0086[0m
+[0;33mW (90063) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;32mI (90713) WEBSOCKET: Sending Hello 0087[0m
+[0;32mI (91714) WEBSOCKET: Sending Hello 0088[0m
+[0;32mI (92715) WEBSOCKET: Sending Hello 0089[0m
+[0;32mI (93716) WEBSOCKET: Sending Hello 0090[0m
+[0;32mI (94717) WEBSOCKET: Sending Hello 0091[0m
+[0;33mW (95081) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (95285) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;32mI (95718) WEBSOCKET: Sending Hello 0092[0m
+[0;32mI (96719) WEBSOCKET: Sending Hello 0093[0m
+[0;32mI (97720) WEBSOCKET: Sending Hello 0094[0m
+[0;32mI (98721) WEBSOCKET: Sending Hello 0095[0m
+[0;32mI (99722) WEBSOCKET: Sending Hello 0096[0m
+[0;33mW (100103) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (100514) WEBSOCKET: Received={"current":"Thursday 19:24"}
+[0m
+[0;32mI (100723) WEBSOCKET: Sending Hello 0097[0m
+[0;33mW (100726) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;32mI (101725) WEBSOCKET: Sending Hello 0098[0m
+[0;32mI (102726) WEBSOCKET: Sending Hello 0099[0m
+[0;32mI (103727) WEBSOCKET: Sending Hello 0100[0m
+[0;32mI (104728) WEBSOCKET: Sending Hel

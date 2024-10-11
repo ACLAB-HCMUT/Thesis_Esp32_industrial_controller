@@ -1,0 +1,93 @@
+[1/10] Performing build step for 'bootloader'
+[1/1] cd "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/bootloader/esp-idf/esptool_py" && /Users/lilnat/.espressif/python_env/idf5.4_py3.12_env/bin/python /Users/lilnat/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /Users/lilnat/HK241/Đồ\ án\ KTMT/Web/ZX4D30NE01S-master/build/bootloader/bootloader.bin
+Bootloader binary size 0x5a70 bytes. 0x2590 bytes (29%) free.
+[2/10] No install step for 'bootloader'
+[3/10] Completed 'bootloader'
+[4/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/main/main.c: In function 'websocket_app_start':
+/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/main/main.c:47:9: warning: unused variable 'i' [-Wunused-variable]
+   47 |     int i = 0;
+      |         ^
+/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/main/main.c:46:10: warning: unused variable 'data' [-Wunused-variable]
+   46 |     char data[32];
+      |          ^~~~
+[5/10] Linking C static library esp-idf/main/libmain.a
+[6/10] Generating ld/sections.ld
+[7/10] Linking CXX executable ZX4D30NE01S.elf
+[8/10] Generating binary image from built executable
+esptool.py v4.8.1
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated /Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/ZX4D30NE01S.bin
+[9/10] cd "/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build/esp-idf/esptool_py" && /Users/lilnat/.espressif/python_env/idf5.4_py3.12_env/bin/python /Users/lilnat/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /Users/lilnat/HK241/Đồ\ án\ KTMT/Web/ZX4D30NE01S-master/build/partition_table/partition-table.bin /Users/lilnat/HK241/Đồ\ án\ KTMT/Web/ZX4D30NE01S-master/build/ZX4D30NE01S.bin
+ZX4D30NE01S.bin binary size 0xd5790 bytes. Smallest app partition is 0x300000 bytes. 0x22a870 bytes (72%) free.
+[9/10] cd /Users/lilnat/esp-idf/components/esptool_py && /opt/homebrew/Cellar/cmake/3.30.4/bin/cmake -D IDF_PATH=/Users/lilnat/esp-idf -D "SERIAL_TOOL=/Users/lilnat/.espressif/python_env/idf5.4_py3.12_env/bin/python;;/Users/lilnat/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32s3" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D "WORKING_DIRECTORY=/Users/lilnat/HK241/Đồ án KTMT/Web/ZX4D30NE01S-master/build" -P /Users/lilnat/esp-idf/components/esptool_py/run_serial_tool.cmake
+esptool.py --chip esp32s3 -p /dev/tty.usbmodem101 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 16MB 0x0 bootloader/bootloader.bin 0x10000 ZX4D30NE01S.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.8.1
+Serial port /dev/tty.usbmodem101
+Connecting...
+Chip is ESP32-S3 (QFN56) (revision v0.1)
+Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
+Crystal is 40MHz
+MAC: 68:b6:b3:22:fd:44
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00000000 to 0x00005fff...
+Flash will be erased from 0x00010000 to 0x000e5fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+SHA digest in image updated
+Compressed 23152 bytes to 14242...
+Writing at 0x00000000... (100 %)
+Wrote 23152 bytes (14242 compressed) at 0x00000000 in 0.6 seconds (effective 329.0 kbit/s)...
+Hash of data verified.
+Compressed 874384 bytes to 580801...
+Writing at 0x00010000... (2 %)
+Writing at 0x0001dd5f... (5 %)
+Writing at 0x000269b6... (8 %)
+Writing at 0x0002b697... (11 %)
+Writing at 0x000349a8... (13 %)
+Writing at 0x0003d7f5... (16 %)
+Writing at 0x00043515... (19 %)
+Writing at 0x00048f28... (22 %)
+Writing at 0x0004ea55... (25 %)
+Writing at 0x00053fb0... (27 %)
+Writing at 0x00059760... (30 %)
+Writing at 0x0005e928... (33 %)
+Writing at 0x00063f64... (36 %)
+Writing at 0x00069448... (38 %)
+Writing at 0x0006e8d4... (41 %)
+Writing at 0x00073bb2... (44 %)
+Writing at 0x000789f2... (47 %)
+Writing at 0x0007dc68... (50 %)
+Writing at 0x00082c17... (52 %)
+Writing at 0x00087f9a... (55 %)
+Writing at 0x0008d2d0... (58 %)
+Writing at 0x000925e6... (61 %)
+Writing at 0x000982bb... (63 %)
+Writing at 0x0009d1bd... (66 %)
+Writing at 0x000a23d9... (69 %)
+Writing at 0x000a757d... (72 %)
+Writing at 0x000ac7a6... (75 %)
+Writing at 0x000b1810... (77 %)
+Writing at 0x000b6a73... (80 %)
+Writing at 0x000bc1f9... (83 %)
+Writing at 0x000c1781... (86 %)
+Writing at 0x000cb23b... (88 %)
+Writing at 0x000d1ca6... (91 %)
+Writing at 0x000d7b72... (94 %)
+Writing at 0x000ddbe2... (97 %)
+Writing at 0x000e2bf0... (100 %)
+Wrote 874384 bytes (580801 compressed) at 0x00010000 in 9.8 seconds (effective 715.0 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 105...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (105 compressed) at 0x00008000 in 0.1 seconds (effective 285.8 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...

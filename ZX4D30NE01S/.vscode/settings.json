@@ -1,0 +1,10 @@
+{
+    "idf.adapterTargetName": "esp32s3",
+    "files.associations": {
+        "lv_examples.h": "c",
+        "lv_example_get_started.h": "c",
+        "lvgl.h": "c",
+        "esp_websocket_client.h": "c",
+        "protocol_examples_common.h": "c"
+    }
+}

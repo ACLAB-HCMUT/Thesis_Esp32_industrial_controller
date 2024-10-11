@@ -1,0 +1,1042 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xb (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40048dfe
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1a00
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xec4
+load:0x403cb700,len:0x314c
+entry 0x403c8950
+[0;32mI (26) boot: ESP-IDF v5.4-dev-3489-g6e5a178b31-dirty 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Oct 10 2024 14:36:50[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (32) boot: chip revision: v0.1[0m
+[0;32mI (36) boot: efuse block revision: v1.2[0m
+[0;32mI (40) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (45) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (50) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (55) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (60) boot: Enabling RNG early entropy source...[0m
+[0;32mI (65) boot: Partition Table:[0m
+[0;32mI (69) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (76) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (84) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (91) boot:  2 factory          factory app      00 00 00010000 00300000[0m
+[0;32mI (99) boot: End of partition table[0m
+[0;32mI (103) esp_image: segment 0: paddr=00010020 vaddr=3c0c0020 size=2a19ch (172444) map[0m
+[0;32mI (137) esp_image: segment 1: paddr=0003a1c4 vaddr=3fca2800 size=05250h ( 21072) load[0m
+[0;32mI (141) esp_image: segment 2: paddr=0003f41c vaddr=40378000 size=00bfch (  3068) load[0m
+[0;32mI (143) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=bf5dch (783836) map[0m
+[0;32mI (267) esp_image: segment 4: paddr=000ff604 vaddr=40378bfc size=19b6ch (105324) load[0m
+[0;32mI (288) esp_image: segment 5: paddr=00119178 vaddr=600fe100 size=00018h (    24) load[0m
+[0;32mI (298) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (299) boot: Disabling RNG early entropy source...[0m
+[0;32mI (310) octal_psram: ECC is enabled[0m
+[0;32mI (311) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (311) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (314) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (320) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (325) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (330) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (335) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (341) octal_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (346) octal_psram: BurstLen     : 0x03 (1024 Byte)[0m
+[0;32mI (352) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (358) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (364) MSPI Timing: PSRAM timing tuning index: 5[0m
+[0;32mI (369) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (373) esp_psram: Speed: 80MHz[0m
+[0;32mI (446) mmu_psram: Instructions copied and mapped to SPIRAM[0m
+[0;32mI (447) cpu_start: Multicore app[0m
+[0;32mI (826) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (834) cpu_start: Pro cpu start user code[0m
+[0;32mI (834) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (835) app_init: Application information:[0m
+[0;32mI (837) app_init: Project name:     ZX4D30NE01S[0m
+[0;32mI (843) app_init: App version:      1[0m
+[0;32mI (847) app_init: Compile time:     Oct 10 2024 19:05:22[0m
+[0;32mI (853) app_init: ELF file SHA256:  fb8e4fab3d1a6626...[0m
+[0;32mI (859) app_init: ESP-IDF:          v5.4-dev-3489-g6e5a178b31-dirty[0m
+[0;32mI (866) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (871) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (875) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (880) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (887) heap_init: At 3FCB81D0 len 00031540 (197 KiB): RAM[0m
+[0;32mI (894) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (900) heap_init: At 600FE118 len 00001ED0 (7 KiB): RTCRAM[0m
+[0;32mI (906) esp_psram: Adding pool of 6912K of PSRAM memory to heap allocator[0m
+[0;32mI (914) spi_flash: detected chip: generic[0m
+[0;32mI (918) spi_flash: flash io: qio[0m
+[0;32mI (922) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (929) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (937) main_task: Started on CPU0[0m
+[0;32mI (941) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (950) main_task: Calling app_main()[0m
+[0;32mI (965) pp: pp rom version: e7ae62f[0m
+[0;32mI (965) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (967) wifi:wifi driver task: 3fccb4cc, prio:23, stack:6656, core=0[0m
+[0;32mI (976) wifi:wifi firmware version: 10e68d5[0m
+[0;32mI (976) wifi:wifi certification version: v7.0[0m
+[0;32mI (978) wifi:config NVS flash: enabled[0m
+[0;32mI (981) wifi:config nano formatting: disabled[0m
+[0;32mI (985) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (990) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (994) wifi:Init management short buffer num: 32[0m
+[0;32mI (999) wifi:Init static tx buffer num: 16[0m
+[0;32mI (1003) wifi:Init tx cache buffer num: 32[0m
+[0;32mI (1006) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1010) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1015) wifi:Init static rx buffer num: 10[0m
+[0;32mI (1018) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (1023) wifi_init: rx ba win: 6[0m
+[0;32mI (1026) wifi_init: accept mbox: 6[0m
+[0;32mI (1030) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1034) wifi_init: udp mbox: 6[0m
+[0;32mI (1038) wifi_init: tcp mbox: 6[0m
+[0;32mI (1042) wifi_init: tcp tx win: 5744[0m
+[0;32mI (1046) wifi_init: tcp rx win: 5744[0m
+[0;32mI (1051) wifi_init: tcp mss: 1440[0m
+[0;32mI (1055) wifi_init: WiFi/LWIP prefer SPIRAM[0m
+[0;32mI (1059) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1064) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;33mW (1069) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2[0m
+[0;32mI (1078) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;32mI (1114) wifi:mode : sta (68:b6:b3:22:fd:44)[0m
+[0;32mI (1115) wifi:enable tsf[0m
+WiFi connecting ... 
+[0;32mI (1115) main_task: Returned from app_main()[0m
+[0;32mI (1115) gpio: GPIO[45]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (1121) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1134) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (1175) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (1236) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (1343) wifi:connected with Vuon Lan, aid = 4, channel 1, BW20, bssid = 4c:12:e8:89:e6:a8[0m
+[0;32mI (1343) wifi:security: WPA2-PSK, phy: bgn, rssi: -55[0m
+[0;32mI (1346) wifi:pm start, type: 1[0m
+
+[0;32mI (1348) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (1356) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000[0m
+WiFi connected ... 
+[0;32mI (1393) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (2605) esp_netif_handlers: sta ip: 192.168.1.19, mask: 255.255.255.0, gw: 192.168.1.1[0m
+WiFi got IP ... 
+
+[0;32mI (2605) WEBSOCKET: Connecting to ws://192.168.1.5/ws ...[0m
+[0;33mW (2610) websocket_client: `reconnect_timeout_ms` is not set, or it is less than or equal to zero, using default time out 10000 (milliseconds)[0m
+[0;33mW (2624) websocket_client: `network_timeout_ms` is not set, or it is less than or equal to zero, using default time out 10000 (milliseconds)[0m
+[0;32mI (2637) WEBSOCKET: WebSocket not connected, waiting...[0m
+[0;32mI (2830) wifi:<ba-add>idx:0 (ifx:0, 4c:12:e8:89:e6:a8), tid:0, ssn:5, winSize:64[0m
+[0;32mI (2841) WEBSOCKET: WEBSOCKET_EVENT_CONNECTED[0m
+[0;33mW (4468) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (9485) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (11840) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (12763) WEBSOCKET: Received={"index":1,"state":"ON"}
+[0m
+[0;33mW (13070) WEBSOCKET: Received={"index":1,"state":"OFF"}
+[0m
+[0;33mW (13378) WEBSOCKET: Received={"index":1,"state":"ON"}
+[0m
+[0;33mW (13889) WEBSOCKET: Received={"index":1,"state":"OFF"}
+[0m
+[0;33mW (14503) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (19420) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (22081) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (24436) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (29462) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (32424) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (34472) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (39489) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (42766) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (44506) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (49524) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (53108) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (54541) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (54850) WEBSOCKET: Received={"current":"Thursday 22:54"}
+[0m
+[0;33mW (55055) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (59457) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (63452) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (64474) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (69494) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (73692) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (74510) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (79527) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (84033) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (84545) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (89563) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (94381) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (94580) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (99495) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (104513) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (104641) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (109530) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (114548) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (114855) WEBSOCKET: Received={"current":"Thursday 22:55"}
+[0m
+[0;33mW (115060) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (115368) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (119566) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (124583) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (125304) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (129602) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (134619) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (135643) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (139534) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (144551) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (145985) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (149569) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (154587) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (156328) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (159605) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (164623) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (166670) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (169640) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (174658) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (174892) WEBSOCKET: Received={"current":"Thursday 22:56"}
+[0m
+[0;33mW (175172) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (176910) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (179572) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (184590) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (187252) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (189608) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (194625) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (197595) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (199643) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (204661) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (207937) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (209679) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (214696) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (218280) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (219611) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (224629) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (228520) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (229646) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (234664) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (234895) WEBSOCKET: Received={"current":"Thursday 22:57"}
+[0m
+[0;33mW (235178) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (238862) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (239681) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (244699) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (249205) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (249717) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (254736) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (259547) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (259642) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (264667) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (269685) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (270095) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (274703) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (279720) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (280130) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (284738) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (289755) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (290473) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (294774) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (294892) WEBSOCKET: Received={"current":"Thursday 22:58"}
+[0m
+[0;33mW (295185) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (299689) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (300815) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (304706) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (309728) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (311158) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (314742) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (319760) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (321397) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (324777) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (329794) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (331740) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (334813) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (339728) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (342082) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (344744) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (349763) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (352424) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (354780) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (354892) WEBSOCKET: Received={"current":"Thursday 22:59"}
+[0m
+[0;33mW (355292) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (359797) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (362767) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (364815) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (369833) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (373007) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (374851) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (379766) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (383349) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (384783) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (389801) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (393693) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (394819) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (399836) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (404034) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (404854) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (409871) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (414377) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (414889) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (414907) WEBSOCKET: Received={"current":"Thursday 23:00"}
+[0m
+[0;33mW (415142) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (419804) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (424617) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (424822) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (429839) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (434857) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (434914) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (439874) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (444892) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (445302) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (449910) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (454927) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (455645) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (459844) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (464860) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (465987) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (469879) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (474895) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (475305) WEBSOCKET: Received={"current":"Thursday 23:01"}
+[0m
+[0;33mW (475613) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (476245) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (479913) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (484931) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (486569) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (489949) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (494966) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (496912) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (499984) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (504899) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (507255) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (509917) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (514934) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (517597) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (519952) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (524969) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (527837) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (529987) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (535004) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (535312) WEBSOCKET: Received={"current":"Thursday 23:02"}
+[0m
+[0;33mW (535619) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (538180) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (539920) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (544937) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (548521) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (549955) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (554973) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (558864) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (559990) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (565008) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (569206) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (570026) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (575044) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (579446) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (579959) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (584976) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (589790) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (589939) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (595011) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (595319) WEBSOCKET: Received={"current":"Thursday 23:03"}
+[0m
+[0;33mW (595425) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (600029) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (600336) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (605047) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (610064) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (610474) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (615083) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (619997) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (620816) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (625015) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (630032) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (631058) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (635050) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (640067) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (641399) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (645085) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (650104) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (651741) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (655018) WEBSOCKET: Received={"current":"Thursday 23:04"}
+[0m
+[0;33mW (655325) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (655530) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (660035) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (662084) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (665053) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (670071) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (672426) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (675088) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (680106) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (682673) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (685124) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (690141) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (693009) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (695159) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (700074) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (703351) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (705092) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (710110) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (713693) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (715025) WEBSOCKET: Received={"current":"Thursday 23:05"}
+[0m
+[0;33mW (715333) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (715437) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (720145) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (724036) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (725162) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (730180) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (734379) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (735198) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (740113) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (744619) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (745131) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (750148) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (754962) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (755166) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (760183) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (765201) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (765408) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (770218) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (775032) WEBSOCKET: Received={"current":"Thursday 23:06"}
+[0m
+[0;33mW (775142) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (775543) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (775851) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (780151) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (785169) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (785886) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (790187) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (795204) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (796229) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (800222) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (805239) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (806571) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (810257) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (815275) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (816913) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (820190) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (825208) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (827256) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (830225) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (835141) WEBSOCKET: Received={"current":"Thursday 23:07"}
+[0m
+[0;33mW (835550) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (835858) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (837496) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (840261) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (845279) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (847838) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (850296) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (855313) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (858181) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (860229) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (865246) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (868523) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (870268) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (875281) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (878868) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (880299) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (885317) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (889105) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (890334) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (895147) WEBSOCKET: Received={"current":"Thursday 23:08"}
+[0m
+[0;33mW (895557) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (895864) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (899448) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (900268) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (905285) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (909790) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (910303) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (915320) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (920133) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (920338) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (925355) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (930374) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (930393) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (935390) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (940306) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (940715) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (945324) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (950341) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (951058) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (955154) WEBSOCKET: Received={"current":"Thursday 23:09"}
+[0m
+[0;33mW (955564) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (955668) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (960379) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (961400) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (965394) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (970412) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (971743) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (975429) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (980344) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (982085) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (985362) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (990379) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (992325) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (995397) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1000415) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1002668) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1005432) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1010450) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1013010) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1015161) WEBSOCKET: Received={"current":"Thursday 23:10"}
+[0m
+[0;33mW (1015392) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (1015676) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1020389) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1023352) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1025400) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1030418) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1033695) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1035436) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1040453) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1043935) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1045471) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1050489) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1054278) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1055506) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1060426) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1064620) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1065440) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1070457) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1074962) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1075142) WEBSOCKET: Received={"current":"Thursday 23:11"}
+[0m
+[0;33mW (1075409) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (1075683) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1080492) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1085313) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1085416) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1090528) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1095545) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1095654) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1100460) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1105485) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1105888) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1110496) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1115513) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1116230) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1120531) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1125548) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1126574) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1130566) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1135174) WEBSOCKET: Received={"current":"Thursday 23:12"}
+[0m
+[0;33mW (1135585) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (1135789) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1136915) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1140500) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1145517) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1147155) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1150534) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1155552) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1157497) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1160574) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1165587) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1167840) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1170604) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1175622) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1178183) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1180538) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1185555) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1188525) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1190573) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1195181) WEBSOCKET: Received={"current":"Thursday 23:13"}
+[0m
+[0;33mW (1195590) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (1195795) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1198765) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1200608) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1205625) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1209107) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1210643) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1215661) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1219449) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1220576) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1225594) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1229792) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1230612) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1235629) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1240135) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1240648) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1245668) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1250374) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1250683) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1255187) WEBSOCKET: Received={"current":"Thursday 23:14"}
+[0m
+[0;33mW (1255597) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (1255807) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1260614) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1260662) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1265632) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1270650) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1271060) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1275667) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1280685) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1281402) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1285703) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1290720) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1291745) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1295738) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1300653) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1301984) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1305671) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1310688) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1312327) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1315194) WEBSOCKET: Received={"current":"Thursday 23:15"}
+[0m
+[0;33mW (1315604) WEBSOCKET: Received={"schedule":[{"id":1,"state":false,"days":["Wednesday"],"time":"01:06","actions":[{"relayId":2,"action":"ON"}]}]}
+[0m
+[0;33mW (1315642) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1320723) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1322670) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1325741) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1330759) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1333012) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1335776) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1340693) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1343354) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1345709) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1350727) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1353594) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1355745) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1360762) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1363939) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1365780) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1370797) WEBSOCKET: Received={"latitude":0.0000000,"longitude":0.0000000}
+[0m
+[0;33mW (1374279) WEBSOCKET: Received={"temperature":0.00,"humidity":0.00}
+[0m
+[0;33mW (1375307) WEBSOCKET: Received={"current":"Thursday

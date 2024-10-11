@@ -1,0 +1,11 @@
+CMake Error at /Users/lilnat/esp-idf/tools/cmake/build.cmake:318 (message):
+  Failed to resolve component 'nvs_flash.h' required by component 'main':
+  unknown name.
+Call Stack (most recent call first):
+  /Users/lilnat/esp-idf/tools/cmake/build.cmake:361 (__build_resolve_and_add_req)
+  /Users/lilnat/esp-idf/tools/cmake/build.cmake:664 (__build_expand_requirements)
+  /Users/lilnat/esp-idf/tools/cmake/project.cmake:710 (idf_build_process)
+  CMakeLists.txt:6 (project)
+
+
+ninja: error: rebuilding 'build.ninja': subcommand failed
