@@ -4,7 +4,35 @@
 
 float temperature = 0, humidity = 0;
 HardwareSerial RS485Serial(1);
-// DHT20 dht20; User for DHT20
+DHT20 dht20;
+
+void saveTemp_HumiToFile()
+{
+    File file = LittleFS.open("/temp_humi.dat", "a");
+    if (!file)
+    {
+        Serial.println("Failed to open file for appending");
+        return;
+    }
+
+    DynamicJsonDocument doc(2048);
+    doc["mode"] = "Temp_Humi";
+    doc["time"] = current;
+    doc["temperature"] = temperature;
+    doc["humidity"] = humidity;
+
+    if (file.size() > 0)
+    {
+        file.print(",\n");
+    }
+
+    if (serializeJson(doc, file) == 0)
+    {
+        Serial.println("Failed to write to file");
+    }
+
+    file.close();
+}
 
 void sendRS485Command(byte *command, int commandSize, byte *response, int responseSize)
 {
@@ -39,54 +67,49 @@ void ES35_sensor()
     }
 }
 
-void TaskTemperatureHumidity(void *pvParameters)
+void DHT20_sensor()
 {
-    RS485Serial.begin(BAUD_RATE_2, SERIAL_8N1, SDA, SCL);
-    while (true)
+    if (dht20.read() == DHT20_OK)
     {
-        if (WiFi.status() == WL_CONNECTED && client.connected())
-        {
-            ES35_sensor();
-            publishData("temperature", String(temperature));
-            publishData("humidity", String(humidity));
-            if (ws.count() > 0)
-            {
-                String data = "{\"temperature\":" + String(temperature) + ",\"humidity\":" + String(humidity) + "}";
-                ws.textAll(data);
-            }
-
-            vTaskDelay(delay_temp / portTICK_PERIOD_MS);
-        }
+        temperature = dht20.getTemperature();
+        humidity = dht20.getHumidity();
     }
 }
 
-/// User for DHT20
-/*void TaskTemperatureHumidity(void *pvParameters)
+void TaskTemperatureHumidity(void *pvParameters)
 {
-    Wire.begin(SDA, SCL);
+    // RS485Serial.begin(BAUD_RATE_2, SERIAL_8N1, RXD_RS485, TXD_RS485);
+    Wire.begin(SCL, SDA);
     Wire.setClock(100000);
     dht20.begin();
 
-    while (1)
+    while (true)
     {
-        if (WiFi.status() != WL_CONNECTED || !client.connected())
+        ES35_sensor();
+        DHT20_sensor();
+
+        if (WiFi.status() == WL_CONNECTED)
         {
-            vTaskDelay(delay_connect / portTICK_PERIOD_MS);
-            continue;
+            String temperatureStr = String(temperature, 2);
+            String humidityStr = String(humidity, 2);
+            if (client.connected())
+            {
+                publishData("temperature", temperatureStr);
+                publishData("humidity", humidityStr);
+            }
+
+            if (ws.count() > 0)
+            {
+                String data = "{\"temperature\":" + temperatureStr + ",\"humidity\":" + humidityStr + "}";
+                ws.textAll(data);
+            }
+            vTaskDelay(delay_temp / portTICK_PERIOD_MS);
         }
-        dht20.read();
-        float temperature = dht20.getTemperature();
-        float humidity = dht20.getHumidity();
-        String temperatureStr = String(temperature, 2);
-        String humidityStr = String(humidity, 2);
-        publishData("temperature", temperatureStr);
-        publishData("humidity", humidityStr);
-        if (ws.count() > 0)
+
+        else if (WiFi.status() == WL_DISCONNECTED)
         {
-            String data = "{\"temperature\":" + temperatureStr + ",\"humidity\":" + humidityStr + "}";
-            ws.textAll(data);
+            saveTemp_HumiToFile();
+            vTaskDelay(delay_reconnect / portTICK_PERIOD_MS);
         }
-        vTaskDelay(delay_temp / portTICK_PERIOD_MS);
     }
 }
-*/

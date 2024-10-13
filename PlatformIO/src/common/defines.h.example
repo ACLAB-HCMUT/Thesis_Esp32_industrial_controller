@@ -1,6 +1,6 @@
 // DEFINE WIFI
-#define WIFI_SSID 
-#define WIFI_PASS
+#define WIFI_SSID ""
+#define WIFI_PASS ""
 
 // DEFINE STRUCT SCHEDULE
 #define MAX_SCHEDULES 20
@@ -14,16 +14,18 @@
 #define delay_gps 10000
 #define delay_connect 100
 #define delay_wifi 1000
+#define delay_mqtt 1000
 #define delay_led 1000
+#define delay_reconnect 1800000 // (30 minute)
 
 // DEFINE PINS
-#define SCL 17
-#define SDA 18
+#define SCL 11 // 17 relay_6_ch  // 11  yolo uno
+#define SDA 12 // 18 relay_6_ch  // 12  yolo uno
 #define TXD_RELAY 8
 #define RXD_RELAY 9
 #define TXD_GPS 15
 #define RXD_GPS 16
-#define LED 38    // 38 relay_6_ch  // 45  (yolo unos)
+#define LED 38    // 38 relay_6_ch  // 45  yolo uno
 #define BUZZER 21 // relay_6_ch
 #define NUM_PIXELS 4
 #define Brightness 128 // Set brightness to (0 to 255)

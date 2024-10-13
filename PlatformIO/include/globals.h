@@ -4,6 +4,7 @@
 // include libraries
 #include <Wire.h>
 #include <WiFi.h>
+#include <time.h>
 #include <DHT20.h>
 #include "LittleFS.h"
 #include "SPIFFS.h"

@@ -2,9 +2,10 @@
 #define INC_TASKINIT_H_
 
 #include <globals.h>
-#include "TaskLoadSchedule.h"
+#include "TaskLoadHistory.h"
 #include "TaskSchedule.h"
 #include "TaskServer.h"
+#include "TaskTime.h"
 
 void task_intit();
 

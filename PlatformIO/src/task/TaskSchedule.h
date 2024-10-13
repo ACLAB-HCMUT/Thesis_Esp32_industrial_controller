@@ -3,6 +3,7 @@
 
 #include "globals.h"
 #include "../device/TaskMobus.h"
+#include "TaskTime.h"
 
 #ifdef __cplusplus
 extern "C"

@@ -1,3 +1,0 @@
-#define SSID "ACLAB"
-#define PASS "ACLAB2023"
-#define websever_url "10.28.128.211"

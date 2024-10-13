@@ -4,12 +4,31 @@ void TaskWifi(void *pvParameters)
 {
     WiFi.mode(WIFI_STA);
     WiFi.begin(WIFI_SSID, WIFI_PASS);
+
     while (WiFi.status() != WL_CONNECTED)
     {
         vTaskDelay(delay_wifi / portTICK_PERIOD_MS);
         Serial.println("Connecting to WiFi");
     }
-    vTaskDelete(NULL);
+
+    Serial.println("Connected to WiFi");
+
+    while (true)
+    {
+        if (WiFi.status() != WL_CONNECTED)
+        {
+            WiFi.disconnect();
+            WiFi.begin(WIFI_SSID, WIFI_PASS);
+
+            while (WiFi.status() != WL_CONNECTED)
+            {
+                vTaskDelay(delay_wifi / portTICK_PERIOD_MS);
+                Serial.println("Reconnecting to WiFi...");
+            }
+            Serial.println("Reconnected to WiFi");
+        }
+        vTaskDelay(delay_wifi / portTICK_PERIOD_MS);
+    }
 }
 
 void wifi_init()

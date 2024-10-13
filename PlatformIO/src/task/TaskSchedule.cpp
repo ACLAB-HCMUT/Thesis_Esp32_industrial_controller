@@ -1,8 +1,5 @@
 #include "TaskSchedule.h"
 
-WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP, ntpServer, utcOffsetInSeconds);
-
 Schedule schedules[MAX_SCHEDULES];
 int scheduleCount = 0;
 
@@ -88,25 +85,14 @@ void deleteScheduleById(int id)
     }
 }
 
-String getDayOfWeek(unsigned long epochTime)
-{
-    time_t rawTime = epochTime;
-    struct tm *timeInfo = localtime(&rawTime);
-    String days[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-    return days[timeInfo->tm_wday];
-}
-
 void checkSchedules()
 {
-    timeClient.update();
-    unsigned long epochTime = timeClient.getEpochTime();
-    String currentDay = getDayOfWeek(epochTime);
-    String currentTime = timeClient.getFormattedTime().substring(0, 5);
-    String current = currentDay + " " + currentTime;
-    String data = "{\"current\":\"" + current + "\"}";
+    int spaceIndex = current.indexOf(' ');
+    String currentDay = current.substring(0, spaceIndex);
+    String currentTime = current.substring(spaceIndex + 1);
+
     if (ws.count() > 0)
     {
-        ws.textAll(data);
         sendSchedules();
     }
     for (int i = 0; i < scheduleCount; i++)
