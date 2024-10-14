@@ -18,7 +18,7 @@ void saveGpsToFile()
     DynamicJsonDocument doc(1024);
 
     doc["mode"] = "GPS";
-    doc["time"] = current;
+    doc["time"] = date;
     doc["CoordinateX"] = X;
     doc["CoordinateY"] = Y;
 

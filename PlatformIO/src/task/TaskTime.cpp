@@ -3,6 +3,7 @@
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, ntpServer, utcOffsetInSeconds);
 String current;
+String date;
 
 String getDayOfWeek(unsigned long epochTime)
 {
@@ -43,10 +44,14 @@ void TaskTime(void *pvParameters)
         struct tm timeinfo;
         if (getLocalTime(&timeinfo))
         {
+            char dateBuffer[11];
+            strftime(dateBuffer, sizeof(dateBuffer), "%d:%m:%Y", &timeinfo);
+
             String currentDay = getDayOfWeek(mktime(&timeinfo));
             char currentTime[6];
             strftime(currentTime, sizeof(currentTime), "%H:%M", &timeinfo);
             current = currentDay + " " + String(currentTime);
+            date = String(currentTime) + "-" + String(dateBuffer);
             String data = "{\"current\":\"" + current + "\"}";
             if (ws.count() > 0)
             {

@@ -15,5 +15,6 @@ extern "C"
 #endif
 
 extern String current;
+extern String date;
 
 #endif /* INC_TASKTIME_H_ */

@@ -17,7 +17,7 @@ void saveTemp_HumiToFile()
 
     DynamicJsonDocument doc(2048);
     doc["mode"] = "Temp_Humi";
-    doc["time"] = current;
+    doc["time"] = date;
     doc["temperature"] = temperature;
     doc["humidity"] = humidity;
 
@@ -78,7 +78,7 @@ void DHT20_sensor()
 
 void TaskTemperatureHumidity(void *pvParameters)
 {
-    // RS485Serial.begin(BAUD_RATE_2, SERIAL_8N1, RXD_RS485, TXD_RS485);
+    RS485Serial.begin(BAUD_RATE_2, SERIAL_8N1, RXD_RS485, TXD_RS485);
     Wire.begin(SCL, SDA);
     Wire.setClock(100000);
     dht20.begin();

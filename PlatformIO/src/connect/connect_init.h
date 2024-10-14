@@ -4,6 +4,7 @@
 #include <globals.h>
 #include "TaskMQTT.h"
 #include "TaskWifi.h"
+#include "TaskServer.h"
 
 void connect_intit();
 
