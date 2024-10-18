@@ -44,7 +44,7 @@ void loadGpsFromFile()
 
         if (client.connected())
         {
-            client.publish("history", output.c_str());
+            publishData("history", output.c_str());
         }
 
         vTaskDelay(5000 / portTICK_PERIOD_MS);
@@ -80,7 +80,7 @@ void loadTemp_HumiFromFile()
 
         if (client.connected())
         {
-            client.publish("history", output.c_str());
+            publishData("history", output.c_str());
         }
 
         vTaskDelay(5000 / portTICK_PERIOD_MS);

@@ -9,7 +9,7 @@
 
 ## Libraries:
 - ESPAsyncWebServer
-- SPIFFs
+- SPIFFs and LittleFS
 
 ## Manual:
 1. Enter Bootloader by Hold Boot -> Hold Reset -> Release Reset - > Release Boot.

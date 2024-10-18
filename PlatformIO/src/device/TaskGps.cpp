@@ -17,10 +17,9 @@ void saveGpsToFile()
 
     DynamicJsonDocument doc(1024);
 
-    doc["mode"] = "GPS";
+    doc["mode"] = "location";
     doc["time"] = date;
-    doc["CoordinateX"] = X;
-    doc["CoordinateY"] = Y;
+    doc["data"] = String(X) + "-" + String(Y);
 
     if (file.size() > 0)
     {

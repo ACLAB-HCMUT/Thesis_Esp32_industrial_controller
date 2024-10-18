@@ -2,6 +2,9 @@
 #define WIFI_SSID ""
 #define WIFI_PASS ""
 
+// DEFINE EMAIL
+#define EMAIL ""
+
 // DEFINE STRUCT SCHEDULE
 #define MAX_SCHEDULES 20
 #define MAX_DAYS 7

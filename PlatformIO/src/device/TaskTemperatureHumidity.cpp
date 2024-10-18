@@ -1,7 +1,5 @@
 #include "TaskTemperatureHumidity.h"
 
-#include "TaskTemperatureHumidity.h"
-
 float temperature = 0, humidity = 0;
 HardwareSerial RS485Serial(1);
 DHT20 dht20;
@@ -92,10 +90,13 @@ void TaskTemperatureHumidity(void *pvParameters)
         {
             String temperatureStr = String(temperature, 2);
             String humidityStr = String(humidity, 2);
+
             if (client.connected())
             {
-                publishData("temperature", temperatureStr);
-                publishData("humidity", humidityStr);
+                String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":" + temperatureStr + "}";
+                publishData("temperature", data);
+                data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":" + humidityStr + "}";
+                publishData("humidity", data);
             }
 
             if (ws.count() > 0)
