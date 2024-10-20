@@ -3,16 +3,7 @@
 
 #include "globals.h"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-    void TaskGps(void *pvParameters);
-
-#ifdef __cplusplus
-}
-#endif
+void GPS_init();
 
 extern TinyGPSPlus gps;
 extern SoftwareSerial ss;

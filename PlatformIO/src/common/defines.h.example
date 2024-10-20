@@ -19,6 +19,7 @@
 #define delay_wifi 1000
 #define delay_mqtt 1000
 #define delay_led 1000
+#define delay_30_min 1800000 // time delay to send data to Adafruit
 
 // DEFINE PINS
 #define SCL 11       // yolo uno

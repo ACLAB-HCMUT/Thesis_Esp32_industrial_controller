@@ -3,15 +3,6 @@
 
 #include "globals.h"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-    void TaskLed(void *pvParameters);
-
-#ifdef __cplusplus
-}
-#endif
+void LED_init();
 
 #endif /* INC_TASKLED_H_ */

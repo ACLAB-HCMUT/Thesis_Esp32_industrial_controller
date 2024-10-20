@@ -3,7 +3,6 @@
 float temperature = 0, humidity = 0;
 HardwareSerial RS485Serial(1);
 DHT20 dht20;
-int count_30_min_temp_humi = 0;
 
 void saveTemp_HumiToFile()
 {
@@ -75,18 +74,32 @@ void DHT20_sensor()
     }
 }
 
+void sendTemp_Humi(void *pvParameters)
+{
+    while (true)
+    {
+        if (WiFi.status() == WL_CONNECTED && client.connected() && temperature * humidity != 0)
+        {
+            String temperatureStr = String(temperature, 2);
+            String humidityStr = String(humidity, 2);
+
+            String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":" + temperatureStr + "}";
+            publishData("temperature", data);
+            data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":" + humidityStr + "}";
+            publishData("humidity", data);
+
+            vTaskDelay(delay_30_min / portTICK_PERIOD_MS);
+        }
+        vTaskDelay(delay_gps / portTICK_PERIOD_MS);
+    }
+}
+
 void TaskTemperatureHumidity(void *pvParameters)
 {
     RS485Serial.begin(BAUD_RATE_2, SERIAL_8N1, RXD_RS485, TXD_RS485);
     Wire.begin(SCL, SDA);
     Wire.setClock(100000);
     dht20.begin();
-
-    while (WiFi.status() == WL_DISCONNECTED)
-    {
-        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
-        continue;
-    }
 
     while (true)
     {
@@ -95,24 +108,11 @@ void TaskTemperatureHumidity(void *pvParameters)
 
         if (WiFi.status() == WL_CONNECTED)
         {
-            String temperatureStr = String(temperature, 2);
-            String humidityStr = String(humidity, 2);
-
-            if (client.connected() && count_30_min_temp_humi == 0)
-            {
-                String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":" + temperatureStr + "}";
-                publishData("temperature", data);
-                data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":" + humidityStr + "}";
-                publishData("humidity", data);
-                count_30_min_temp_humi = 12;
-            }
-
             if (ws.count() > 0)
             {
-                String data = "{\"temperature\":" + temperatureStr + ",\"humidity\":" + humidityStr + "}";
+                String data = "{\"temperature\":" + String(temperature, 2) + ",\"humidity\":" + String(humidity, 2) + "}";
                 ws.textAll(data);
             }
-            count_30_min_temp_humi--;
         }
 
         else if (WiFi.status() == WL_DISCONNECTED)
@@ -120,9 +120,14 @@ void TaskTemperatureHumidity(void *pvParameters)
             if (temperature != 0 && humidity != 0 && check_different_time)
             {
                 saveTemp_HumiToFile();
-                count_30_min_temp_humi = 0;
             }
         }
         vTaskDelay(delay_temp_humi / portTICK_PERIOD_MS);
     }
+}
+
+void Temp_Humi_init()
+{
+    xTaskCreate(TaskTemperatureHumidity, "TaskTemperatureHumidity", 8192, NULL, 1, NULL);
+    xTaskCreate(sendTemp_Humi, "sendTemp_Humi", 4096, NULL, 2, NULL);
 }

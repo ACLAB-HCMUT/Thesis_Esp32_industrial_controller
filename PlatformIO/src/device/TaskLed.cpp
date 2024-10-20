@@ -27,6 +27,26 @@ void TaskLed(void *pvParameters)
             led_rgb.show();
             ledState = !ledState;
         }
+        else if (WiFi.status() == WL_DISCONNECTED)
+        {
+            if (ledState)
+            {
+                led_rgb.setPixelColor(0, led_rgb.Color(255, 0, 0));
+                digitalWrite(BUZZER, HIGH);
+            }
+            else
+            {
+                led_rgb.setPixelColor(0, led_rgb.Color(0, 0, 255));
+                digitalWrite(BUZZER, LOW);
+            }
+            led_rgb.show();
+            ledState = !ledState;
+        }
         vTaskDelay(delay_led / portTICK_PERIOD_MS);
     }
+}
+
+void LED_init()
+{
+    xTaskCreate(TaskLed, "TaskLed", 2048, NULL, 2, NULL);
 }

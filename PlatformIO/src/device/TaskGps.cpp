@@ -5,7 +5,6 @@ SoftwareSerial ss(RXD_GPS, TXD_GPS);
 
 float X = 0;
 float Y = 0;
-int count_30_min_gps = 0;
 
 void saveGpsToFile()
 {
@@ -44,46 +43,49 @@ void GPS_sensor()
     }
 }
 
+void sendLocation(void *pvParameters)
+{
+    while (true)
+    {
+        if (WiFi.status() == WL_CONNECTED && client.connected() && X * Y != 0)
+        {
+            String locationStr = String(X, 2) + "-" + String(Y, 2);
+            String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + locationStr + "\"}";
+            publishData("location", data);
+            vTaskDelay(delay_30_min / portTICK_PERIOD_MS);
+        }
+        vTaskDelay(delay_gps / portTICK_PERIOD_MS);
+    }
+}
+
 void TaskGps(void *pvParameters)
 {
     ss.begin(9600);
-
-    while (WiFi.status() == WL_DISCONNECTED)
-    {
-        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
-        continue;
-    }
 
     while (true)
     {
         GPS_sensor();
         if (WiFi.status() == WL_CONNECTED)
         {
-            String XStr = String(X, 2);
-            String YStr = String(Y, 2);
-
-            if (client.connected() && count_30_min_gps == 0)
-            {
-                String locationStr = XStr + "-" + YStr;
-                String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + locationStr + "\"}";
-                publishData("location", data);
-                count_30_min_gps = 12;
-            }
             if (ws.count() > 0)
             {
-                String data = "{\"latitude\":" + XStr + ",\"longitude\":" + YStr + "}";
+                String data = "{\"latitude\":" + String(X, 2) + ",\"longitude\":" + String(Y, 2) + "}";
                 ws.textAll(data);
             }
-            count_30_min_gps--;
         }
         else if (WiFi.status() == WL_DISCONNECTED)
         {
             if (X != 0 && Y != 0 && check_different_time)
             {
                 saveGpsToFile();
-                count_30_min_gps=0;
             }
         }
         vTaskDelay(delay_gps / portTICK_PERIOD_MS);
     }
+}
+
+void GPS_init()
+{
+    xTaskCreate(TaskGps, "TaskGps", 4096, NULL, 1, NULL);
+    xTaskCreate(sendLocation, "sendLocation", 4096, NULL, 2, NULL);
 }

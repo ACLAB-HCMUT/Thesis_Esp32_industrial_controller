@@ -3,15 +3,6 @@
 
 #include "globals.h"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-    void TaskTemperatureHumidity(void *pvParameters);
-
-#ifdef __cplusplus
-}
-#endif
+void Temp_Humi_init();
 
 #endif /* INC_TASKTEMPERATUREHUMIDITY_H_ */
