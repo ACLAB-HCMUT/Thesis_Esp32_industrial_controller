@@ -23,7 +23,7 @@ void TaskLed(void *pvParameters)
                 led_rgb.setPixelColor(0, led_rgb.Color(0, 0, 0));
                 digitalWrite(BUZZER, LOW);
             }
-            // led_rgb.setBrightness(Brightness);
+            led_rgb.setBrightness(Brightness);
             led_rgb.show();
             ledState = !ledState;
         }

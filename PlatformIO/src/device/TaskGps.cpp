@@ -5,6 +5,7 @@ SoftwareSerial ss(RXD_GPS, TXD_GPS);
 
 float X = 0;
 float Y = 0;
+int count_30_min_gps = 0;
 
 void saveGpsToFile()
 {
@@ -15,11 +16,11 @@ void saveGpsToFile()
         return;
     }
 
-    DynamicJsonDocument doc(1024);
-
+    DynamicJsonDocument doc(2048);
+    doc["email"] = String(EMAIL);
     doc["mode"] = "location";
     doc["time"] = date;
-    doc["data"] = String(X) + "-" + String(Y);
+    doc["data"] = String(X, 5) + "-" + String(Y, 5);
 
     if (file.size() > 0)
     {
@@ -46,28 +47,43 @@ void GPS_sensor()
 void TaskGps(void *pvParameters)
 {
     ss.begin(9600);
+
+    while (WiFi.status() == WL_DISCONNECTED)
+    {
+        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
+        continue;
+    }
+
     while (true)
     {
         GPS_sensor();
         if (WiFi.status() == WL_CONNECTED)
         {
-            if (client.connected())
-            {
-                publishData("location", (String(gps.location.lat(), 7) + "-" + String(gps.location.lng(), 7)));
-            }
-            String data = "{\"latitude\":" + String(gps.location.lat(), 7) + ",\"longitude\":" + String(gps.location.lng(), 7) + "}";
+            String XStr = String(X, 2);
+            String YStr = String(Y, 2);
 
+            if (client.connected() && count_30_min_gps == 0)
+            {
+                String locationStr = XStr + "-" + YStr;
+                String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + locationStr + "\"}";
+                publishData("location", data);
+                count_30_min_gps = 12;
+            }
             if (ws.count() > 0)
             {
+                String data = "{\"latitude\":" + XStr + ",\"longitude\":" + YStr + "}";
                 ws.textAll(data);
             }
-            vTaskDelay(delay_gps / portTICK_PERIOD_MS);
+            count_30_min_gps--;
         }
-
-        else if (WiFi.status() != WL_CONNECTED)
+        else if (WiFi.status() == WL_DISCONNECTED)
         {
-            saveGpsToFile();
-            vTaskDelay(delay_reconnect / portTICK_PERIOD_MS);
+            if (X != 0 && Y != 0 && check_different_time)
+            {
+                saveGpsToFile();
+                count_30_min_gps=0;
+            }
         }
+        vTaskDelay(delay_gps / portTICK_PERIOD_MS);
     }
 }

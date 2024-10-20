@@ -53,11 +53,12 @@ void sendValue(int index, String state)
         }
     }
     String response = "{\"index\":" + String(index) + ",\"state\":\"" + state + "\"}";
-    String sendData = String(index) + '-' + state;
-    Serial.println(sendData);
+    Serial.println(String(index) + '-' + state);
     if (client.connected())
     {
-        publishData("relay", sendData);
+        String relayStr = String(index) + "-" + state;
+        String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + relayStr + "\"}";
+        publishData("relay-status", data);
     }
     else
     {

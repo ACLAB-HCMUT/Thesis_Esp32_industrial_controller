@@ -13,13 +13,12 @@
 // DEFINE DELAY
 #define delay_minute 60000
 #define delay_relay 100
-#define delay_temp 15000
-#define delay_gps 10000
+#define delay_temp_humi 15000
+#define delay_gps 15000
 #define delay_connect 100
 #define delay_wifi 1000
 #define delay_mqtt 1000
 #define delay_led 1000
-#define delay_reconnect 1800000 // (30 minute)
 
 // DEFINE PINS
 #define SCL 11       // yolo uno

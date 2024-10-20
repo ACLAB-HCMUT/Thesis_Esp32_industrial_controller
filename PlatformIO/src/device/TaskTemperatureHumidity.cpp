@@ -3,6 +3,7 @@
 float temperature = 0, humidity = 0;
 HardwareSerial RS485Serial(1);
 DHT20 dht20;
+int count_30_min_temp_humi = 0;
 
 void saveTemp_HumiToFile()
 {
@@ -14,10 +15,10 @@ void saveTemp_HumiToFile()
     }
 
     DynamicJsonDocument doc(2048);
+    doc["email"] = String(EMAIL);
     doc["mode"] = "Temp_Humi";
     doc["time"] = date;
-    doc["temperature"] = temperature;
-    doc["humidity"] = humidity;
+    doc["data"] = String(temperature, 2) + "-" + String(humidity, 2);
 
     if (file.size() > 0)
     {
@@ -81,6 +82,12 @@ void TaskTemperatureHumidity(void *pvParameters)
     Wire.setClock(100000);
     dht20.begin();
 
+    while (WiFi.status() == WL_DISCONNECTED)
+    {
+        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
+        continue;
+    }
+
     while (true)
     {
         ES35_sensor();
@@ -91,12 +98,13 @@ void TaskTemperatureHumidity(void *pvParameters)
             String temperatureStr = String(temperature, 2);
             String humidityStr = String(humidity, 2);
 
-            if (client.connected())
+            if (client.connected() && count_30_min_temp_humi == 0)
             {
                 String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":" + temperatureStr + "}";
                 publishData("temperature", data);
                 data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":" + humidityStr + "}";
                 publishData("humidity", data);
+                count_30_min_temp_humi = 12;
             }
 
             if (ws.count() > 0)
@@ -104,13 +112,17 @@ void TaskTemperatureHumidity(void *pvParameters)
                 String data = "{\"temperature\":" + temperatureStr + ",\"humidity\":" + humidityStr + "}";
                 ws.textAll(data);
             }
-            vTaskDelay(delay_temp / portTICK_PERIOD_MS);
+            count_30_min_temp_humi--;
         }
 
         else if (WiFi.status() == WL_DISCONNECTED)
         {
-            saveTemp_HumiToFile();
-            vTaskDelay(delay_reconnect / portTICK_PERIOD_MS);
+            if (temperature != 0 && humidity != 0 && check_different_time)
+            {
+                saveTemp_HumiToFile();
+                count_30_min_temp_humi = 0;
+            }
         }
+        vTaskDelay(delay_temp_humi / portTICK_PERIOD_MS);
     }
 }
