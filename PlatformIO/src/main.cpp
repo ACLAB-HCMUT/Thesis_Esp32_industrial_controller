@@ -21,6 +21,6 @@ void setup()
 void loop()
 {
   ElegantOTA.loop();
-  while (ss.available() > 0)
+  if (ss.available() > 0)
     gps.encode(ss.read());
 }
