@@ -13,7 +13,6 @@ void loadSchedulesFromFile()
     file.read((uint8_t *)&scheduleCount, sizeof(scheduleCount));
 
     file.close();
-    LittleFS.remove("/schedules.dat");
 }
 
 void loadGpsFromFile()

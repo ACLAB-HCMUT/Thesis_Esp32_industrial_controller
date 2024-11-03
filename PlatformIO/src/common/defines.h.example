@@ -11,7 +11,7 @@
 #define MAX_ACTIONS 10
 
 // DEFINE DELAY
-#define delay_minute 60000
+#define delay_time 20000
 #define delay_relay 100
 #define delay_temp_humi 15000
 #define delay_gps 15000

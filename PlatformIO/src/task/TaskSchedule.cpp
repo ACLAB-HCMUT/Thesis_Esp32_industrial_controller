@@ -130,6 +130,6 @@ void TaskSchedule(void *pvParameters)
             continue;
         }
         checkSchedules();
-        vTaskDelay(delay_minute / portTICK_PERIOD_MS);
+        vTaskDelay(delay_time / portTICK_PERIOD_MS);
     }
 }

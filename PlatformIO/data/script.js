@@ -64,7 +64,7 @@ function onMessage(event) {
     }
     if (data.schedule) {
         var scheduleContainer = document.getElementById('scheduleContainer');
-        scheduleContainer.innerHTML = ''; // Clear previous schedule items
+        scheduleContainer.innerHTML = '';
         data.schedule.forEach(schedule => {
             var scheduleDiv = document.createElement('div');
             scheduleDiv.className = 'card';
