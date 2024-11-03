@@ -68,26 +68,28 @@ function onMessage(event) {
         data.schedule.forEach(schedule => {
             var scheduleDiv = document.createElement('div');
             scheduleDiv.className = 'card';
-            scheduleDiv.innerHTML = `<div class="schedule-card">
-                <h3>Schedule ${schedule.id}</h3>
-                <div class="schedule-details">
-                    <div class="detail-item">
-                        <p><strong>State:</strong> <span>${schedule.state}</span></p>
+            scheduleDiv.innerHTML = `
+                <div class="schedule-card">
+                    <h3>Schedule ${schedule.id}</h3>
+                    <div class="schedule-details-horizontal">
+                        <div class="detail-item">
+                            <p><strong>State</strong></p>
+                            <p>${schedule.state ? 'ON' : 'OFF'}</p>
+                        </div>
+                        <div class="detail-item">
+                            <p><strong>Time</strong></p>
+                            <p>${schedule.time}</p>
+                        </div>
+                        <div class="detail-item">
+                            <p><strong>Days</strong></p>
+                            <p>${schedule.days.join('<br>')}</p>
+                        </div>
+                        <div class="detail-item">
+                            <p><strong>Actions</strong></p>
+                            <p>${schedule.actions.map(action => `Relay ${action.relayId} ${action.action}`).join('<br>')}</p>
+                        </div>
                     </div>
-                    <div class="detail-item">
-                        <p><strong>Time:</strong> <span>${schedule.time}</span></p>
-                    </div>
-                    <div class="detail-item">
-                        <p><strong>Days:</strong> <span>${schedule.days.join(', ')}</span></p>
-                    </div>
-                </div>
-                <div class="schedule-actions">
-                    <p><strong>Actions:</strong></p>
-                    <ul>
-                        ${schedule.actions.map(action => `<li>Relay ${action.relayId}: ${action.action}</li>`).join('')}
-                    </ul>
-                </div>
-            </div>`;
+                </div>`;
             scheduleContainer.appendChild(scheduleDiv);
         });
     }

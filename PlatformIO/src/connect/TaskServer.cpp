@@ -28,12 +28,6 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
 
 void TaskServer(void *pvParameters)
 {
-
-    if (!LittleFS.begin(true))
-    {
-        Serial.println("An Error has occurred while mounting LittleFS");
-        vTaskDelete(NULL);
-    }
     while (WiFi.status() != WL_CONNECTED)
     {
         vTaskDelay(delay_connect / portTICK_PERIOD_MS);

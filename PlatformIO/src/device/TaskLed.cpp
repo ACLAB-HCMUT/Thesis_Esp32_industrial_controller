@@ -13,16 +13,33 @@ void TaskLed(void *pvParameters)
     {
         if (WiFi.status() == WL_CONNECTED && client.connected())
         {
-            if (ledState)
+            if (client.connected())
             {
-                led_rgb.setPixelColor(0, led_rgb.Color(0, 255, 0));
-                digitalWrite(BUZZER, HIGH);
+                if (ledState)
+                {
+                    led_rgb.setPixelColor(0, led_rgb.Color(0, 255, 0));
+                    digitalWrite(BUZZER, HIGH);
+                }
+                else
+                {
+                    led_rgb.setPixelColor(0, led_rgb.Color(0, 0, 0));
+                    digitalWrite(BUZZER, LOW);
+                }
             }
-            else
+            else if (!client.connected())
             {
-                led_rgb.setPixelColor(0, led_rgb.Color(0, 0, 0));
-                digitalWrite(BUZZER, LOW);
+                if (ledState)
+                {
+                    led_rgb.setPixelColor(0, led_rgb.Color(255, 255, 255));
+                    digitalWrite(BUZZER, HIGH);
+                }
+                else
+                {
+                    led_rgb.setPixelColor(0, led_rgb.Color(0, 0, 0));
+                    digitalWrite(BUZZER, LOW);
+                }
             }
+
             led_rgb.setBrightness(Brightness);
             led_rgb.show();
             ledState = !ledState;

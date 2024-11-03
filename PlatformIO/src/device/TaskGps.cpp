@@ -49,7 +49,7 @@ void sendLocation(void *pvParameters)
     {
         if (WiFi.status() == WL_CONNECTED && client.connected() && X * Y != 0)
         {
-            String locationStr = String(X, 2) + "-" + String(Y, 2);
+            String locationStr = String(X, 7) + "-" + String(Y, 7);
             String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + locationStr + "\"}";
             publishData("location", data);
             vTaskDelay(delay_30_min / portTICK_PERIOD_MS);
