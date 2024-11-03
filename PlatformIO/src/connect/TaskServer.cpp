@@ -41,6 +41,8 @@ void TaskServer(void *pvParameters)
               { request->send(LittleFS, "/script.js", "application/javascript"); });
     server.on("/styles.css", HTTP_GET, [](AsyncWebServerRequest *request)
               { request->send(LittleFS, "/styles.css", "text/css"); });
+    ElegantOTA.begin(&server);
+    ElegantOTA.setAuth(username, password);
     server.begin();
     vTaskDelete(NULL);
 }

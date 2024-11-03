@@ -2,6 +2,10 @@
 #define WIFI_SSID ""
 #define WIFI_PASS ""
 
+// DEFINE SERVER_INFO
+#define username ""
+#define password ""
+
 // DEFINE EMAIL
 #define EMAIL ""
 
