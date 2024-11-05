@@ -14,4 +14,9 @@ extern "C"
 }
 #endif
 
+extern char *username;
+extern char *password;
+
+void loadInfoFromFile();
+
 #endif /* INC_TASKLOADHISTORY_H_ */

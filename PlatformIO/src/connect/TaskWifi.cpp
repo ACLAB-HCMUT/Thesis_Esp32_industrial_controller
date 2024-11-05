@@ -3,7 +3,7 @@
 void TaskWifi(void *pvParameters)
 {
     WiFi.mode(WIFI_STA);
-    WiFi.begin(WIFI_SSID, WIFI_PASS);
+    WiFi.begin(WIFI_SSID.c_str(), WIFI_PASS.c_str());
 
     while (WiFi.status() != WL_CONNECTED)
     {
@@ -18,7 +18,7 @@ void TaskWifi(void *pvParameters)
         if (WiFi.status() != WL_CONNECTED)
         {
             WiFi.disconnect();
-            WiFi.begin(WIFI_SSID, WIFI_PASS);
+            WiFi.begin(WIFI_SSID.c_str(), WIFI_PASS.c_str());
 
             while (WiFi.status() != WL_CONNECTED)
             {

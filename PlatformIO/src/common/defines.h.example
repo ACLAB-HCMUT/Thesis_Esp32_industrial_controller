@@ -1,13 +1,10 @@
-// DEFINE WIFI
-#define WIFI_SSID ""
-#define WIFI_PASS ""
+// DEFINE MQTT
+#define MQTT_SERVER "io.adafruit.com"
+#define MQTT_PORT 1883
 
-// DEFINE SERVER_INFO
-#define username ""
-#define password ""
-
-// DEFINE EMAIL
-#define EMAIL ""
+// DEFINE WIFI AP
+#define ssid_ap "ESP32-SETUP"
+#define pass_ap "12345678"
 
 // DEFINE STRUCT SCHEDULE
 #define MAX_SCHEDULES 20
@@ -20,10 +17,10 @@
 #define delay_temp_humi 15000
 #define delay_gps 15000
 #define delay_connect 100
-#define delay_wifi 1000
-#define delay_mqtt 1000
+#define delay_wifi 2000
+#define delay_mqtt 2000
 #define delay_led 1000
-#define delay_30_min 1800000 // time delay to send data to Adafruit
+#define delay_30_min 1800000
 
 // DEFINE PINS
 #define SCL 11       // yolo uno
@@ -42,8 +39,8 @@
 // DEFINE RELAYS (Use for Esp32S3 relay 6ch)
 #define GPIO_PIN_CH1 1
 #define GPIO_PIN_CH2 2
-#define GPIO_PIN_CH3 41
-#define GPIO_PIN_CH4 42
+#define GPIO_PIN_CH3 3
+#define GPIO_PIN_CH4 4
 #define GPIO_PIN_CH5 45
 #define GPIO_PIN_CH6 46
 
@@ -51,15 +48,12 @@
 #define BAUD_RATE_1 115200
 #define BAUD_RATE_2 9600
 
-// DEFINE MQTT
-#define MQTT_SERVER "io.adafruit.com"
-#define MQTT_PORT 1883
-#define IO_USERNAME ""
-#define IO_KEY ""
-
 // DEFINE NTP
 #define httpPort 80
 
 // DEFINE SERVER
 #define ntpServer "pool.ntp.org"
 #define utcOffsetInSeconds 25200
+
+// DEFINE VERSION
+#define version "1.1.0"

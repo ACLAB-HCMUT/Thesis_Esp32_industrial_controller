@@ -26,6 +26,7 @@
 // include common files
 #include "../src/common/defines.h"
 #include "../src/common/RelayStatus.h"
+#include "../src/common/info.h"
 
 // include connect
 #include "../src/connect/connect_init.h"

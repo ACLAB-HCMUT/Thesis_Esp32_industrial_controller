@@ -42,7 +42,7 @@ void TaskServer(void *pvParameters)
     server.on("/styles.css", HTTP_GET, [](AsyncWebServerRequest *request)
               { request->send(LittleFS, "/styles.css", "text/css"); });
     ElegantOTA.begin(&server);
-    ElegantOTA.setAuth(username, password);
+    ElegantOTA.setAuth(username_ota.c_str(), password_ota.c_str());
     server.begin();
     vTaskDelete(NULL);
 }

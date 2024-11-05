@@ -1,5 +1,14 @@
 #include "utility_functions.h"
 
+void sendVersion()
+{
+    if (ws.count() > 0)
+    {
+        String data = "{\"version\":\"" + String(version) + "\"}";
+        ws.textAll(data);
+    }
+}
+
 void parseJson(String message)
 {
     JsonDocument doc;
@@ -14,6 +23,11 @@ void parseJson(String message)
         int index = doc["index"];
         String state = doc["state"].as<String>();
         sendValue(index, state);
+    }
+
+    else if (mode == "Version")
+    {
+        sendVersion();
     }
 
     else if (mode == "Schedule")

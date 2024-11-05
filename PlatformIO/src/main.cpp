@@ -13,9 +13,12 @@ void setup()
   }
 
   // FreeRTOS tasks
-  connect_intit();
-  device_intit();
-  task_intit();
+  if (check_info())
+  {
+    connect_intit();
+    device_intit();
+    task_intit();
+  }
 }
 
 void loop()

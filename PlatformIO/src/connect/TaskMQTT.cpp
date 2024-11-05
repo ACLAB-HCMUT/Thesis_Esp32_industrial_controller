@@ -35,7 +35,7 @@ void reconnectMQTT()
     {
         Serial.println("Connecting to MQTT...");
         String clientId = "ESP32Client" + String(random(0, 1000));
-        if (client.connect(clientId.c_str(), IO_USERNAME, IO_KEY))
+        if (client.connect(clientId.c_str(), IO_USERNAME.c_str(), IO_KEY.c_str()))
         {
             Serial.println("MQTT Connected");
 
