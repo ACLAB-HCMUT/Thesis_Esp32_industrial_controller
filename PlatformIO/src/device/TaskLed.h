@@ -4,5 +4,6 @@
 #include "globals.h"
 
 void LED_init();
+void LED_ACP();
 
 #endif /* INC_TASKLED_H_ */

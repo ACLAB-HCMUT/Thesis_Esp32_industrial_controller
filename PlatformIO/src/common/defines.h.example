@@ -23,6 +23,7 @@
 #define delay_30_min 1800000
 
 // DEFINE PINS
+#define BOOT 0
 #define SCL 11       // yolo uno
 #define SDA 12       // yolo uno
 #define TXD_RS485 17 // relay_6_ch
@@ -56,4 +57,4 @@
 #define utcOffsetInSeconds 25200
 
 // DEFINE VERSION
-#define version "1.1.0"
+#define version "2.0.0"

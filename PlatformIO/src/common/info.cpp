@@ -37,6 +37,14 @@ void loadInfoFromFile()
     file.close();
 }
 
+void deleteInfoFile()
+{
+    if (LittleFS.exists("/info.dat"))
+    {
+        LittleFS.remove("/info.dat");
+    }
+}
+
 const char index_html[] PROGMEM = R"rawliteral(
 <!DOCTYPE html>
 <html lang="en">
@@ -83,6 +91,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 
 void startAccessPoint()
 {
+    LED_ACP();
     WiFi.softAP(ssid_ap, pass_ap);
     Serial.println("Access Point Started");
     Serial.print("AP IP address: ");
@@ -124,9 +133,41 @@ void startAccessPoint()
     server_1.begin();
 }
 
+void TaskResetDevice(void *pvParameters)
+{
+    unsigned long buttonPressStartTime = 0;
+    while (true)
+    {
+        if (digitalRead(BOOT) == LOW)
+        {
+            if (buttonPressStartTime == 0)
+            {
+                buttonPressStartTime = millis();
+            }
+            else if (millis() - buttonPressStartTime > 5000)
+            {
+                deleteInfoFile();
+                ESP.restart();
+                vTaskDelete(NULL);
+            }
+        }
+        else
+        {
+            buttonPressStartTime = 0;
+        }
+        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
+    }
+}
+
+void reset_device()
+{
+    xTaskCreate(TaskResetDevice, "TaskResetDevice", 4096, NULL, 1, NULL);
+}
+
 bool check_info()
 {
     loadInfoFromFile();
+    reset_device();
     if (WIFI_SSID.isEmpty() || WIFI_PASS.isEmpty() || IO_USERNAME.isEmpty() || IO_KEY.isEmpty() || EMAIL.isEmpty() || username_ota.isEmpty() || password_ota.isEmpty())
     {
         startAccessPoint();
