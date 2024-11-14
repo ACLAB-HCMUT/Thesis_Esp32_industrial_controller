@@ -21,7 +21,7 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
         {
             String message;
             message += String((char *)data).substring(0, len);
-            parseJson(message);
+            parseJson(message, true);
         }
     }
 }

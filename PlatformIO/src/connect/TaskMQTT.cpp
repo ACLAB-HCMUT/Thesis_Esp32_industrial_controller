@@ -12,11 +12,11 @@ void callback(char *topic, byte *payload, unsigned int length)
     }
     if (strcmp(topic, (String(IO_USERNAME) + "/feeds/relay").c_str()) == 0)
     {
-        parseJson(message);
+        parseJson(message, false);
     }
     else if (strcmp(topic, (String(IO_USERNAME) + "/feeds/schedule").c_str()) == 0)
     {
-        parseJson(message);
+        parseJson(message, false);
     }
 }
 

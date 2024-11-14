@@ -40,8 +40,8 @@
 // DEFINE RELAYS (Use for Esp32S3 relay 6ch)
 #define GPIO_PIN_CH1 1
 #define GPIO_PIN_CH2 2
-#define GPIO_PIN_CH3 3
-#define GPIO_PIN_CH4 4
+#define GPIO_PIN_CH3 41
+#define GPIO_PIN_CH4 42
 #define GPIO_PIN_CH5 45
 #define GPIO_PIN_CH6 46
 

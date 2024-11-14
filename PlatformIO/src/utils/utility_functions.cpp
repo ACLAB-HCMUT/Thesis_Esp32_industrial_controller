@@ -1,6 +1,6 @@
 #include "utility_functions.h"
 
-void parseJson(String message)
+void parseJson(String message, bool server)
 {
     JsonDocument doc;
     DeserializationError error = deserializeJson(doc, message);
@@ -9,9 +9,12 @@ void parseJson(String message)
         return;
     }
 
-    if (doc["email"].as<String>() != EMAIL)
+    if (!server)
     {
-        return;
+        if (doc["email"].as<String>() != EMAIL)
+        {
+            return;
+        }
     }
 
     String mode = doc["mode"].as<String>();
