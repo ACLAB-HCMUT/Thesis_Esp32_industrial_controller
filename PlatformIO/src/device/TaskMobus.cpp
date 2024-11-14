@@ -58,7 +58,7 @@ void sendValue(int index, String state)
     {
         String relayStr = String(index) + "-" + state;
         String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + relayStr + "\"}";
-        publishData("relay-status", data);
+        publishData("relay", data);
     }
     else
     {

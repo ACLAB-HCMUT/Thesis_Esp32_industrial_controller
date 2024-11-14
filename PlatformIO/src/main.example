@@ -1,0 +1,95 @@
+#include <BLEDevice.h>
+#include <BLEServer.h>
+#include <Update.h>
+
+#define SERVICE_UUID "12345678-1234-1234-1234-1234567890ab"
+#define CHARACTERISTIC_UUID "87654321-4321-4321-4321-abcdefabcdef"
+
+BLECharacteristic *pCharacteristic;
+bool isUpdating = false;
+
+class FirmwareUpdateCallback : public BLECharacteristicCallbacks
+{
+  void onWrite(BLECharacteristic *pCharacteristic) override
+  {
+    if (!isUpdating)
+    {
+      isUpdating = true;
+      Serial.println("Starting OTA update...");
+      if (!Update.begin(UPDATE_SIZE_UNKNOWN))
+      {
+        Serial.print("Update failed to start. Error: ");
+        Update.printError(Serial);
+        isUpdating = false;
+        return;
+      }
+    }
+
+    std::string value = pCharacteristic->getValue();
+    if (value.length() > 0)
+    {
+      size_t written = Update.write((uint8_t *)value.c_str(), value.length());
+      if (written != value.length())
+      {
+        Serial.print("Write failed. Error: ");
+        Update.printError(Serial);
+        isUpdating = false;
+        Update.abort();
+        return;
+      }
+      Serial.printf("Written %d bytes\n", written);
+    }
+
+    if (Update.hasError())
+    {
+      Serial.print("Update error: ");
+      Update.printError(Serial);
+      isUpdating = false;
+      Update.abort();
+      return;
+    }
+
+    if (Update.isFinished())
+    {
+      if (Update.end(true))
+      {
+        Serial.println("OTA done!");
+        Serial.println("Restarting device...");
+        isUpdating = false;
+        delay(100);
+        ESP.restart();
+      }
+      else
+      {
+        Serial.print("Update failed. Error: ");
+        Update.printError(Serial);
+        isUpdating = false;
+      }
+    }
+  }
+};
+
+void setup()
+{
+  Serial.begin(115200);
+  BLEDevice::init("ESP32_OTA");
+  BLEServer *pServer = BLEDevice::createServer();
+
+  BLEService *pService = pServer->createService(SERVICE_UUID);
+  pCharacteristic = pService->createCharacteristic(
+      CHARACTERISTIC_UUID,
+      BLECharacteristic::PROPERTY_WRITE);
+
+  pCharacteristic->setCallbacks(new FirmwareUpdateCallback());
+  pService->start();
+  BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();
+  pAdvertising->addServiceUUID(SERVICE_UUID);
+  pAdvertising->start();
+
+  Serial.println("BLE OTA ready. Waiting for firmware update...");
+}
+
+void loop()
+{
+  // Các tác vụ khác
+}

@@ -5,6 +5,7 @@
 #include "TaskLoadHistory.h"
 #include "TaskSchedule.h"
 #include "TaskTime.h"
+#include "TaskFirmware.h"
 
 void task_intit();
 

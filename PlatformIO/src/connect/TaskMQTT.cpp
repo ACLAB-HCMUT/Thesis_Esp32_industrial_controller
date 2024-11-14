@@ -42,9 +42,8 @@ void reconnectMQTT()
             client.subscribe((String(IO_USERNAME) + "/feeds/relay").c_str());
             client.subscribe((String(IO_USERNAME) + "/feeds/schedule").c_str());
 
-            String sendData = WiFi.localIP().toString();
-            publishData("ip", sendData);
-            Serial.println(sendData);
+            String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + WiFi.localIP().toString() + "\"}";
+            publishData("ip", data);
             Serial.println("Start");
         }
         else

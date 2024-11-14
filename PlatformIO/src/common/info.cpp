@@ -2,6 +2,7 @@
 
 AsyncWebServer server_1(80);
 
+String BOARD;
 String WIFI_SSID;
 String WIFI_PASS;
 String IO_USERNAME;
@@ -26,6 +27,7 @@ void loadInfoFromFile()
     }
     else
     {
+        BOARD = strdup(doc["BOARD"]);
         WIFI_SSID = strdup(doc["WIFI_SSID"]);
         WIFI_PASS = strdup(doc["WIFI_PASS"]);
         IO_USERNAME = strdup(doc["IO_USERNAME"]);
@@ -57,7 +59,7 @@ const char index_html[] PROGMEM = R"rawliteral(
         .container { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 300px; }
         h2 { text-align: center; color: #333; }
         label { margin-top: 10px; display: block; color: #666; }
-        input[type="text"], input[type="password"], input[type="email"] { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        input[type="text"], input[type="password"], input[type="email"], select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
         input[type="submit"] { background-color: #4CAF50; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 15px; }
         input[type="submit"]:hover { background-color: #45a049; }
         .ota-title { margin-top: 20px; font-size: 18px; text-align: center; color: #333; }
@@ -67,21 +69,35 @@ const char index_html[] PROGMEM = R"rawliteral(
     <div class="container">
         <h2>ESP32 Configuration</h2>
         <form action="/save" method="post">
+            <label for="board">Board:</label>
+            <select id="board" name="board" required>
+                <option value="" disabled selected>Select a board</option>
+                <option value="Yolo Uno">Yolo Uno</option>
+                <option value="Relay 6ch">Relay 6ch</option>
+            </select>
+
             <label for="ssid">WiFi SSID:</label>
             <input type="text" name="ssid" id="ssid" required>
+            
             <label for="pass">WiFi Password:</label>
             <input type="password" name="pass" id="pass" required>
+
             <label for="mqtt_user">MQTT Username:</label>
             <input type="text" name="mqtt_user" id="mqtt_user" required>
+            
             <label for="mqtt_key">MQTT Key:</label>
             <input type="text" name="mqtt_key" id="mqtt_key" required>
+
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" required>
+
             <div class="ota-title">OTA Information</div>
             <label for="username">Username:</label>
             <input type="text" name="username" id="username" required>
+
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" required>
+
             <input type="submit" value="Save">
         </form>
     </div>
@@ -102,6 +118,7 @@ void startAccessPoint()
 
     server_1.on("/save", HTTP_POST, [](AsyncWebServerRequest *request)
                 {
+        BOARD = request->getParam("board", true)->value();
         WIFI_SSID = request->getParam("ssid", true)->value();
         WIFI_PASS = request->getParam("pass", true)->value();
         IO_USERNAME = request->getParam("mqtt_user", true)->value();
@@ -111,6 +128,7 @@ void startAccessPoint()
         password_ota = request->getParam("password", true)->value();
 
         DynamicJsonDocument doc(512);
+        doc["BOARD"] = BOARD;
         doc["WIFI_SSID"] = WIFI_SSID;
         doc["WIFI_PASS"] = WIFI_PASS;
         doc["IO_USERNAME"] = IO_USERNAME;
@@ -168,7 +186,7 @@ bool check_info()
 {
     loadInfoFromFile();
     reset_device();
-    if (WIFI_SSID.isEmpty() || WIFI_PASS.isEmpty() || IO_USERNAME.isEmpty() || IO_KEY.isEmpty() || EMAIL.isEmpty() || username_ota.isEmpty() || password_ota.isEmpty())
+    if (BOARD.isEmpty() || WIFI_SSID.isEmpty() || WIFI_PASS.isEmpty() || IO_USERNAME.isEmpty() || IO_KEY.isEmpty() || EMAIL.isEmpty() || username_ota.isEmpty() || password_ota.isEmpty())
     {
         startAccessPoint();
         return false;
