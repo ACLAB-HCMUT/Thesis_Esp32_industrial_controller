@@ -12,6 +12,10 @@ void setup()
     Serial.println("An Error has occurred while mounting LittleFS");
   }
 
+#ifdef M5_CORE2
+  M5_init();
+#endif
+
   // FreeRTOS tasks
   if (check_info())
   {

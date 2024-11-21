@@ -11,7 +11,19 @@ void TaskWifi(void *pvParameters)
         Serial.println("Connecting to WiFi");
     }
 
+    String ipAddress = WiFi.localIP().toString();
     Serial.println("Connected to WiFi");
+    Serial.println(ipAddress);
+
+#ifdef M5_CORE2
+    M5.Display.setCursor(0, 70);
+    M5.Display.println("Your webserver :");
+    int screenWidth = M5.Lcd.width();
+    int textWidth = M5.Display.textWidth(ipAddress);
+    M5.Display.setTextColor(YELLOW);
+    M5.Display.setCursor((screenWidth - textWidth) / 2, 120);
+    M5.Display.println(ipAddress);
+#endif
 
     while (true)
     {

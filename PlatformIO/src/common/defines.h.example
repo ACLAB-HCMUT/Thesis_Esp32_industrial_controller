@@ -3,8 +3,9 @@
 #define MQTT_PORT 1883
 
 // DEFINE WIFI AP
-#define ssid_ap "ESP32-SETUP"
-#define pass_ap "12345678"
+#ifndef SSID_AP
+#define SSID_AP "ESP32-SETUP"
+#endif
 
 // DEFINE STRUCT SCHEDULE
 #define MAX_SCHEDULES 20
@@ -24,26 +25,71 @@
 
 // DEFINE PINS
 #define BOOT 0
-#define SCL 11       // yolo uno
-#define SDA 12       // yolo uno
-#define TXD_RS485 17 // relay_6_ch
-#define RXD_RS485 18 // relay_6_ch
+
+#ifndef MY_SCL
+#define MY_SCL 11
+#endif
+
+#ifndef MY_SDA
+#define MY_SDA 12
+#endif
+
+#ifndef TXD_RS485
+#define TXD_RS485 10
+#endif
+
+#ifndef RXD_RS485
+#define RXD_RS485 17
+#endif
+
+#ifndef TXD_RELAY
 #define TXD_RELAY 8
+#endif
+
+#ifndef RXD_RELAY
 #define RXD_RELAY 9
-#define TXD_GPS 15
-#define RXD_GPS 16
-#define LED 45    // 38 relay_6_ch  // 45  yolo uno
+#endif
+
+#ifndef TXD_GPS
+#define TXD_GPS 18
+#endif
+
+#ifndef RXD_GPS
+#define RXD_GPS 21
+#endif
+
+#ifndef MY_LED
+#define MY_LED 45
+#endif
+
 #define BUZZER 21 // relay_6_ch
 #define NUM_PIXELS 4
 #define Brightness 39 // Set brightness to (0 to 255)
 
-// DEFINE RELAYS (Use for Esp32S3 relay 6ch)
+// DEFINE RELAYS
+#ifndef GPIO_PIN_CH1
 #define GPIO_PIN_CH1 1
+#endif
+
+#ifndef GPIO_PIN_CH2
 #define GPIO_PIN_CH2 2
-#define GPIO_PIN_CH3 41
-#define GPIO_PIN_CH4 42
-#define GPIO_PIN_CH5 45
-#define GPIO_PIN_CH6 46
+#endif
+
+#ifndef GPIO_PIN_CH3
+#define GPIO_PIN_CH3 3
+#endif
+
+#ifndef GPIO_PIN_CH4
+#define GPIO_PIN_CH4 4
+#endif
+
+#ifndef GPIO_PIN_CH5
+#define GPIO_PIN_CH5 5
+#endif
+
+#ifndef GPIO_PIN_CH6
+#define GPIO_PIN_CH6 6
+#endif
 
 // DEFINE BAUD_RATE
 #define BAUD_RATE_1 115200
@@ -57,4 +103,9 @@
 #define utcOffsetInSeconds 25200
 
 // DEFINE VERSION
-#define version "2.0.0"
+#define MY_VERSION "2.0.0"
+
+// DEFINE BOARD
+#ifndef MY_BOARD
+#define MY_BOARD "Yolo Uno"
+#endif

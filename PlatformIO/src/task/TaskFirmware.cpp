@@ -9,7 +9,7 @@ void TaskFirmware(void *pvParameters)
             vTaskDelay(100 / portTICK_PERIOD_MS);
             continue;
         }
-        String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + String(BOARD) + "\",\"mode\":\"" + String(version) + "\"}";
+        String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + String(MY_BOARD) + "\",\"mode\":\"" + String(MY_VERSION) + "\"}";
         publishData("firmware", data);
         vTaskDelay(delay_30_min / portTICK_PERIOD_MS);
     }

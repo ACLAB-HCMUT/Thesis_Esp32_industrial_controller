@@ -40,4 +40,14 @@
 // include utils
 #include "./utils/utility_functions.h"
 
+// include libraries of M5
+#ifdef M5_CORE2
+#include <M5Unified.h>
+#endif
+
+// include M5 init
+#ifdef M5_CORE2
+#include "../src/common/M5_init.h"
+#endif
+
 #endif

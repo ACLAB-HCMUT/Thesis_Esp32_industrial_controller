@@ -2,7 +2,6 @@
 
 AsyncWebServer server_1(80);
 
-String BOARD;
 String WIFI_SSID;
 String WIFI_PASS;
 String IO_USERNAME;
@@ -27,7 +26,6 @@ void loadInfoFromFile()
     }
     else
     {
-        BOARD = strdup(doc["BOARD"]);
         WIFI_SSID = strdup(doc["WIFI_SSID"]);
         WIFI_PASS = strdup(doc["WIFI_PASS"]);
         IO_USERNAME = strdup(doc["IO_USERNAME"]);
@@ -69,13 +67,6 @@ const char index_html[] PROGMEM = R"rawliteral(
     <div class="container">
         <h2>ESP32 Configuration</h2>
         <form action="/save" method="post">
-            <label for="board">Board:</label>
-            <select id="board" name="board" required>
-                <option value="" disabled selected>Select a board</option>
-                <option value="Yolo Uno">Yolo Uno</option>
-                <option value="Relay 6ch">Relay 6ch</option>
-            </select>
-
             <label for="ssid">WiFi SSID:</label>
             <input type="text" name="ssid" id="ssid" required>
             
@@ -108,17 +99,34 @@ const char index_html[] PROGMEM = R"rawliteral(
 void startAccessPoint()
 {
     LED_ACP();
-    WiFi.softAP(ssid_ap, pass_ap);
+    WiFi.softAP(SSID_AP);
     Serial.println("Access Point Started");
     Serial.print("AP IP address: ");
     Serial.println(WiFi.softAPIP());
+
+#ifdef M5_CORE2
+    M5.Display.setCursor(0, 20);
+    M5.Display.println("Please connect to:");
+    int screenWidth = M5.Lcd.width();
+    int textWidth = M5.Display.textWidth(SSID_AP);
+    M5.Display.setTextColor(CYAN);
+    M5.Display.setCursor((screenWidth - textWidth) / 2, 50);
+    M5.Display.println(SSID_AP);
+    M5.Display.setTextColor(WHITE);
+    M5.Display.setCursor(0, 80);
+    M5.Display.println("Then go to:");
+    String ipAddress = WiFi.softAPIP().toString();
+    textWidth = M5.Display.textWidth(ipAddress);
+    M5.Display.setTextColor(YELLOW);
+    M5.Display.setCursor((screenWidth - textWidth) / 2, 120);
+    M5.Display.println(ipAddress);
+#endif
 
     server_1.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
                 { request->send_P(200, "text/html", index_html); });
 
     server_1.on("/save", HTTP_POST, [](AsyncWebServerRequest *request)
                 {
-        BOARD = request->getParam("board", true)->value();
         WIFI_SSID = request->getParam("ssid", true)->value();
         WIFI_PASS = request->getParam("pass", true)->value();
         IO_USERNAME = request->getParam("mqtt_user", true)->value();
@@ -128,7 +136,6 @@ void startAccessPoint()
         password_ota = request->getParam("password", true)->value();
 
         DynamicJsonDocument doc(512);
-        doc["BOARD"] = BOARD;
         doc["WIFI_SSID"] = WIFI_SSID;
         doc["WIFI_PASS"] = WIFI_PASS;
         doc["IO_USERNAME"] = IO_USERNAME;
@@ -169,6 +176,21 @@ void TaskResetDevice(void *pvParameters)
                 vTaskDelete(NULL);
             }
         }
+#ifdef M5_CORE2
+        else if (M5.BtnB.wasPressed())
+        {
+            if (buttonPressStartTime == 0)
+            {
+                buttonPressStartTime = millis();
+            }
+            else if (millis() - buttonPressStartTime > 5000)
+            {
+                deleteInfoFile();
+                ESP.restart();
+                vTaskDelete(NULL);
+            }
+        }
+#endif
         else
         {
             buttonPressStartTime = 0;
@@ -186,7 +208,7 @@ bool check_info()
 {
     loadInfoFromFile();
     reset_device();
-    if (BOARD.isEmpty() || WIFI_SSID.isEmpty() || WIFI_PASS.isEmpty() || IO_USERNAME.isEmpty() || IO_KEY.isEmpty() || EMAIL.isEmpty() || username_ota.isEmpty() || password_ota.isEmpty())
+    if (WIFI_SSID.isEmpty() || WIFI_PASS.isEmpty() || IO_USERNAME.isEmpty() || IO_KEY.isEmpty() || EMAIL.isEmpty() || username_ota.isEmpty() || password_ota.isEmpty())
     {
         startAccessPoint();
         return false;

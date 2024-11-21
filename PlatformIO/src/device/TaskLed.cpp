@@ -1,6 +1,6 @@
 #include "TaskLed.h"
 
-Adafruit_NeoPixel led_rgb(NUM_PIXELS, LED, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_rgb(NUM_PIXELS, MY_LED, NEO_GRB + NEO_KHZ800);
 
 TaskHandle_t TaskLedHandle = NULL;
 TaskHandle_t TaskLedACPHandle = NULL;
@@ -100,7 +100,7 @@ void LED_init()
         vTaskDelete(TaskLedACPHandle);
         TaskLedACPHandle = NULL;
     }
-    xTaskCreate(TaskLed, "TaskLed", 2048, NULL, 2, &TaskLedHandle);
+    xTaskCreate(TaskLed, "TaskLed", 4096, NULL, 2, &TaskLedHandle);
 }
 
 void LED_ACP()
@@ -110,5 +110,5 @@ void LED_ACP()
         vTaskDelete(TaskLedHandle);
         TaskLedHandle = NULL;
     }
-    xTaskCreate(TaskLed_ACP, "TaskLed_ACP", 2048, NULL, 1, &TaskLedACPHandle);
+    xTaskCreate(TaskLed_ACP, "TaskLed_ACP", 4096, NULL, 1, &TaskLedACPHandle);
 }

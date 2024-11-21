@@ -97,7 +97,7 @@ void sendTemp_Humi(void *pvParameters)
 void TaskTemperatureHumidity(void *pvParameters)
 {
     RS485Serial.begin(BAUD_RATE_2, SERIAL_8N1, RXD_RS485, TXD_RS485);
-    Wire.begin(SCL, SDA);
+    Wire.begin(MY_SCL, MY_SDA);
     Wire.setClock(100000);
     dht20.begin();
 

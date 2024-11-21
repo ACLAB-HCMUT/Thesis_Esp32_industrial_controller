@@ -1,6 +1,5 @@
 #include "globals.h"
 
-extern String BOARD;
 extern String WIFI_SSID;
 extern String WIFI_PASS;
 extern String IO_USERNAME;
