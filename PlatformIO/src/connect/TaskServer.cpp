@@ -26,13 +26,8 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
     }
 }
 
-void TaskServer(void *pvParameters)
+void connnectWSV()
 {
-    while (WiFi.status() != WL_CONNECTED)
-    {
-        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
-        continue;
-    }
     ws.onEvent(onEvent);
     server.addHandler(&ws);
     server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
@@ -44,5 +39,15 @@ void TaskServer(void *pvParameters)
     ElegantOTA.begin(&server);
     ElegantOTA.setAuth(username_ota.c_str(), password_ota.c_str());
     server.begin();
+}
+
+void TaskServer(void *pvParameters)
+{
+    while (WiFi.status() != WL_CONNECTED)
+    {
+        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
+        continue;
+    }
+    connnectWSV();
     vTaskDelete(NULL);
 }

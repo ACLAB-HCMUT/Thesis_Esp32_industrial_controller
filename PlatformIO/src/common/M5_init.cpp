@@ -1,3 +1,4 @@
+#ifdef M5_CORE2
 #include "M5_init.h"
 
 void M5_init()
@@ -9,3 +10,4 @@ void M5_init()
     M5.Display.setTextSize(2.5);
     M5.Display.setColor(WHITE);
 }
+#endif

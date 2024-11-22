@@ -1,5 +1,7 @@
 #include "TaskWifi.h"
 
+bool reconnect = false;
+
 void TaskWifi(void *pvParameters)
 {
     WiFi.mode(WIFI_STA);
@@ -27,17 +29,19 @@ void TaskWifi(void *pvParameters)
 
     while (true)
     {
-        if (WiFi.status() != WL_CONNECTED)
+        if (WiFi.status() == WL_DISCONNECTED)
         {
-            WiFi.disconnect();
+            reconnect = true;
             WiFi.begin(WIFI_SSID.c_str(), WIFI_PASS.c_str());
-
-            while (WiFi.status() != WL_CONNECTED)
-            {
-                vTaskDelay(delay_wifi / portTICK_PERIOD_MS);
-                Serial.println("Reconnecting to WiFi...");
-            }
             Serial.println("Reconnected to WiFi");
+        }
+        if (reconnect)
+        {
+            if (WiFi.status() == WL_CONNECTED)
+            {
+                connnectWSV();
+                reconnect = false;
+            }
         }
         vTaskDelay(delay_wifi / portTICK_PERIOD_MS);
     }

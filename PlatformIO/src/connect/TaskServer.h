@@ -17,4 +17,6 @@ extern "C"
 }
 #endif
 
+void connnectWSV();
+
 #endif /* INC_TASKSERVER_H_ */
