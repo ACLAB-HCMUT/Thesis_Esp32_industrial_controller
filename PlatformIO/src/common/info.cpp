@@ -2,6 +2,7 @@
 
 AsyncWebServer server_1(80);
 
+String NAME_DEVICE;
 String WIFI_SSID;
 String WIFI_PASS;
 String IO_USERNAME;
@@ -26,6 +27,7 @@ void loadInfoFromFile()
     }
     else
     {
+        NAME_DEVICE = strdup(doc["NAME_DEVICE"]);
         WIFI_SSID = strdup(doc["WIFI_SSID"]);
         WIFI_PASS = strdup(doc["WIFI_PASS"]);
         IO_USERNAME = strdup(doc["IO_USERNAME"]);
@@ -67,6 +69,9 @@ const char index_html[] PROGMEM = R"rawliteral(
     <div class="container">
         <h2>ESP32 Configuration</h2>
         <form action="/save" method="post">
+            <label for="ssid">Name Device :</label>
+            <input type="text" name="name_device" id="name_device" required>
+
             <label for="ssid">WiFi SSID:</label>
             <input type="text" name="ssid" id="ssid" required>
             
@@ -127,6 +132,7 @@ void startAccessPoint()
 
     server_1.on("/save", HTTP_POST, [](AsyncWebServerRequest *request)
                 {
+        NAME_DEVICE = request->getParam("name_device", true)->value();
         WIFI_SSID = request->getParam("ssid", true)->value();
         WIFI_PASS = request->getParam("pass", true)->value();
         IO_USERNAME = request->getParam("mqtt_user", true)->value();
@@ -136,6 +142,7 @@ void startAccessPoint()
         password_ota = request->getParam("password", true)->value();
 
         DynamicJsonDocument doc(512);
+        doc["NAME_DEVICE"] = NAME_DEVICE;
         doc["WIFI_SSID"] = WIFI_SSID;
         doc["WIFI_PASS"] = WIFI_PASS;
         doc["IO_USERNAME"] = IO_USERNAME;
@@ -208,7 +215,7 @@ bool check_info()
 {
     loadInfoFromFile();
     reset_device();
-    if (WIFI_SSID.isEmpty() || WIFI_PASS.isEmpty() || IO_USERNAME.isEmpty() || IO_KEY.isEmpty() || EMAIL.isEmpty() || username_ota.isEmpty() || password_ota.isEmpty())
+    if (NAME_DEVICE.isEmpty() || WIFI_SSID.isEmpty() || WIFI_PASS.isEmpty() || IO_USERNAME.isEmpty() || IO_KEY.isEmpty() || EMAIL.isEmpty() || username_ota.isEmpty() || password_ota.isEmpty())
     {
         startAccessPoint();
         return false;

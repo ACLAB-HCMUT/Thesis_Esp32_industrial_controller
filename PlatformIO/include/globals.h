@@ -19,6 +19,7 @@
 #include <Adafruit_NeoPixel.h>
 #include <HardwareSerial.h>
 #include <ElegantOTA.h>
+#include <NimBLEDevice.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"

@@ -5,6 +5,7 @@
 #include "TaskMQTT.h"
 #include "TaskWifi.h"
 #include "TaskServer.h"
+#include "TaskBLE.h"
 
 void connect_intit();
 

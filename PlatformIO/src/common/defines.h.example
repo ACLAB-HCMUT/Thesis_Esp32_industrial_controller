@@ -7,6 +7,10 @@
 #define SSID_AP "ESP32-SETUP"
 #endif
 
+// DEFINE BLE
+#define OTA_SERVICE_UUID "0000ff00-0000-1000-8000-00805f9b34fb"
+#define OTA_CHARACTERISTIC_UUID "0000ff01-0000-1000-8000-00805f9b34fb"
+
 // DEFINE STRUCT SCHEDULE
 #define MAX_SCHEDULES 20
 #define MAX_DAYS 7
@@ -25,7 +29,6 @@
 
 // DEFINE PINS
 #define BOOT 0
-
 #ifndef MY_SCL
 #define MY_SCL 11
 #endif
@@ -103,7 +106,7 @@
 #define utcOffsetInSeconds 25200
 
 // DEFINE VERSION
-#define MY_VERSION "2.0.0"
+#define MY_VERSION "2.0.6"
 
 // DEFINE BOARD
 #ifndef MY_BOARD
