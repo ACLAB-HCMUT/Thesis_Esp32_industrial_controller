@@ -90,6 +90,11 @@ class OtaCallbacks : public NimBLECharacteristicCallbacks
 
 void TaskBLE(void *pvParameters)
 {
+    while (NAME_DEVICE.isEmpty())
+    {
+        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
+        continue;
+    }
     NimBLEDevice::init(NAME_DEVICE.c_str());
 
     NimBLEServer *pServer = NimBLEDevice::createServer();
