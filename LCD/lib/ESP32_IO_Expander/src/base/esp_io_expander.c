@@ -26,7 +26,6 @@
 typedef enum {
     REG_INPUT = 0,
     REG_OUTPUT,
-    REG_OD_OUTPUT,
     REG_DIRECTION,
 } reg_type_t;
 
@@ -105,36 +104,6 @@ esp_err_t esp_io_expander_set_level(esp_io_expander_handle_t handle, uint32_t pi
     /* Write to reg only when different */
     if (output_reg != temp) {
         ESP_RETURN_ON_ERROR(write_reg(handle, REG_OUTPUT, output_reg), TAG, "Write Output reg failed");
-    }
-
-    return ESP_OK;
-}
-
-esp_err_t esp_io_expander_set_od_level(esp_io_expander_handle_t handle, uint32_t pin_num_mask, uint8_t level)
-{
-    ESP_RETURN_ON_FALSE(handle, ESP_ERR_INVALID_ARG, TAG, "Invalid handle");
-    if (pin_num_mask >= BIT64(VALID_IO_COUNT(handle))) {
-        ESP_LOGW(TAG, "Pin num mask out of range, bit higher than %d won't work", VALID_IO_COUNT(handle) - 1);
-    }
-
-    uint32_t output_reg, temp;
-    /* Read the current output level */
-    ESP_RETURN_ON_ERROR(read_reg(handle, REG_OD_OUTPUT, &output_reg), TAG, "Read OD Output reg failed");
-    temp = output_reg;
-    /* Set expected output level */
-    if ((level && !handle->config.flags.output_high_bit_zero) || (!level && handle->config.flags.output_high_bit_zero)) {
-        /* 1. High level && Set 1 to output high */
-        /* 2. Low level && Set 1 to output low */
-        output_reg |= pin_num_mask;
-    } else {
-        /* 3. High level && Set 0 to output high */
-        /* 4. Low level && Set 0 to output low */
-        output_reg &= ~pin_num_mask;
-    }
-    /* Write to reg only when different */
-    if (output_reg != temp) {
-
-        ESP_RETURN_ON_ERROR(write_reg(handle, REG_OD_OUTPUT, output_reg), TAG, "Write Output reg failed");
     }
 
     return ESP_OK;
@@ -224,9 +193,6 @@ static esp_err_t write_reg(esp_io_expander_handle_t handle, reg_type_t reg, uint
     case REG_OUTPUT:
         ESP_RETURN_ON_FALSE(handle->write_output_reg, ESP_ERR_NOT_SUPPORTED, TAG, "write_output_reg isn't implemented");
         return handle->write_output_reg(handle, value);
-    case REG_OD_OUTPUT:
-        ESP_RETURN_ON_FALSE(handle->write_od_output_reg, ESP_ERR_NOT_SUPPORTED, TAG, "write_output_reg isn't implemented");
-        return handle->write_od_output_reg(handle, value);
     case REG_DIRECTION:
         ESP_RETURN_ON_FALSE(handle->write_direction_reg, ESP_ERR_NOT_SUPPORTED, TAG, "write_direction_reg isn't implemented");
         return handle->write_direction_reg(handle, value);
@@ -257,9 +223,6 @@ static esp_err_t read_reg(esp_io_expander_handle_t handle, reg_type_t reg, uint3
     case REG_OUTPUT:
         ESP_RETURN_ON_FALSE(handle->read_output_reg, ESP_ERR_NOT_SUPPORTED, TAG, "read_output_reg isn't implemented");
         return handle->read_output_reg(handle, value);
-    case REG_OD_OUTPUT:
-        ESP_RETURN_ON_FALSE(handle->read_od_output_reg, ESP_ERR_NOT_SUPPORTED, TAG, "read_od_output_reg isn't implemented");
-        return handle->read_od_output_reg(handle, value);
     case REG_DIRECTION:
         ESP_RETURN_ON_FALSE(handle->read_direction_reg, ESP_ERR_NOT_SUPPORTED, TAG, "read_direction_reg isn't implemented");
         return handle->read_direction_reg(handle, value);

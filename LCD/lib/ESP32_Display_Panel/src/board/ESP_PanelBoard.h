@@ -13,9 +13,9 @@
     defined(BOARD_ESP32_S3_BOX_3_BETA) + defined(BOARD_ESP32_S3_BOX_LITE) + defined(BOARD_ESP32_S3_EYE) + \
     defined(BOARD_ESP32_S3_KORVO_2) + defined(BOARD_ESP32_S3_LCD_EV_BOARD) + \
     defined(BOARD_ESP32_S3_LCD_EV_BOARD_V1_5) +  defined(BOARD_ESP32_S3_LCD_EV_BOARD_2) + \
-    defined(BOARD_ESP32_S3_LCD_EV_BOARD_2_V1_5) + defined(BOARD_ESP32_S3_USB_OTG) + \
+    defined(BOARD_ESP32_S3_LCD_EV_BOARD_2_V1_5) + defined(BOARD_ESP32_S3_USB_OTG) +  defined(BOARD_ELECROW_CROWPANEL_7_0) + \
     defined(BOARD_M5STACK_M5CORE2) + defined(BOARD_M5STACK_M5DIAL) + defined(BOARD_M5STACK_M5CORES3) + \
-    defined(BOARD_ESP32_4848S040C_I_Y_3) \
+    defined(BOARD_ESP32_4848S040C_I_Y_3) + defined(BOARD_WAVESHARE_ESP32_S3_Touch_LCD_4_3) + defined(BOARD_WAVESHARE_ESP32_S3_Touch_LCD_1_85) \
     > 1
     #error "Multiple boards enabled! Please check file `ESP_Panel_Board_Supported.h` and make sure only one board is enabled."
 #endif
@@ -46,6 +46,9 @@
     #include "board/espressif/ESP32_S3_LCD_EV_BOARD_2_V1_5.h"
 #elif defined(BOARD_ESP32_S3_USB_OTG) || CONFIG_BOARD_ESP32_S3_USB_OTG
     #include "board/espressif/ESP32_S3_USB_OTG.h"
+/* Elecrow */
+#elif defined(BOARD_ELECROW_CROWPANEL_7_0) || CONFIG_BOARD_ELECROW_CROWPANEL_7_0
+    #include "board/elecrow/CROWPANEL_7_0.h"
 /* M5Stack */
 #elif defined(BOARD_M5STACK_M5CORE2) || CONFIG_BOARD_M5STACK_M5CORE2
     #include "board/m5stack/M5CORE2.h"
@@ -56,8 +59,13 @@
 /* Jingcai */
 #elif defined(BOARD_ESP32_4848S040C_I_Y_3) || CONFIG_BOARD_ESP32_4848S040C_I_Y_3
     #include "board/jingcai/ESP32_4848S040C_I_Y_3.h"
+/* Waveshare */
+#elif defined(BOARD_WAVESHARE_ESP32_S3_Touch_LCD_4_3) || CONFIG_BOARD_WAVESHARE_ESP32_S3_Touch_LCD_4_3
+    #include "board/waveshare/ESP32_S3_Touch_LCD_4_3.h"
+#elif defined(BOARD_WAVESHARE_ESP32_S3_Touch_LCD_1_85) || CONFIG_BOARD_WAVESHARE_ESP32_S3_Touch_LCD_1_85
+    #include "board/waveshare/ESP32_S3_Touch_LCD_1_85.h"
 #else
-    #error "Unkonw board selected! Please check file `ESP_Panel_Board_Supported.h` and make sure only one board is enabled."
+    #error "Unknown board selected! Please check file `ESP_Panel_Board_Supported.h` and make sure only one board is enabled."
 #endif
 
 // *INDENT-OFF*

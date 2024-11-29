@@ -131,16 +131,6 @@ public:
     void digitalWrite(uint8_t pin, uint8_t val);
 
     /**
-     * @brief Set od pin level
-     *
-     * @note  This function is same as Arduino's `digitalWrite()`.
-     *
-     * @param pin Pin number (0-1)
-     * @param val Pin level (HIGH/LOW)
-     */
-    void digital_od_Write(uint8_t pin, uint8_t val);
-
-    /**
      * @brief Read pin level
      *
      * @note  This function is same as Arduino's `digitalRead()`.
@@ -166,14 +156,6 @@ public:
      */
     void multiDigitalWrite(uint32_t pin_mask, uint8_t value);
 
-    /**
-     * @brief od Write to multiple pins
-     *
-     * @param pin_mask Pin mask (Bitwise OR of `IO_EXPANDER_PIN_NUM_*`)
-     * @param value Value to write (HIGH/LOW)
-     */
-    void multiDigital_Od_Write(uint32_t pin_mask, uint8_t value);
-    
     /**
      * @brief Read multiple pin levels
      *

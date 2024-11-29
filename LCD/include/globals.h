@@ -10,6 +10,7 @@
 #include "lvgl_port_v8.h"
 #include "ESP_Panel.cpp"
 
+#include <ESP_IOExpander_Library.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 

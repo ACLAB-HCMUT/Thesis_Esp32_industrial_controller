@@ -1,10 +1,10 @@
-[![Arduino Lint](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/arduino_lint.yml/badge.svg)](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/arduino_lint.yml) [![pre-commit](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/pre-commit.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/esp-arduino-libs/ESP32_Display_Panel)](https://github.com/esp-arduino-libs/ESP32_Display_Panel/releases) [![Arduino Lint](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/arduino_lint.yml/badge.svg)](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/arduino_lint.yml) [![pre-commit](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/pre-commit.yml)
 
 # ESP Display Panel
 
 * [English Version](./README.md)
 
-ESP32_Display_Panel 是专为 ESP SoCs 设计的 Arduino 库，用于驱动显示屏并实现快速 GUI 开发。用户不仅可以直接开发多款[内部支持的开发板](src/board/Board_Instructions.md)，还可以通过简单的适配来开发自定义的开发板。此外，ESP32_Display_Panel 还适配了多款 LCD 和触摸的驱动，用户也可以根据需要使用独立的驱动进行开发。
+ESP32_Display_Panel 是专为 ESP SoCs 设计的 Arduino 库，用于驱动显示屏并实现快速 GUI 开发。用户不仅可以直接开发多款[内部支持的开发板](docs/Board_Instructions.md)，还可以通过简单的适配来开发自定义的开发板。此外，ESP32_Display_Panel 还适配了多款 LCD 和触摸的驱动，用户也可以根据需要使用独立的驱动进行开发。
 
 ESP32_Display_Panel 封装了多种[乐鑫组件库](https://components.espressif.com/)中相关的组件，需要基于 [arduino-esp32](https://github.com/espressif/arduino-esp32) 进行开发，并且可以直接从 Arduino IDE 中下载获取。
 
@@ -58,22 +58,25 @@ ESP32_Display_Panel 的功能框图如下所示，主要包含以下特性：
 
 ### 开发板
 
-下面是支持的[开发板列表](src/board/Board_Instructions.md)：
+下面是支持的[开发板列表](docs/Board_Instructions.md)：
 
 | **厂商** | **开发板型号** |
 | -------- | -------------- |
-| [Espressif](src/board/Board_Instructions.md#espressif) | ESP32-C3-LCDkit, ESP32-S3-Box, ESP32-S3-Box-3, ESP32-S3-Box-3(beta), ESP32-S3-Box-Lite, ESP32-S3-EYE, ESP32-S3-Korvo-2, ESP32-S3-LCD-EV-Board, ESP32-S3-LCD-EV-Board-2, ESP32-S3-USB-OTG |
-| [M5Stack](https://m5stack.com/) | M5STACK-M5CORE2, M5STACK-M5DIAL, M5STACK-M5CORES3 |
-| [Jingcai](src/board/Board_Instructions.md#shenzhen-jingcai-intelligent) | ESP32-4848S040C_I_Y_3 |
+| [Espressif](docs/Board_Instructions.md#espressif) | ESP32-C3-LCDkit, ESP32-S3-BOX, ESP32-S3-BOX-3, ESP32-S3-BOX-3B, ESP32-S3-BOX-3(beta), ESP32-S3-BOX-Lite, ESP32-S3-EYE, ESP32-S3-Korvo-2, ESP32-S3-LCD-EV-Board, ESP32-S3-LCD-EV-Board-2, ESP32-S3-USB-OTG |
+| [M5Stack](docs/Board_Instructions.md#m5stack) | M5STACK-M5CORE2, M5STACK-M5DIAL, M5STACK-M5CORES3 |
+| [Elecrow](docs/Board_Instructions.md#elecrow) | CrowPanel 7.0" |
+| [Jingcai](docs/Board_Instructions.md#shenzhen-jingcai-intelligent) | ESP32-4848S040C_I_Y_3 |
+| [Waveshare](docs/Board_Instructions.md#waveshare) | ESP32-S3-Touch-LCD-4.3, ESP32-S3-Touch-LCD-1.85 |
 
-欢迎开发者和厂商贡献 PR 来添加更多的开发板，详细说明请参考 [`开发板贡献指南`](./src/board/Board_Contribution_Guide_CN.md)。
+欢迎开发者和厂商贡献 PR 来添加更多的开发板，详细说明请参考 [`开发板贡献指南`](./docs/Board_Contribution_Guide_CN.md)。
 
 ### LCD 控制器
 
-下面是支持的 [LCD 控制器列表](src/lcd/README.md)：
+下面是支持的 [LCD 控制器列表](docs/LCD_Controllers.md)：
 
 | **厂商** | **型号** |
 | -------- | -------- |
+| Fitipower | EK9716B |
 | GalaxyCore | GC9A01, GC9B71, GC9503 |
 | Ilitek | ILI9341 |
 | NewVision | NV3022B |
@@ -81,7 +84,7 @@ ESP32_Display_Panel 的功能框图如下所示，主要包含以下特性：
 
 ### 触摸控制器
 
-下面是支持的 [触摸控制器列表](src/touch/README.md)：
+下面是支持的 [触摸控制器列表](docs/Touch_Controllers.md)：
 
 | **厂商** | **型号** |
 | -------- | -------- |
@@ -112,10 +115,10 @@ ESP32_Display_Panel 的功能框图如下所示，主要包含以下特性：
 3. 对于没有配置文件的工程，用户可以将其从 ESP32_Display_Panel 的根目录或者示例工程中复制到自己的工程中。
 4. 如果有多个工程需要使用相同的配置，用户可以将配置文件放在 [Arduino 库目录](#arduino-库的目录在哪儿)中，这样所有的工程都可以共享相同的配置。
 
-**Notes**:
-
-* 同一个目录下可以同时包含 `ESP_Panel_Board_Supported.h` 和 `ESP_Panel_Board_Custom.h` 两种配置文件，但是它们不能同时被使能，即 `ESP_PANEL_USE_SUPPORTED_BOARD` 和 `ESP_PANEL_USE_CUSTOM_BOARD` 最多只能有一个为 `1`。
-* 如果以上两个配置文件都被没有被使能，那么用户就无法使用 `ESP_Panel` 驱动，只能使用其他独立的设备驱动，如 `ESP_PanelBus`, `ESP_PanelLcd` 等。
+> [!WARNING]
+> * 同一个目录下可以同时包含 `ESP_Panel_Board_Supported.h` 和 `ESP_Panel_Board_Custom.h` 两种配置文件，但是它们不能同时被使能，即 `ESP_PANEL_USE_SUPPORTED_BOARD` 和 `ESP_PANEL_USE_CUSTOM_BOARD` 最多只能有一个为 `1`。
+> * 如果以上两个配置文件都被没有被使能，那么用户就无法使用 `ESP_Panel` 驱动，只能使用其他独立的设备驱动，如 `ESP_PanelBus`, `ESP_PanelLcd` 等。
+> * 由于这些文件内的配置可能会发生变化，比如新增、删除或重命名，为了保证程序的兼容性，库对它们分别进行了独立的版本管理，并在编译时检查用户当前使用的配置文件与库是否兼容。详细的版本信息以及检查规则可以在文件的末尾处找到。
 
 #### 配置驱动
 
@@ -130,7 +133,7 @@ ESP32_Display_Panel 会根据 [ESP_Panel_Conf.h](./ESP_Panel_Conf.h) 文件来�
 
 #### 使用支持的开发板
 
-ESP32_Display_Panel 会根据 [ESP_Panel_Board_Supported.h](./ESP_Panel_Board_Supported.h) 文件来配置 `ESP_Panel` 成为目标开发板的驱动，用户可以通过修改此文件中的宏定义来选择支持的开发板。以使用 *ESP32-S3-Box-3* 开发板为例，修改步骤如下：
+ESP32_Display_Panel 会根据 [ESP_Panel_Board_Supported.h](./ESP_Panel_Board_Supported.h) 文件来配置 `ESP_Panel` 成为目标开发板的驱动，用户可以通过修改此文件中的宏定义来选择支持的开发板。以使用 *ESP32-S3-BOX-3* 开发板为例，修改步骤如下：
 
 1. 设置 `ESP_Panel_Board_Supported.h` 文件中的 `ESP_PANEL_USE_SUPPORTED_BOARD` 宏定义为 `1`。
 2. 根据目标开发板的型号，取消对应的宏定义的注释。
@@ -206,7 +209,7 @@ ESP32_Display_Panel 会根据 [ESP_Panel_Board_Custom.h](./ESP_Panel_Board_Custo
 #endif /* ESP_PANEL_LCD_BUS_TYPE */
 ...
 /**
- * LCD Venbdor Initialization Commands.
+ * LCD Vendor Initialization Commands.
  *
  * Vendor specific initialization can be different between manufacturers, should consult the LCD supplier for
  * initialization sequence code. Please uncomment and change the following macro definitions. Otherwise, the LCD driver
@@ -294,6 +297,9 @@ ESP32_Display_Panel 会根据 [ESP_Panel_Board_Custom.h](./ESP_Panel_Board_Custo
 * [Porting](examples/LVGL/v8/Porting/): 此示例演示了如何移植 LVGL（v8.3.x）。对于 RGB LCD，它还可以启用防撕裂功能。
 * [Rotation](examples/LVGL/v8/Rotation/): 此示例演示了如何使用 LVGL 来旋转显示屏。
 
+> [!WARNING]
+> 目前，防撕裂功能仅支持 RGB LCD，并且需要 LVGL 的版本满足 >= v8.3.9，如果使用的是其他类型的 LCD 或不符合要求的 LVGL 版本，请不要启用此功能。
+
 ##### SquareLine
 
 ​	要移植 Squarelina 项目（v1.3.x），请参阅[此处](#移植-SquareLine-工程)获取更多详细信息。
@@ -309,7 +315,7 @@ ESP32_Display_Panel 会根据 [ESP_Panel_Board_Custom.h](./ESP_Panel_Board_Custo
 
 ### 配置支持的开发板
 
-关于如何在 Arduino IDE 中配置支持的开发板，请参考 [Board_Instructions.md](./src/board/Board_Instructions.md).
+关于如何在 Arduino IDE 中配置支持的开发板，请参考 [Board_Instructions - Recommended Configurations in the Arduino IDE](./docs/Board_Instructions.md#recommended-configurations-in-the-arduino-ide).
 
 ### 配置 LVGL
 
@@ -427,6 +433,8 @@ arduino-esp32 v3.x.x 版本的 SDK 位于默认安装路径下的 `tools > esp32
    - **Step3**：如果您使用的是自定义的开发板，请在 `ESP_Panel_Board_Custom.h` 文件中确认 `ESP_PANEL_LCD_RGB_BOUNCE_BUF_SIZE` 是否设置为非 0。如果问题仍然存在，请增大 `Bounce Bufer` 的大小。
 
    - **Step4**：如果您使用的是独立的驱动，请参考下面的示例代码来设置 `Bounce Bufer` 的大小。
+
+   - **Step5**：如果您正在开发 LVGL 应用，将执行 RGB 外设初始化的任务与执行 LVGL lv_timer_handler() 的任务分配在同一个核上，请参考 [代码](./examples/LVGL/v8/Porting/lvgl_port_v8.h#L53)。
 
 3. **示例代码**：以下示例代码展示了如何通过 `ESP_Panel` 驱动或独立的驱动来修改 `Bounce Bufer` 的大小：
 

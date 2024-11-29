@@ -43,8 +43,8 @@ using namespace std;
  */
 #define _CREATE_LCD(name, bus, cfg) make_shared<ESP_PanelLcd_##name>(bus, cfg)
 #define CREATE_LCD(name, bus, cfg)  _CREATE_LCD(name, bus, cfg)
-#define _CREATE_LCD_TOUCH(name, bus, cfg) make_shared<ESP_PanelTouch_##name>(bus, cfg)
-#define CREATE_LCD_TOUCH(name, bus, cfg)  _CREATE_LCD_TOUCH(name, bus, cfg)
+#define _CREATE_TOUCH(name, bus, cfg) make_shared<ESP_PanelTouch_##name>(bus, cfg)
+#define CREATE_TOUCH(name, bus, cfg)  _CREATE_TOUCH(name, bus, cfg)
 #define _CREATE_EXPANDER(name, host_id, address) make_shared<ESP_IOExpander_##name>(host_id, address)
 #define CREATE_EXPANDER(name, host_id, address)  _CREATE_EXPANDER(name, host_id, address)
 
@@ -344,7 +344,12 @@ bool ESP_Panel::init(void)
     };
 #endif
     // I2C touch panel IO
-    esp_lcd_panel_io_i2c_config_t touch_panel_io_config = ESP_PANEL_TOUCH_I2C_PANEL_IO_CONFIG(ESP_PANEL_TOUCH_NAME);
+    esp_lcd_panel_io_i2c_config_t touch_panel_io_config =
+#if ESP_PANEL_TOUCH_I2C_ADDRESS == 0
+        ESP_PANEL_TOUCH_I2C_PANEL_IO_CONFIG(ESP_PANEL_TOUCH_NAME);
+#else
+        ESP_PANEL_TOUCH_I2C_PANEL_IO_CONFIG_WITH_ADDR(ESP_PANEL_TOUCH_NAME, ESP_PANEL_TOUCH_I2C_ADDRESS);
+#endif
 
 #elif ESP_PANEL_TOUCH_BUS_TYPE == ESP_PANEL_BUS_TYPE_SPI
 
@@ -394,6 +399,7 @@ bool ESP_Panel::init(void)
         .process_coordinates = NULL,
         .interrupt_callback = NULL,
         .user_data = NULL,
+        .driver_data = NULL,
     };
 
 #if !ESP_PANEL_TOUCH_BUS_SKIP_INIT_HOST
@@ -406,7 +412,7 @@ bool ESP_Panel::init(void)
     ESP_PANEL_CHECK_NULL_RET(touch_bus_ptr, false, "Create touch bus failed");
 
     ESP_LOGD(TAG, "Create touch device");
-    touch_ptr = CREATE_LCD_TOUCH(ESP_PANEL_TOUCH_NAME, touch_bus_ptr.get(), lcd_touch_config);
+    touch_ptr = CREATE_TOUCH(ESP_PANEL_TOUCH_NAME, touch_bus_ptr.get(), lcd_touch_config);
     ESP_PANEL_CHECK_NULL_RET(touch_ptr, false, "Create touch device failed");
 #endif /* ESP_PANEL_USE_TOUCH */
 
@@ -434,7 +440,7 @@ bool ESP_Panel::init(void)
             },
             .clk_flags = I2C_SCLK_SRC_FLAG_FOR_NOMAL,
         };
-        ESP_PANEL_CHECK_FALSE_RET(ADD_HOST(I2C, host, expander_host_config, ESP_PANEL_TOUCH_BUS_HOST), false,
+        ESP_PANEL_CHECK_FALSE_RET(ADD_HOST(I2C, host, expander_host_config, ESP_PANEL_EXPANDER_HOST), false,
                                   "Add host failed");
 #endif
         expander_ptr = CREATE_EXPANDER(ESP_PANEL_EXPANDER_NAME, ESP_PANEL_EXPANDER_HOST, ESP_PANEL_EXPANDER_I2C_ADDRESS);
@@ -496,8 +502,11 @@ bool ESP_Panel::begin(void)
 #endif
     ESP_PANEL_CHECK_FALSE_RET(_lcd_bus_ptr->begin(), false, "Begin LCD bus failed");
     ESP_PANEL_CHECK_FALSE_RET(_lcd_ptr->init(), false, "Initialize LCD failed");
-    ESP_PANEL_CHECK_FALSE_RET(_lcd_ptr->reset(), false, "Reset LCD failed");
     // Operate LCD device according to the optional configurations
+#if (ESP_PANEL_LCD_BUS_TYPE != ESP_PANEL_BUS_TYPE_RGB) || !ESP_PANEL_LCD_FLAGS_AUTO_DEL_PANEL_IO
+    // We can't reset the LCD if the bus is RGB bus and the `ESP_PANEL_LCD_FLAGS_AUTO_DEL_PANEL_IO` is enabled
+    ESP_PANEL_CHECK_FALSE_RET(_lcd_ptr->reset(), false, "Reset LCD failed");
+#endif
 #ifdef ESP_PANEL_LCD_SWAP_XY
     ESP_PANEL_CHECK_FALSE_RET(_lcd_ptr->swapXY(ESP_PANEL_LCD_SWAP_XY), false, "Swap XY failed");
 #endif

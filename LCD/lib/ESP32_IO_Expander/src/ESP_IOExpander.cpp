@@ -81,12 +81,6 @@ void ESP_IOExpander::digitalWrite(uint8_t pin, uint8_t val)
     CHECK_ERROR_RETURN(esp_io_expander_set_level(handle, BIT64(pin), val));
 }
 
-void ESP_IOExpander::digital_od_Write(uint8_t pin, uint8_t val)
-{
-    CHECK_FALSE_RETURN(IS_VALID_PIN(pin));
-    CHECK_ERROR_RETURN(esp_io_expander_set_od_level(handle, BIT64(pin), val));
-}
-
 int ESP_IOExpander::digitalRead(uint8_t pin)
 {
     uint32_t level = 0;
@@ -108,11 +102,6 @@ void ESP_IOExpander::multiPinMode(uint32_t pin_mask, uint8_t mode)
 void ESP_IOExpander::multiDigitalWrite(uint32_t pin_mask, uint8_t value)
 {
     CHECK_ERROR_RETURN(esp_io_expander_set_level(handle, pin_mask, value));
-}
-
-void ESP_IOExpander::multiDigital_Od_Write(uint32_t pin_mask, uint8_t value)
-{
-    CHECK_ERROR_RETURN(esp_io_expander_set_od_level(handle, pin_mask, value));
 }
 
 uint32_t ESP_IOExpander::multiDigitalRead(uint32_t pin_mask)

@@ -1,5 +1,57 @@
 # ChangeLog
 
+## v0.1.8 - 2024-10-25
+
+* feat(board): add support for Waveshare ESP32-S3-Touch-LCD-1.85
+
+### Enhancements:
+
+## v0.1.7 - 2024-08-22
+
+### Enhancements:
+
+* feat(docs): add additional information about screen drift issue
+
+## v0.1.6 - 2024-07-30
+
+### Enhancements:
+
+* feat(board): add support for Fitipower EK9716B LCD controller for CrowPanel 7.0" board by @lboue (#78)
+* feat(board): add support for Waveshare ESP32-S3-Touch-LCD-4.3 by @lboue (#99)
+
+### Bugfixes:
+
+* fix(examples): fix `LVGL_PORT_ROTATION_DEGREE` issue by @lboue (#76)
+* fix(examples): fix issue with I2C.ino `EXAMPLE_TOUCH_ADDRESS` missing as variable by @lboue (#84)
+* fix(examples): fix WiFiClock wrong name `ScreenPassord` by @lboue (#82)
+* fix(examples): fix LCD using `configVendorCommands()` before `init()`
+* fix(examples): fix `LV_USE_DEMO_WIDGETS` typo by @lboue (#98)
+* fix(examples): fix `Tearing fucntion` typo by @lboue (#96)
+* fix(examples): fix WiFiClock log HTTP error code to serial console by @lboue (#97)
+* fix(examples): fix WiFiClock description
+* fix(gt911): allow to set the GT911 touch device address by @lboue (#86)
+* fix(conf): fix the issue that the `ESP_PANEL_EXPANDER_HOST_ID` flag is not working properly
+* fix(conf): fix `LCD Venbdor` typo (#92)
+
+## v0.1.5 - 2024-07-09
+
+### Enhancements:
+
+* feat(gt911): support set I2C address by using RST and INT pins
+* feat(lvgl_port): set the lvgl task to run on the same core as the Arduino task by default
+* feat(board): increase the RGB pclk frequency to 26MHz for `ESP32_4848S040C_I_Y_3`
+* feat(board): add new board `elecrow: CROWPANEL_7_0` by @lboue (#71)
+* feat(conf): add connection comments for the RGB pins in *ESP_Panel_Board_Custom.h* (#58, #68)
+
+### Bugfixes:
+
+* fix(panel): init expander host with correct macro (#65)
+* fix(panel): don't reset the LCD if the bus is RGB bus and the `ESP_PANEL_LCD_FLAGS_AUTO_DEL_PANEL_IO` is enabled
+* fix(examples): fix lvgl port rotation issue when enabling avoid tearing by @NecroMancer05
+* fix(pre-commit): switch to Python 3 for pre-commit @lboue (#70)
+* fix(docs): specify lvgl version >= v8.3.9 and < 9
+* fix(docs): update board ESP32-S3-BOX-3 & ESP32-S3-BOX-3B
+
 ## v0.1.4 - 2024-06-17
 
 ### Enhancements:

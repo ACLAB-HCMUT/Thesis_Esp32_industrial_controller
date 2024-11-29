@@ -117,20 +117,6 @@ struct esp_io_expander_s {
     esp_err_t (*write_output_reg)(esp_io_expander_handle_t handle, uint32_t value);
 
     /**
-     * @brief Write value to od output register (mandatory)
-     *
-     * @note The value represents the output level to IO
-     * @note If there are multiple input registers in the device, their values should be spliced together in order to form the `value`.
-     *
-     * @param handle: IO Expander handle
-     * @param value: Register's value
-     *
-     * @return
-     *      - ESP_OK: Success, otherwise returns ESP_ERR_xxx
-     */
-    esp_err_t (*write_od_output_reg)(esp_io_expander_handle_t handle, uint32_t value);
-
-    /**
      * @brief Read value from output register (mandatory)
      *
      * @note The value represents the expected output level to IO
@@ -144,22 +130,6 @@ struct esp_io_expander_s {
      *      - ESP_OK: Success, otherwise returns ESP_ERR_xxx
      */
     esp_err_t (*read_output_reg)(esp_io_expander_handle_t handle, uint32_t *value);
-
-    /**
-     * @brief Read value from output register (mandatory)
-     *
-     * @note The value represents the expected output level to IO
-     * @note This function can be implemented by reading the physical output register, or simply by reading a variable that record the output value (more faster)
-     * @note If there are multiple input registers in the device, their values should be spliced together in order to form the `value`.
-     *
-     * @param handle: IO Expander handle
-     * @param value: Register's value
-     *
-     * @return
-     *      - ESP_OK: Success, otherwise returns ESP_ERR_xxx
-     */
-    esp_err_t (*read_od_output_reg)(esp_io_expander_handle_t handle, uint32_t *value);
-    
 
     /**
      * @brief Write value to direction register (mandatory)
@@ -243,21 +213,6 @@ esp_err_t esp_io_expander_set_dir(esp_io_expander_handle_t handle, uint32_t pin_
  *      - ESP_OK: Success, otherwise returns ESP_ERR_xxx
  */
 esp_err_t esp_io_expander_set_level(esp_io_expander_handle_t handle, uint32_t pin_num_mask, uint8_t level);
-
-/**
- * @brief Set the od output level of a set of target IOs
- *
- * @note All target IOs must be in output mode first, otherwise this function will return the error `ESP_ERR_INVALID_STATE`
- *
- * @param handle: IO Exapnder handle
- * @param pin_num_mask: Bitwise OR of allowed pin num with type of `esp_io_expander_pin_num_t`
- * @param level: 0 - Low level, 1 - High level
- *
- * @return
- *      - ESP_OK: Success, otherwise returns ESP_ERR_xxx
- */
-esp_err_t esp_io_expander_set_od_level(esp_io_expander_handle_t handle, uint32_t pin_num_mask, uint8_t level);
-
 
 /**
  * @brief Get the intput level of a set of target IOs

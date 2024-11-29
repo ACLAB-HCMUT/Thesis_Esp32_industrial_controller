@@ -1,10 +1,10 @@
-[![Arduino Lint](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/arduino_lint.yml/badge.svg)](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/arduino_lint.yml) [![pre-commit](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/pre-commit.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/esp-arduino-libs/ESP32_Display_Panel)](https://github.com/esp-arduino-libs/ESP32_Display_Panel/releases) [![Arduino Lint](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/arduino_lint.yml/badge.svg)](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/arduino_lint.yml) [![pre-commit](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/esp-arduino-libs/ESP32_Display_Panel/actions/workflows/pre-commit.yml)
 
 # ESP Display Panel
 
 * [中文版本](./README_CN.md)
 
-ESP32_Display_Panel is an Arduino library designed for ESP SoCs to drive display panels and facilitate rapid GUI development. Users can develop directly for a variety of [supported development boards](src/board/Board_Instructions.md) or create custom ones through simple adaptation. Additionally, ESP32_Display_Panel is compatible with various LCD and touch drivers, allowing users to develop using standalone drivers as needed.
+ESP32_Display_Panel is an Arduino library designed for ESP SoCs to drive display panels and facilitate rapid GUI development. Users can develop directly for a variety of [supported development boards](docs/Board_Instructions.md) or create custom ones through simple adaptation. Additionally, ESP32_Display_Panel is compatible with various LCD and touch drivers, allowing users to develop using standalone drivers as needed.
 
 ESP32_Display_Panel encapsulates various components from the [Espressif Components Registry](https://components.espressif.com/), requiring development based on [arduino-esp32](https://github.com/espressif/arduino-esp32), and can be directly downloaded from the Arduino IDE.
 
@@ -58,22 +58,25 @@ The functional block diagram of ESP32_Display_Panel is as follows, mainly compri
 
 ### Development Boards
 
-Below is a list of [supported development boards](src/board/Board_Instructions.md):
+Below is a list of [supported development boards](docs/Board_Instructions.md):
 
 | **Manufacturer** | **Board Model** |
 | --------------- | --------------- |
-| [Espressif](src/board/Board_Instructions.md#espressif) | ESP32-C3-LCDkit, ESP32-S3-Box, ESP32-S3-Box-3, ESP32-S3-Box-3(beta), ESP32-S3-Box-Lite, ESP32-S3-EYE, ESP32-S3-Korvo-2, ESP32-S3-LCD-EV-Board, ESP32-S3-LCD-EV-Board-2, ESP32-S3-USB-OTG |
-| [M5Stack](https://m5stack.com/) | M5STACK-M5CORE2, M5STACK-M5DIAL, M5STACK-M5CORES3 |
-| [Jingcai](src/board/Board_Instructions.md#shenzhen-jingcai-intelligent) | ESP32-4848S040C_I_Y_3 |
+| [Espressif](docs/Board_Instructions.md#espressif) | ESP32-C3-LCDkit, ESP32-S3-BOX, ESP32-S3-BOX-3, ESP32-S3-BOX-3B, ESP32-S3-BOX-3(beta), ESP32-S3-BOX-Lite, ESP32-S3-EYE, ESP32-S3-Korvo-2, ESP32-S3-LCD-EV-Board, ESP32-S3-LCD-EV-Board-2, ESP32-S3-USB-OTG |
+| [Elecrow](docs/Board_Instructions.md#elecrow) | CrowPanel 7.0" |
+| [M5Stack](docs/Board_Instructions.md#m5stack) | M5STACK-M5CORE2, M5STACK-M5DIAL, M5STACK-M5CORES3 |
+| [Jingcai](docs/Board_Instructions.md#shenzhen-jingcai-intelligent) | ESP32-4848S040C_I_Y_3 |
+| [Waveshare](docs/Board_Instructions.md#waveshare) | ESP32-S3-Touch-LCD-4.3, ESP32-S3-Touch-LCD-1.85 |
 
-Developers and manufacturers are welcomed to contribute PRs to add more development boards. For detailed instructions, please refer to the [`Board Development Guide`](./src/board/Board_Contribution_Guide.md).
+Developers and manufacturers are welcomed to contribute PRs to add more development boards. For detailed instructions, please refer to the [`Board Development Guide`](./docs/Board_Contribution_Guide.md).
 
 ### LCD Controllers
 
-Below is a list of [supported LCD controllers](src/lcd/README.md):
+Below is a list of [supported LCD controllers](docs/LCD_Controllers.md):
 
 | **Manufacturer** | **Model** |
 | --------------- | --------- |
+| Fitipower | EK9716B |
 | GalaxyCore | GC9A01, GC9B71, GC9503 |
 | Ilitek | ILI9341 |
 | NewVision | NV3022B |
@@ -81,7 +84,7 @@ Below is a list of [supported LCD controllers](src/lcd/README.md):
 
 ### Touch Controllers
 
-Below is a list of [supported touch controllers](src/touch/README.md):
+Below is a list of [supported touch controllers](docs/Touch_Controllers.md):
 
 | **Manufacturer** | **Model** |
 | --------------- | --------- |
@@ -112,10 +115,10 @@ Below are detailed instructions on how to configure ESP32_Display_Panel, mainly 
 3. For projects without configuration files, users can copy them from the root directory or examples of ESP32_Display_Panel to their own projects.
 4. If multiple projects need to use the same configuration, users can place the configuration files in the [Arduino Library Directory](#where-is-the-directory-for-arduino-libraries), so that all projects can share the same configuration.
 
-**Notes**:
-
-* The same directory can simultaneously contain both `ESP_Panel_Board_Supported.h` and `ESP_Panel_Board_Custom.h` configuration files, but they cannot be enabled at the same time, meaning `ESP_PANEL_USE_SUPPORTED_BOARD` and `ESP_PANEL_USE_CUSTOM_BOARD` can only have one set to `1`.
-* If neither of the above two configuration files is enabled, users cannot use the `ESP_Panel` driver and can only use other standalone device drivers, such as `ESP_PanelBus`, `ESP_PanelLcd`, etc.
+> [!WARNING]
+> * The same directory can simultaneously contain both `ESP_Panel_Board_Supported.h` and `ESP_Panel_Board_Custom.h` configuration files, but they cannot be enabled at the same time, meaning `ESP_PANEL_USE_SUPPORTED_BOARD` and `ESP_PANEL_USE_CUSTOM_BOARD` can only have one set to `1`.
+> * If neither of the above two configuration files is enabled, users cannot use the `ESP_Panel` driver and can only use other standalone device drivers, such as `ESP_PanelBus`, `ESP_PanelLcd`, etc.
+> * Since the configurations within these files might change, such as adding, deleting, or renaming, to ensure the compatibility of the program, the library manages the versions of these files independently and checks whether the configuration files currently used by the user are compatible with the library during compilation. Detailed version information and checking rules can be found at the end of the file.
 
 #### Configuring Drivers
 
@@ -130,7 +133,7 @@ ESP32_Display_Panel configures driver functionality and parameters based on the 
 
 #### Using Supported Development Boards
 
-ESP32_Display_Panel configures `ESP_Panel` as the driver for the target development board based on the [ESP_Panel_Board_Supported.h](./ESP_Panel_Board_Supported.h) file. Users can select supported development boards by modifying macro definitions in this file. For example, to use the *ESP32-S3-Box-3* development board, follow these steps:
+ESP32_Display_Panel configures `ESP_Panel` as the driver for the target development board based on the [ESP_Panel_Board_Supported.h](./ESP_Panel_Board_Supported.h) file. Users can select supported development boards by modifying macro definitions in this file. For example, to use the *ESP32-S3-BOX-3* development board, follow these steps:
 
 1. Set the `ESP_PANEL_USE_SUPPORTED_BOARD` macro definition in the `ESP_Panel_Board_Supported.h` file to `1`.
 2. Uncomment the corresponding macro definition for the target development board model.
@@ -291,8 +294,11 @@ The following example demonstrates how to develop built-in or custom development
 
 For configuring LVGL (v8.3.x), please refer to [here](#configuring-lvgl) for more detailed information.
 
-* [Porting](examples/LVGL/v8/Porting/): This example demonstrates how to port LVGL (v8.3.x). And for RGB LCD, it can enable the avoid tearing fucntion.
+* [Porting](examples/LVGL/v8/Porting/): This example demonstrates how to port LVGL (v8.3.x). And for RGB LCD, it can enable the avoid tearing function.
 * [Rotation](examples/LVGL/v8/Rotation/): This example demonstrates how to use LVGL to rotate the display.
+
+> [!WARNING]
+> Currently, the anti-tearing feature is only supported for RGB LCD and requires LVGL version >= v8.3.9. If you are using a different type of LCD or an LVGL version that does not meet the requirements, please do not enable this feature.
 
 ##### SquareLine
 
@@ -309,7 +315,7 @@ To port the SquareLine project (v1.3.x), please refer to [here](#porting-squarel
 
 ### Configuring Supported Development Boards
 
-For details on how to configure the supported development boards in the Arduino IDE, see [Board_Instructions.md](./src/board/Board_Instructions.md).
+For details on how to configure the supported development boards in the Arduino IDE, see [Board_Instructions - Recommended Configurations in the Arduino IDE](./docs/Board_Instructions.md#recommended-configurations-in-the-arduino-ide).
 
 ### Configuring LVGL
 
@@ -422,11 +428,13 @@ When encountering screen drift issue when driving RGB LCD with ESP32-S3, you can
 
    - **Step 1**: Download the "high_perf" version of the SDK from [arduino-esp32-sdk](https://github.com/esp-arduino-libs/arduino-esp32-sdk) and replace it in the [installation directory of arduino-esp32](#where-are-the-installation-directory-for-arduino-esp32-and-the-sdk-located).
 
-   - **Step 2**: If you're using supported development boards, usually there's no need to modify the code as they set `ESP_PANEL_LCD_RGB_BOUNCE_BUF_SIZE` to `(ESP_PANEL_LCD_WIDTH * 10)` by default. If the issue persists, refer to the example code below to increase the size of the `Bounce Buffer`.
+   - **Step 2**: If you are using supported development boards, usually there's no need to modify the code as they set `ESP_PANEL_LCD_RGB_BOUNCE_BUF_SIZE` to `(ESP_PANEL_LCD_WIDTH * 10)` by default. If the issue persists, refer to the example code below to increase the size of the `Bounce Buffer`.
 
-   - **Step 3**: If you're using a custom board, confirm in the `ESP_Panel_Board_Custom.h` file whether `ESP_PANEL_LCD_RGB_BOUNCE_BUF_SIZE` is set to non-zero. If the issue persists, increase the size of the `Bounce Buffer`.
+   - **Step 3**: If you are using a custom board, confirm in the `ESP_Panel_Board_Custom.h` file whether `ESP_PANEL_LCD_RGB_BOUNCE_BUF_SIZE` is set to non-zero. If the issue persists, increase the size of the `Bounce Buffer`.
 
-   - **Step 4**: If you're using an independent driver, refer to the example code below to set the size of the `Bounce Buffer`.
+   - **Step 4**: If you are using an independent driver, refer to the example code below to set the size of the `Bounce Buffer`.
+
+   - **Step 5**: If you are developing an LVGL application, assign the task that initializes the RGB peripheral and the task that runs the LVGL `lv_timer_handler()` on the same core. Please refer to [the code](./examples/LVGL/v8/Porting/lvgl_port_v8.h#L53).
 
 3. **Example Code**: The following example code demonstrates how to modify the size of the `Bounce Buffer` using `ESP_Panel` driver or independent driver:
 
