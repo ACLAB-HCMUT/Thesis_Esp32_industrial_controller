@@ -72,7 +72,6 @@ void TaskMQTT(void *pvParameters)
         {
             reconnectMQTT();
         }
-
         client.loop();
         vTaskDelay(delay_mqtt / portTICK_PERIOD_MS);
     }

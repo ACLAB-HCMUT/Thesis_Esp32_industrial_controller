@@ -29,7 +29,7 @@ void TaskWifi(void *pvParameters)
 
     while (true)
     {
-        if (WiFi.status() == WL_DISCONNECTED)
+        if (WiFi.status() != WL_CONNECTED)
         {
             reconnect = true;
             WiFi.begin(WIFI_SSID.c_str(), WIFI_PASS.c_str());
@@ -39,8 +39,8 @@ void TaskWifi(void *pvParameters)
         {
             if (WiFi.status() == WL_CONNECTED)
             {
-                connnectWSV();
-                reconnect = false;
+                ESP.restart();
+                vTaskDelete(NULL);
             }
         }
         vTaskDelay(delay_wifi / portTICK_PERIOD_MS);

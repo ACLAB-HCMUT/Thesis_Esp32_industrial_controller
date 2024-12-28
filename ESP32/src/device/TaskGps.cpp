@@ -73,7 +73,7 @@ void TaskGps(void *pvParameters)
                 ws.textAll(data);
             }
         }
-        else if (WiFi.status() == WL_DISCONNECTED)
+        else if (WiFi.status() != WL_CONNECTED)
         {
             if (X != 0 && Y != 0 && check_different_time)
             {

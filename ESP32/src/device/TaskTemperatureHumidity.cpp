@@ -115,7 +115,7 @@ void TaskTemperatureHumidity(void *pvParameters)
             }
         }
 
-        else if (WiFi.status() == WL_DISCONNECTED)
+        else if (WiFi.status() != WL_CONNECTED)
         {
             if (temperature != 0 && humidity != 0 && check_different_time)
             {

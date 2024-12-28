@@ -55,7 +55,7 @@ void TaskLed(void *pvParameters)
             led_rgb.show();
             ledState = !ledState;
         }
-        if (WiFi.status() == WL_DISCONNECTED)
+        if (WiFi.status() != WL_CONNECTED)
         {
             if (ledState)
             {
