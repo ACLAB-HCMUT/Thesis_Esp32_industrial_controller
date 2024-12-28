@@ -33,27 +33,27 @@ String scheduleToJson(const Schedule &schedule)
 void sendSchedules()
 {
     DynamicJsonDocument doc(2048);
-    JsonArray scheduleArray = doc.createNestedArray("schedule");
-    for (int i = 0; i < schedules.size(); i++)
-    {
-        Schedule *schedule = schedules.getAt(i);
-        String scheduleJson = scheduleToJson(*schedule);
 
-        DynamicJsonDocument scheduleDoc(1024);
-        deserializeJson(scheduleDoc, scheduleJson);
-        scheduleArray.add(scheduleDoc.as<JsonObject>());
-    }
-
-    String result;
     if (schedules.empty())
     {
-        result = "[]";
+        JsonArray scheduleArray = doc.createNestedArray("schedule");
     }
     else
     {
-        serializeJson(doc, result);
+        JsonArray scheduleArray = doc.createNestedArray("schedule");
+        for (int i = 0; i < schedules.size(); i++)
+        {
+            Schedule *schedule = schedules.getAt(i);
+            String scheduleJson = scheduleToJson(*schedule);
+
+            DynamicJsonDocument scheduleDoc(1024);
+            deserializeJson(scheduleDoc, scheduleJson);
+            scheduleArray.add(scheduleDoc.as<JsonObject>());
+        }
     }
 
+    String result;
+    serializeJson(doc, result);
     ws.textAll(result);
 }
 
@@ -68,8 +68,6 @@ void saveSchedulesToFile()
 
     DynamicJsonDocument doc(2048);
     JsonArray scheduleArray = doc.createNestedArray("schedules");
-
-    // Tuần tự hóa từng lịch trình trong danh sách liên kết
     for (int i = 0; i < schedules.size(); i++)
     {
         Schedule *schedule = schedules.getAt(i);
