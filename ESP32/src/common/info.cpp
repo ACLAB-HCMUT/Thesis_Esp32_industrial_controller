@@ -224,5 +224,10 @@ bool check_info()
         startAccessPoint();
         return false;
     }
+    for (int i = 0; i < 6; i++)
+    {
+        pinMode(relay_pins[i], OUTPUT);
+        digitalWrite(relay_pins[i], LOW);
+    }
     return true;
 }

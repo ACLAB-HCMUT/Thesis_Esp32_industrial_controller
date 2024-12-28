@@ -1,5 +1,9 @@
 #include "TaskMobus.h"
 
+const int relay_pins[] = {
+    GPIO_PIN_CH1, GPIO_PIN_CH2, GPIO_PIN_CH3, GPIO_PIN_CH4,
+    GPIO_PIN_CH5, GPIO_PIN_CH6};
+
 void sendModbusCommand(const uint8_t command[], size_t length)
 {
     for (size_t i = 0; i < length; i++)
@@ -15,57 +19,41 @@ void sendValue(int index, String state)
     {
         int relay_id = index - 1;
 
-        int pin;
-        switch (relay_id)
+        if (relay_id < 0 || relay_id >= sizeof(relay_pins) / sizeof(relay_pins[0]))
         {
-        case 0:
-            pin = GPIO_PIN_CH1;
-            break;
-        case 1:
-            pin = GPIO_PIN_CH2;
-            break;
-        case 2:
-            pin = GPIO_PIN_CH3;
-            break;
-        case 3:
-            pin = GPIO_PIN_CH4;
-            break;
-        case 4:
-            pin = GPIO_PIN_CH5;
-            break;
-        case 5:
-            pin = GPIO_PIN_CH6;
-            break;
-        default:
             return;
         }
-        pinMode(pin, OUTPUT);
+
+        int pin = relay_pins[relay_id];
 
         if (state == "ON")
         {
             digitalWrite(pin, HIGH);
-            sendModbusCommand(relay_ON[index], sizeof(relay_ON[0]));
+            sendModbusCommand(relay_ON[relay_id], sizeof(relay_ON[0]));
         }
         else
         {
             digitalWrite(pin, LOW);
-            sendModbusCommand(relay_OFF[index], sizeof(relay_OFF[0]));
+            sendModbusCommand(relay_OFF[relay_id], sizeof(relay_OFF[0]));
         }
-    }
-    String response = "{\"index\":" + String(index) + ",\"state\":\"" + state + "\"}";
-    Serial.println(String(index) + '-' + state);
-    if (client.connected())
-    {
-        String relayStr = String(index) + "-" + state;
-        String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + relayStr + "\"}";
-        publishData("relay", data);
-    }
-    else
-    {
-        Serial.println("Not connected to MQTT");
-    }
-    if (ws.count() > 0)
-    {
-        ws.textAll(response);
+
+        String response = "{\"index\":" + String(index) + ",\"state\":\"" + state + "\"}";
+        Serial.println(response);
+
+        if (client.connected())
+        {
+            String relayStr = String(index) + "-" + state;
+            String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + relayStr + "\"}";
+            publishData("relay", data);
+        }
+        else
+        {
+            Serial.println("Not connected to MQTT");
+        }
+
+        if (ws.count() > 0)
+        {
+            ws.textAll(response);
+        }
     }
 }

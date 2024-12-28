@@ -9,7 +9,7 @@ void TaskWifi(void *pvParameters)
 
     while (WiFi.status() != WL_CONNECTED)
     {
-        vTaskDelay(delay_wifi / portTICK_PERIOD_MS);
+        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
         Serial.println("Connecting to WiFi");
     }
 
@@ -43,7 +43,7 @@ void TaskWifi(void *pvParameters)
                 vTaskDelete(NULL);
             }
         }
-        vTaskDelay(delay_wifi / portTICK_PERIOD_MS);
+        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
     }
 }
 
