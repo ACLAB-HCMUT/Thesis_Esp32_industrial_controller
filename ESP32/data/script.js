@@ -93,4 +93,8 @@ function onMessage(event) {
             scheduleContainer.appendChild(scheduleDiv);
         });
     }
+    else {
+        var scheduleContainer = document.getElementById('scheduleContainer');
+        scheduleContainer.style.display = 'none';
+    }
 }

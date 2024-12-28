@@ -76,12 +76,8 @@
     <div class="container">
         <h2>ESP32 Configuration</h2>
         <form action="/save" method="post">
-            <label for="board">Board:</label>
-            <select id="board" name="board" required>
-                <option value="" disabled selected>Select a board</option>
-                <option value="Yolo Uno">Yolo Uno</option>
-                <option value="Relay 6ch">Relay 6ch</option>
-            </select>
+            <label for="ssid">Name Device :</label>
+            <input type="text" name="name_device" id="name_device" required>
 
             <label for="ssid">WiFi SSID:</label>
             <input type="text" name="ssid" id="ssid" required>

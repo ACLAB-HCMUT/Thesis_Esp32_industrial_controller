@@ -213,7 +213,10 @@ void reset_device()
 
 bool check_info()
 {
+
+#ifdef IS_LEAF
     pinMode(BOOT, INPUT);
+#endif
     loadInfoFromFile();
     reset_device();
     if (NAME_DEVICE.isEmpty() || WIFI_SSID.isEmpty() || WIFI_PASS.isEmpty() || IO_USERNAME.isEmpty() || IO_KEY.isEmpty() || EMAIL.isEmpty() || username_ota.isEmpty() || password_ota.isEmpty())

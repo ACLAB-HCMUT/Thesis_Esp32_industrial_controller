@@ -28,6 +28,7 @@
 #include "../src/common/defines.h"
 #include "../src/common/RelayStatus.h"
 #include "../src/common/info.h"
+#include "../src/common/Dlinkedlist.h"
 
 // include connect
 #include "../src/connect/connect_init.h"

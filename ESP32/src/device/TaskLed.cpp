@@ -20,7 +20,11 @@ void TaskLed(void *pvParameters)
             {
                 if (ledState)
                 {
+#ifdef IS_ROOT
+                    led_rgb.setPixelColor(0, led_rgb.Color(0, 255, 0));
+#else
                     led_rgb.setPixelColor(0, led_rgb.Color(255, 0, 0));
+#endif
                     digitalWrite(BUZZER, HIGH);
                 }
                 else
@@ -33,7 +37,11 @@ void TaskLed(void *pvParameters)
             {
                 if (ledState)
                 {
-                    led_rgb.setPixelColor(0, led_rgb.Color(255, 255, 255));
+#ifdef IS_ROOT
+                    led_rgb.setPixelColor(0, led_rgb.Color(255, 165, 0));
+#else
+                    led_rgb.setPixelColor(0, led_rgb.Color(165, 255, 0));
+#endif
                     digitalWrite(BUZZER, HIGH);
                 }
                 else
@@ -47,16 +55,20 @@ void TaskLed(void *pvParameters)
             led_rgb.show();
             ledState = !ledState;
         }
-        else if (WiFi.status() == WL_DISCONNECTED)
+        if (WiFi.status() == WL_DISCONNECTED)
         {
             if (ledState)
             {
+#ifdef IS_ROOT
                 led_rgb.setPixelColor(0, led_rgb.Color(255, 0, 0));
+#else
+                led_rgb.setPixelColor(0, led_rgb.Color(0, 255, 0));
+#endif
                 digitalWrite(BUZZER, HIGH);
             }
             else
             {
-                led_rgb.setPixelColor(0, led_rgb.Color(0, 0, 255));
+                led_rgb.setPixelColor(0, led_rgb.Color(0, 0, 0));
                 digitalWrite(BUZZER, LOW);
             }
             led_rgb.show();

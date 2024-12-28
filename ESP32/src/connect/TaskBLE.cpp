@@ -2,7 +2,7 @@
 
 class OtaCallbacks : public NimBLECharacteristicCallbacks
 {
-    void onWrite(NimBLECharacteristic *pCharacteristic) override
+    void onWrite(NimBLECharacteristic *pCharacteristic)
     {
         std::string data = pCharacteristic->getValue();
         if (data.empty())

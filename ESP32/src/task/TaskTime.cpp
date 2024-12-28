@@ -1,8 +1,15 @@
 #include "TaskTime.h"
+#include "WiFi.h"
+#include "NTPClient.h"
+#include "esp_timer.h"
 
 WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP, ntpServer, utcOffsetInSeconds);
-String current;
+NTPClient timeClient(ntpUDP, "pool.ntp.org", 7 * 3600);
+
+unsigned long baseTime = 0;
+unsigned long baseMicros = 0;
+
+String current = "";
 String date = "";
 bool check_different_time = false;
 
@@ -14,73 +21,72 @@ String getDayOfWeek(unsigned long epochTime)
     return days[timeInfo->tm_wday];
 }
 
-void syncTimeWithNTP()
+void syncTimeOnceWithNTP()
 {
-    configTime(utcOffsetInSeconds, 0, ntpServer);
-    struct tm timeinfo;
-    if (!getLocalTime(&timeinfo))
+    if (WiFi.status() == WL_CONNECTED)
     {
-        Serial.println("Không thể lấy thời gian từ NTP");
-        return;
+        timeClient.begin();
+        if (timeClient.update())
+        {
+            baseTime = timeClient.getEpochTime();
+            baseMicros = esp_timer_get_time() / 1000;
+            Serial.println("Thời gian từ NTP: " + String(baseTime));
+        }
+        else
+        {
+            Serial.println("Không thể cập nhật NTP!");
+        }
+        timeClient.end();
+    }
+    else
+    {
+        Serial.println("Không có WiFi, không thể đồng bộ NTP.");
     }
 }
 
-bool checkTimeChange(const String &date_old, const String &date_new)
+unsigned long getCurrentTime()
 {
-    String time_old = date_old.substring(0, 5);
-    String time_new = date_new.substring(0, 5);
+    unsigned long elapsedMillis = (esp_timer_get_time() / 1000) - baseMicros;
+    return baseTime + (elapsedMillis / 1000);
+}
 
-    String hour_old = time_old.substring(0, 2);
-    String hour_new = time_new.substring(0, 2);
+String formatTime(unsigned long epochTime)
+{
+    time_t rawTime = epochTime;
+    struct tm *timeInfo = localtime(&rawTime);
 
-    String day_old = date_old.substring(6);
-    String day_new = date_new.substring(6);
+    char buffer[6];
+    sprintf(buffer, "%02d:%02d", timeInfo->tm_hour, timeInfo->tm_min);
 
-    if (hour_old != hour_new || day_old != day_new)
-    {
-        return true;
-    }
-
-    return false;
+    return String(buffer);
 }
 
 void TaskTime(void *pvParameters)
 {
     while (WiFi.status() != WL_CONNECTED)
     {
-        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
-        continue;
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
-
-    syncTimeWithNTP();
+    syncTimeOnceWithNTP();
 
     while (true)
     {
-        if (WiFi.status() == WL_CONNECTED)
+        unsigned long currentTime = getCurrentTime();
+        String currentDay = formatTime(currentTime);
+        String dayOfWeek = getDayOfWeek(currentTime);
+
+        current = dayOfWeek + " " + currentDay;
+
+        String newDate = formatTime(currentTime);
+        check_different_time = (date != newDate);
+        date = newDate;
+
+        String data = "{\"current\":\"" + current + "\"}";
+        if (ws.count() > 0)
         {
-            timeClient.update();
+            ws.textAll(data);
         }
 
-        struct tm timeinfo;
-        if (getLocalTime(&timeinfo))
-        {
-            char dateBuffer[11];
-            strftime(dateBuffer, sizeof(dateBuffer), "%d:%m:%Y", &timeinfo);
-
-            String currentDay = getDayOfWeek(mktime(&timeinfo));
-            char currentTime[6];
-            strftime(currentTime, sizeof(currentTime), "%H:%M", &timeinfo);
-            current = currentDay + " " + String(currentTime);
-            date = String(currentTime) + "-" + String(dateBuffer);
-            String date_new = String(currentTime) + "-" + String(dateBuffer);
-            check_different_time = checkTimeChange(date, date_new);
-            date = date_new;
-            String data = "{\"current\":\"" + current + "\"}";
-            if (ws.count() > 0)
-            {
-                ws.textAll(data);
-            }
-        }
         vTaskDelay(delay_time / portTICK_PERIOD_MS);
     }
 }

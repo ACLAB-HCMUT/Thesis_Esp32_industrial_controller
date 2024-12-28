@@ -16,22 +16,7 @@ extern "C"
 }
 #endif
 
-typedef struct
-{
-    int id;
-    bool state;
-    String days[MAX_DAYS];
-    String time;
-    struct
-    {
-        int relayId;
-        String action;
-    } actions[MAX_ACTIONS];
-    int actionCount;
-} Schedule;
-
-extern Schedule schedules[MAX_SCHEDULES];
-extern int scheduleCount;
+extern DLinkedList schedules;
 
 void deleteScheduleById(int id);
 void saveSchedulesToFile();

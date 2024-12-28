@@ -9,10 +9,54 @@ void loadSchedulesFromFile()
         return;
     }
 
-    file.read((uint8_t *)schedules, sizeof(schedules));
-    file.read((uint8_t *)&scheduleCount, sizeof(scheduleCount));
+    DynamicJsonDocument doc(2048);
+
+    DeserializationError error = deserializeJson(doc, file);
+    if (error)
+    {
+        Serial.println("Failed to parse schedules JSON");
+        file.close();
+        return;
+    }
+
+    JsonArray scheduleArray = doc["schedules"];
+    schedules = DLinkedList(); // Clear the linked list before loading new data
+
+    for (JsonObject scheduleObj : scheduleArray)
+    {
+        Schedule schedule;
+        schedule.id = scheduleObj["id"];
+        schedule.state = scheduleObj["state"];
+        schedule.time = scheduleObj["time"].as<String>();
+
+        JsonArray daysArray = scheduleObj["days"];
+        for (int i = 0; i < MAX_DAYS; i++)
+        {
+            if (i < daysArray.size())
+            {
+                schedule.days[i] = daysArray[i].as<String>();
+            }
+            else
+            {
+                schedule.days[i] = "";
+            }
+        }
+
+        JsonArray actionsArray = scheduleObj["actions"];
+        schedule.actionCount = actionsArray.size();
+        for (int i = 0; i < actionsArray.size(); i++)
+        {
+            schedule.actions[i].relayId = actionsArray[i]["relayId"];
+            schedule.actions[i].action = actionsArray[i]["action"].as<String>();
+        }
+
+        schedule.lastTriggered = scheduleObj["lastTriggered"].as<String>();
+
+        schedules.add(schedule);
+    }
 
     file.close();
+    Serial.println("Schedules loaded successfully");
 }
 
 void loadGpsFromFile()

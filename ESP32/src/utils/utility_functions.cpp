@@ -30,31 +30,24 @@ void parseJson(String message, bool server)
         int id = doc["id"];
         if (doc.containsKey("delete") && strcmp(doc["delete"], "true") == 0)
         {
-            deleteScheduleById(id);
+            deleteScheduleById(id); // Use the updated deleteScheduleById function
             return;
         }
+
         const char *state_str = doc["state"];
-        bool state = false;
-        if (strcmp(state_str, "true") == 0)
-        {
-            state = true;
-        }
-        else if (strcmp(state_str, "false") == 0)
-        {
-            state = false;
-        }
+        bool state = (strcmp(state_str, "true") == 0); // Convert "true"/"false" to boolean
         String time = doc["time"];
         JsonArray days = doc["days"];
         JsonArray actions = doc["actions"];
 
         bool found = false;
-        for (int i = 0; i < scheduleCount; i++)
+        for (int i = 0; i < schedules.size(); i++)
         {
-            if (schedules[i].id == id)
+            Schedule *schedule = schedules.getAt(i);
+            if (schedule->id == id)
             {
-                schedules[i].state = state;
-                schedules[i].time = time;
-
+                schedule->state = state;
+                schedule->time = time;
                 String uniqueDays[MAX_DAYS];
                 int dayIndex = 0;
 
@@ -81,32 +74,34 @@ void parseJson(String message, bool server)
 
                 for (int j = 0; j < dayIndex; j++)
                 {
-                    schedules[i].days[j] = uniqueDays[j];
+                    schedule->days[j] = uniqueDays[j];
                 }
 
                 for (int j = dayIndex; j < MAX_DAYS; j++)
                 {
-                    schedules[i].days[j] = "";
+                    schedule->days[j] = "";
                 }
-
-                schedules[i].actionCount = actions.size();
+                schedule->actionCount = actions.size();
                 for (size_t j = 0; j < actions.size(); j++)
                 {
-                    schedules[i].actions[j].relayId = actions[j]["relayId"];
-                    schedules[i].actions[j].action = actions[j]["action"].as<String>();
+                    schedule->actions[j].relayId = actions[j]["relayId"];
+                    schedule->actions[j].action = actions[j]["action"].as<String>();
                 }
+                schedule->lastTriggered = "";
                 found = true;
                 break;
             }
         }
 
-        if (!found && scheduleCount < MAX_SCHEDULES)
+        if (!found)
         {
+            // Add new schedule
+            Schedule newSchedule;
+            newSchedule.id = id;
+            newSchedule.state = state;
+            newSchedule.time = time;
 
-            schedules[scheduleCount].id = id;
-            schedules[scheduleCount].state = state;
-            schedules[scheduleCount].time = time;
-
+            // Handle unique days
             int dayIndex = 0;
             for (size_t j = 0; j < days.size(); j++)
             {
@@ -114,7 +109,7 @@ void parseJson(String message, bool server)
                 bool isUnique = true;
                 for (int k = 0; k < dayIndex; k++)
                 {
-                    if (schedules[scheduleCount].days[k] == day)
+                    if (newSchedule.days[k] == day)
                     {
                         isUnique = false;
                         break;
@@ -124,24 +119,29 @@ void parseJson(String message, bool server)
                 {
                     if (dayIndex < MAX_DAYS)
                     {
-                        schedules[scheduleCount].days[dayIndex++] = day;
+                        newSchedule.days[dayIndex++] = day;
                     }
                 }
             }
 
             for (int j = dayIndex; j < MAX_DAYS; j++)
             {
-                schedules[scheduleCount].days[j] = "";
+                newSchedule.days[j] = "";
             }
 
-            schedules[scheduleCount].actionCount = actions.size();
+            // Set actions
+            newSchedule.actionCount = actions.size();
             for (size_t j = 0; j < actions.size(); j++)
             {
-                schedules[scheduleCount].actions[j].relayId = actions[j]["relayId"];
-                schedules[scheduleCount].actions[j].action = actions[j]["action"].as<String>();
+                newSchedule.actions[j].relayId = actions[j]["relayId"];
+                newSchedule.actions[j].action = actions[j]["action"].as<String>();
             }
-            scheduleCount++;
+
+            newSchedule.lastTriggered = ""; // Initialize last triggered
+
+            schedules.add(newSchedule); // Add the new schedule to the linked list
         }
-        saveSchedulesToFile();
+
+        saveSchedulesToFile(); // Save changes
     }
 }
