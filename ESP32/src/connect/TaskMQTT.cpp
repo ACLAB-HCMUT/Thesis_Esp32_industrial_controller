@@ -68,16 +68,20 @@ void TaskMQTT(void *pvParameters)
 
     while (true)
     {
-        if (!client.connected())
+        if (WiFi.status() == WL_CONNECTED && !client.connected())
         {
             reconnectMQTT();
         }
-        client.loop();
+        if (client.connected())
+        {
+            client.loop();
+        }
+
         vTaskDelay(delay_connect / portTICK_PERIOD_MS);
     }
 }
 
 void mqtt_init()
 {
-    xTaskCreate(TaskMQTT, "TaskMQTT", 4096, NULL, 1, NULL);
+    xTaskCreate(TaskMQTT, "TaskMQTT", 8192, NULL, 1, NULL);
 }

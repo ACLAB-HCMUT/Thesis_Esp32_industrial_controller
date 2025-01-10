@@ -38,19 +38,13 @@ void sendValue(int index, String state)
         }
 
         String response = "{\"index\":" + String(index) + ",\"state\":\"" + state + "\"}";
-        Serial.println(response);
-
+        Serial.println(String(index) + '-' + state);
         if (client.connected())
         {
             String relayStr = String(index) + "-" + state;
             String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + relayStr + "\"}";
             publishData("relay", data);
         }
-        else
-        {
-            Serial.println("Not connected to MQTT");
-        }
-
         if (ws.count() > 0)
         {
             ws.textAll(response);

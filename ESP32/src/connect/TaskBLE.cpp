@@ -112,3 +112,8 @@ void TaskBLE(void *pvParameters)
     pAdvertising->start();
     vTaskDelete(NULL);
 }
+
+void ble_init()
+{
+    xTaskCreate(TaskBLE, "TaskBLE", 4096, NULL, 1, NULL);
+}

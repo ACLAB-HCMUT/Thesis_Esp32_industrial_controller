@@ -20,7 +20,7 @@ void loadSchedulesFromFile()
     }
 
     JsonArray scheduleArray = doc["schedules"];
-    schedules = DLinkedList(); // Clear the linked list before loading new data
+    schedules = DLinkedList();
 
     for (JsonObject scheduleObj : scheduleArray)
     {
@@ -104,10 +104,11 @@ void loadTemp_HumiFromFile()
         return;
     }
 
-    String fileContent = file.readString();
+    String fileContent = file.readString(); // Đọc toàn bộ nội dung file thành chuỗi
     file.close();
 
-    DynamicJsonDocument doc(2048);
+    // Deserialize JSON thành một JsonArray
+    DynamicJsonDocument doc(4096); // Tăng kích thước nếu file lớn hơn
     DeserializationError error = deserializeJson(doc, "[" + fileContent + "]");
 
     if (error)
@@ -116,18 +117,19 @@ void loadTemp_HumiFromFile()
         Serial.println(error.f_str());
         return;
     }
-    for (JsonObject entry : doc.as<JsonArray>())
+
+    // Serialize toàn bộ JsonArray thành chuỗi JSON
+    String output;
+    serializeJson(doc.as<JsonArray>(), output);
+
+    // Gửi toàn bộ chuỗi JSON qua MQTT hoặc WebSocket
+    Serial.println(output);
+    if (client.connected())
     {
-        String output;
-        serializeJson(entry, output);
-
-        if (client.connected())
-        {
-            publishData("history", output.c_str());
-        }
-
-        vTaskDelay(5000 / portTICK_PERIOD_MS);
+        publishData("history", output.c_str());
     }
+
+    // Xóa file sau khi gửi
     LittleFS.remove("/temp_humi.dat");
 }
 

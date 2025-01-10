@@ -4,13 +4,17 @@ bool reconnect = false;
 
 void TaskWifi(void *pvParameters)
 {
+    if (WIFI_SSID.isEmpty() || WIFI_PASS.isEmpty())
+    {
+        vTaskDelete(NULL);
+    }
+
     WiFi.mode(WIFI_STA);
     WiFi.begin(WIFI_SSID.c_str(), WIFI_PASS.c_str());
 
     while (WiFi.status() != WL_CONNECTED)
     {
         vTaskDelay(delay_connect / portTICK_PERIOD_MS);
-        Serial.println("Connecting to WiFi");
     }
 
     String ipAddress = WiFi.localIP().toString();
@@ -31,17 +35,17 @@ void TaskWifi(void *pvParameters)
     {
         if (WiFi.status() != WL_CONNECTED)
         {
-            reconnect = true;
-            WiFi.begin(WIFI_SSID.c_str(), WIFI_PASS.c_str());
-            Serial.println("Reconnected to WiFi");
-        }
-        if (reconnect)
-        {
-            if (WiFi.status() == WL_CONNECTED)
+            if (!reconnect)
             {
-                ESP.restart();
-                vTaskDelete(NULL);
+                reconnect = true;
+                WiFi.disconnect();
+                WiFi.begin(WIFI_SSID.c_str(), WIFI_PASS.c_str());
+                Serial.println("Reconnecting to WiFi...");
             }
+        }
+        else if (reconnect)
+        {
+            reconnect = false;
         }
         vTaskDelay(delay_connect / portTICK_PERIOD_MS);
     }

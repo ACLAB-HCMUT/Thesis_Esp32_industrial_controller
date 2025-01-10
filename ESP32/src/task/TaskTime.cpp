@@ -10,6 +10,7 @@ unsigned long baseTime = 0;
 unsigned long baseMicros = 0;
 
 String current = "";
+String check_time = "";
 String date = "";
 bool check_different_time = false;
 
@@ -61,6 +62,22 @@ String formatTime(unsigned long epochTime)
     return String(buffer);
 }
 
+String formatDateTime(unsigned long epochTime)
+{
+    time_t rawTime = epochTime;
+    struct tm *timeInfo = localtime(&rawTime);
+
+    char buffer[20];
+    sprintf(buffer, "%02d:%02d %02d-%02d-%04d",
+            timeInfo->tm_hour,
+            timeInfo->tm_min,
+            timeInfo->tm_mday,
+            timeInfo->tm_mon + 1,
+            timeInfo->tm_year + 1900);
+
+    return String(buffer);
+}
+
 void TaskTime(void *pvParameters)
 {
     while (WiFi.status() != WL_CONNECTED)
@@ -72,14 +89,13 @@ void TaskTime(void *pvParameters)
     while (true)
     {
         unsigned long currentTime = getCurrentTime();
-        String currentDay = formatTime(currentTime);
+        String current_time = formatTime(currentTime);
         String dayOfWeek = getDayOfWeek(currentTime);
+        date = formatDateTime(currentTime);
 
-        current = dayOfWeek + " " + currentDay;
-
-        String newDate = formatTime(currentTime);
-        check_different_time = (date != newDate);
-        date = newDate;
+        current = dayOfWeek + " " + current_time;
+        check_different_time = (check_time != current_time);
+        check_time = current_time;
 
         String data = "{\"current\":\"" + current + "\"}";
         if (ws.count() > 0)

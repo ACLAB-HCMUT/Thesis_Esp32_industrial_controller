@@ -20,7 +20,8 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "thread": "cpp",
-        "stdexcept": "cpp"
+        "stdexcept": "cpp",
+        "*.tcc": "cpp"
     },
     "cmake.ignoreCMakeListsMissing": true
 }
