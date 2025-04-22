@@ -38,8 +38,8 @@ void connnectWSV()
               { request->send(LittleFS, "/script.js", "application/javascript"); });
     server.on("/styles.css", HTTP_GET, [](AsyncWebServerRequest *request)
               { request->send(LittleFS, "/styles.css", "text/css"); });
-    ElegantOTA.begin(&server);
-    ElegantOTA.setAuth(username_ota.c_str(), password_ota.c_str());
+    // ElegantOTA.begin(&server);
+    // ElegantOTA.setAuth(username_ota.c_str(), password_ota.c_str());
     server.begin();
     isServerRunning = true;
 }
