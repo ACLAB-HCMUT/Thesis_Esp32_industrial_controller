@@ -83,14 +83,20 @@ void sendTemp_Humi(void *pvParameters)
             String temperatureStr = String(temperature, 2);
             String humidityStr = String(humidity, 2);
 
-            String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":" + temperatureStr + "}";
+            String data = "{\"email\":\"" + String(EMAIL) +
+                          "\",\"device_id\":\"" + String(Device_ID) +
+                          "\",\"data\":" + temperatureStr +
+                          "}";
             publishData("temperature", data);
-            data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":" + humidityStr + "}";
+            data = "{\"email\":\"" + String(EMAIL) +
+                   "\",\"device_id\":\"" + String(Device_ID) +
+                   "\",\"data\":" + humidityStr +
+                   "}";
             publishData("humidity", data);
 
             vTaskDelay(delay_30_min / portTICK_PERIOD_MS);
         }
-        vTaskDelay(delay_gps / portTICK_PERIOD_MS);
+        vTaskDelay(delay_15_second / portTICK_PERIOD_MS);
     }
 }
 
@@ -122,7 +128,7 @@ void TaskTemperatureHumidity(void *pvParameters)
                 saveTemp_HumiToFile();
             }
         }
-        vTaskDelay(delay_temp_humi / portTICK_PERIOD_MS);
+        vTaskDelay(delay_15_second / portTICK_PERIOD_MS);
     }
 }
 

@@ -7,7 +7,6 @@
 #include <time.h>
 #include <DHT20.h>
 #include "LittleFS.h"
-#include "SPIFFS.h"
 #include <AsyncTCP.h>
 #include <ArduinoJson.h>
 #include <PubSubClient.h>
@@ -18,7 +17,7 @@
 #include <TinyGPS++.h>
 #include <Adafruit_NeoPixel.h>
 #include <HardwareSerial.h>
-// #include <ElegantOTA.h>
+#include <ElegantOTA.h>
 #include <NimBLEDevice.h>
 #include "Update.h"
 

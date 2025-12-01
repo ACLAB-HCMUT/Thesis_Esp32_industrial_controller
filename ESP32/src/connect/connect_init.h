@@ -7,6 +7,4 @@
 #include "TaskServer.h"
 #include "TaskBLE.h"
 
-void connect_intit();
-
 #endif /* INC_CONNECTINIT_H_ */

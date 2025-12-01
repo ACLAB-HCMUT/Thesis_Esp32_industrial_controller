@@ -1,129 +1,149 @@
+/* GLOBAL */
+* {
+  margin    : 0;
+  padding   : 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family     : Arial, sans-serif;
-  background-color: #f0f0f0;
-  color           : #333;
-  text-align      : center;
+  font-family: Arial, sans-serif;
+  min-height : 100vh;
+  width      : 100vw;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background     : linear-gradient(135deg, #0074ff 0%, #0084ff 30%, #1ca3ff 70%, #64c3ff 100%);
+  text-align     : center;
+  scroll-behavior: smooth;
 }
 
-h1 {
-  font-size: 1.8rem;
-  color    : white;
-}
-
-h2 {
-  font-size  : 1.5rem;
-  font-weight: bold;
-  color      : #143642;
-}
-
+/* NAV */
 .topnav {
-  overflow        : hidden;
-  background-color: #143642;
+  background   : #fff;
+  padding      : 18px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.content {
-  padding  : 30px;
-  max-width: 1200px;
-  margin   : 0 auto;
+.topnav h1 {
+  color    : #0f8b8d;
+  font-size: 28px;
 }
 
-.content-container {
-  display        : flex;
-  flex-wrap      : wrap;
-  justify-content: center;
-}
-
-.card {
-  background-color: #F8F7F9;
-  box-shadow      : 2px 2px 12px 1px rgba(140, 140, 140, .5);
-  padding-top     : 10px;
-  padding-bottom  : 20px;
-  margin          : 10px;
-  flex            : 1 1 calc(50% - 20px);
-  /* Default to 2 cards per row */
-}
-
-@media (min-width: 1024px) {
-  .card {
-    flex: 1 1 calc(25% - 20px);
-    /* 4 cards per row on larger screens */
-  }
-}
-
-@media (max-width: 767px) {
-  .card {
-    flex: 1 1 calc(100% - 20px);
-    /* 1 card per row on very small screens */
-  }
-}
-
-p {
-  font-size: 1.5rem;
-}
-
-#temperature,
-#humidity,
-#current,
-#latitude,
-#longitude {
-  font-weight: bold;
-}
-
-.button {
-  padding                    : 15px 50px;
-  font-size                  : 24px;
-  text-align                 : center;
-  outline                    : none;
-  color                      : #fff;
-  background-color           : #0f8b8d;
-  border                     : none;
-  border-radius              : 5px;
-  -webkit-touch-callout      : none;
-  -webkit-user-select        : none;
-  -khtml-user-select         : none;
-  -moz-user-select           : none;
-  -ms-user-select            : none;
-  user-select                : none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.button:active {
-  background-color: #0f8b8d;
-  box-shadow      : 2px 2px #CDCDCD;
-  transform       : translateY(2px);
-}
-
-.state {
-  font-size  : 1.5rem;
-  color      : #8c8c8c;
-  font-weight: bold;
-}
-
-
-.schedule-card {
+/* CONTENT */
+.content-center {
   display       : flex;
   flex-direction: column;
-  height        : 100%;
+  align-items   : center;
 }
 
+/* TIME CARD */
+.time-card {
+  width        : 340px;
+  padding      : 25px 20px;
+  border-radius: 18px;
+  margin       : 20px auto;
 
-.schedule-details-horizontal {
-  flex           : 1;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+
   display        : flex;
-  justify-content: space-between;
+  align-items    : center;
+  justify-content: center;
+  gap            : 15px;
+
+  font-size  : 28px;
+  font-weight: bold;
+  color      : #0f8b8d;
+}
+
+.time-icon {
+  font-size: 32px;
+}
+
+/* GAUGES */
+.gauge-row {
+  display        : flex;
+  justify-content: center;
   gap            : 20px;
-  border-top     : 2px solid #333;
-  padding-top    : 10px;
+  flex-wrap      : wrap;
 }
 
-.detail-item {
-  flex         : 1;
-  text-align   : center;
-  border-right : 2px solid #333;
-  padding-right: 10px;
-  line-height  : 1.5;
+.gauge-card {
+  width        : 320px;
+  background   : #fff;
+  padding      : 18px;
+  border-radius: 14px;
+  margin       : 12px;
+  box-shadow   : 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.detail-item:last-child {
-  border-right: none;
+.modern-gauge {
+  width : 230px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+/* MAP CARD */
+.map-card {
+  width        : 90vw;
+  max-width    : 900px;
+  padding      : 18px;
+  background   : #fff;
+  border-radius: 14px;
+  margin       : 15px auto;
+  box-shadow   : 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#map {
+  width        : 100%;
+  height       : 350px;
+  border-radius: 12px;
+}
+
+/* RELAYS */
+.relay-grid {
+  display              : grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap                  : 18px;
+  /* giống khoảng cách hình bạn gửi */
+  width                : 95%;
+  max-width            : 1200px;
+  margin               : 20px auto;
+}
+
+.relay-card {
+  width        : 100%;
+  /* full chiều ngang cột */
+  height       : 100px;
+  /* chiều cao giống hình */
+  border-radius: 18px;
+  /* bo góc mềm */
+
+  background: #EDEDED;
+  /* OFF */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+
+  font-size  : 15px;
+  font-weight: 700;
+
+  cursor    : pointer;
+  transition: 0.22s ease;
+}
+
+/* Hover nhẹ giống UI hiện đại */
+.relay-card:hover {
+  transform : translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .relay-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

@@ -8,5 +8,7 @@ extern String IO_KEY;
 extern String EMAIL;
 extern String username_ota;
 extern String password_ota;
+extern String Device_ID;
 
-bool check_info();
+// bool check_info();
+bool check_info_File(bool check);

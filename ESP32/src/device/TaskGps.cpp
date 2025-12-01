@@ -47,14 +47,23 @@ void sendLocation(void *pvParameters)
 {
     while (true)
     {
+        if (X * Y == 0)
+        {
+            X = 10.77345748402705;
+            Y = 106.659787554119;
+        }
+
         if (WiFi.status() == WL_CONNECTED && client.connected() && X * Y != 0)
         {
             String locationStr = String(X, 7) + "-" + String(Y, 7);
-            String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + locationStr + "\"}";
+            String data = "{\"email\":\"" + String(EMAIL) +
+                          "\",\"device_id\":\"" + String(Device_ID) +
+                          "\",\"data\":\"" + locationStr +
+                          "\"}";
+
             publishData("location", data);
-            vTaskDelay(delay_30_min / portTICK_PERIOD_MS);
         }
-        vTaskDelay(delay_gps / portTICK_PERIOD_MS);
+        vTaskDelay(delay_15_second / portTICK_PERIOD_MS);
     }
 }
 
@@ -80,7 +89,7 @@ void TaskGps(void *pvParameters)
                 saveGpsToFile();
             }
         }
-        vTaskDelay(delay_gps / portTICK_PERIOD_MS);
+        vTaskDelay(delay_15_second / portTICK_PERIOD_MS);
     }
 }
 

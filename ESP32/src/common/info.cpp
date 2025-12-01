@@ -1,4 +1,4 @@
-#include "globals.h"
+#include "info.h"
 
 AsyncWebServer server_1(80);
 
@@ -10,6 +10,8 @@ String IO_KEY;
 String EMAIL;
 String username_ota;
 String password_ota;
+String Device_ID;
+unsigned long buttonPressStartTime = 0;
 
 void loadInfoFromFile()
 {
@@ -19,24 +21,25 @@ void loadInfoFromFile()
         Serial.println("Không thể mở file để đọc");
         return;
     }
+
     DynamicJsonDocument doc(512);
     DeserializationError error = deserializeJson(doc, file);
+    file.close();
+
     if (error)
     {
-        Serial.print(F("deserializeJson() failed: "));
+        Serial.println("deserializeJson() failed");
+        return;
     }
-    else
-    {
-        NAME_DEVICE = strdup(doc["NAME_DEVICE"]);
-        WIFI_SSID = strdup(doc["WIFI_SSID"]);
-        WIFI_PASS = strdup(doc["WIFI_PASS"]);
-        IO_USERNAME = strdup(doc["IO_USERNAME"]);
-        IO_KEY = strdup(doc["IO_KEY"]);
-        EMAIL = strdup(doc["EMAIL"]);
-        username_ota = strdup(doc["username_ota"]);
-        password_ota = strdup(doc["password_ota"]);
-    }
-    file.close();
+    NAME_DEVICE = doc["NAME_DEVICE"] | "";
+    WIFI_SSID = doc["WIFI_SSID"] | "";
+    WIFI_PASS = doc["WIFI_PASS"] | "";
+    IO_USERNAME = doc["IO_USERNAME"] | "";
+    IO_KEY = doc["IO_KEY"] | "";
+    EMAIL = doc["EMAIL"] | "";
+    username_ota = doc["username_ota"] | "";
+    password_ota = doc["password_ota"] | "";
+    Device_ID = doc["Device_ID"] | "";
 }
 
 void deleteInfoFile()
@@ -76,7 +79,7 @@ const char index_html[] PROGMEM = R"rawliteral(
             <input type="text" name="ssid" id="ssid" required>
             
             <label for="pass">WiFi Password:</label>
-            <input type="password" name="pass" id="pass" required>
+            <input type="text" name="pass" id="pass" >
 
             <label for="mqtt_user">MQTT Username:</label>
             <input type="text" name="mqtt_user" id="mqtt_user" required>
@@ -89,10 +92,10 @@ const char index_html[] PROGMEM = R"rawliteral(
 
             <div class="ota-title">OTA Information</div>
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username" required>
+            <input type="text" name="username" id="username" >
 
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" required>
+            <input type="text" name="password" id="password" >
 
             <input type="submit" value="Save">
         </form>
@@ -109,24 +112,6 @@ void startAccessPoint()
     Serial.print("AP IP address: ");
     Serial.println(WiFi.softAPIP());
 
-#ifdef M5_CORE2
-    M5.Display.setCursor(0, 20);
-    M5.Display.println("Please connect to:");
-    int screenWidth = M5.Lcd.width();
-    int textWidth = M5.Display.textWidth(SSID_AP);
-    M5.Display.setTextColor(CYAN);
-    M5.Display.setCursor((screenWidth - textWidth) / 2, 50);
-    M5.Display.println(SSID_AP);
-    M5.Display.setTextColor(WHITE);
-    M5.Display.setCursor(0, 80);
-    M5.Display.println("Then go to:");
-    String ipAddress = WiFi.softAPIP().toString();
-    textWidth = M5.Display.textWidth(ipAddress);
-    M5.Display.setTextColor(YELLOW);
-    M5.Display.setCursor((screenWidth - textWidth) / 2, 120);
-    M5.Display.println(ipAddress);
-#endif
-
     server_1.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
                 { request->send_P(200, "text/html", index_html); });
 
@@ -140,6 +125,7 @@ void startAccessPoint()
         EMAIL = request->getParam("email", true)->value();
         username_ota = request->getParam("username", true)->value();
         password_ota = request->getParam("password", true)->value();
+      
 
         DynamicJsonDocument doc(512);
         doc["NAME_DEVICE"] = NAME_DEVICE;
@@ -150,6 +136,7 @@ void startAccessPoint()
         doc["EMAIL"] = EMAIL;
         doc["username_ota"] = username_ota;
         doc["password_ota"] = password_ota;
+        
 
         File configFile = LittleFS.open("/info.dat", "w");
         if (configFile) {
@@ -165,69 +152,54 @@ void startAccessPoint()
     server_1.begin();
 }
 
-void TaskResetDevice(void *pvParameters)
+void checkResetButton()
 {
-    unsigned long buttonPressStartTime = 0;
-    while (true)
+    bool pressed = false;
+
+    if (digitalRead(BOOT) == LOW)
     {
-        if (digitalRead(BOOT) == LOW)
+        pressed = true;
+    }
+
+    if (pressed)
+    {
+        if (buttonPressStartTime == 0)
         {
-            if (buttonPressStartTime == 0)
-            {
-                buttonPressStartTime = millis();
-            }
-            else if (millis() - buttonPressStartTime > 5000)
-            {
-                deleteInfoFile();
-                ESP.restart();
-                vTaskDelete(NULL);
-            }
+            buttonPressStartTime = millis();
         }
-#ifdef M5_CORE2
-        else if (M5.BtnB.wasPressed())
+        else if (millis() - buttonPressStartTime > 5000)
         {
-            if (buttonPressStartTime == 0)
-            {
-                buttonPressStartTime = millis();
-            }
-            else if (millis() - buttonPressStartTime > 5000)
-            {
-                deleteInfoFile();
-                ESP.restart();
-                vTaskDelete(NULL);
-            }
+            deleteInfoFile();
+            ESP.restart();
         }
-#endif
-        else
-        {
-            buttonPressStartTime = 0;
-        }
-        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
+    }
+    else
+    {
+        buttonPressStartTime = 0;
     }
 }
 
-void reset_device()
+bool check_info_File(bool check)
 {
-    xTaskCreate(TaskResetDevice, "TaskResetDevice", 4096, NULL, 1, NULL);
-}
-
-bool check_info()
-{
-
-#ifdef IS_LEAF
-    pinMode(BOOT, INPUT);
-#endif
-    loadInfoFromFile();
-    reset_device();
-    if (NAME_DEVICE.isEmpty() || WIFI_SSID.isEmpty() || WIFI_PASS.isEmpty() || IO_USERNAME.isEmpty() || IO_KEY.isEmpty() || EMAIL.isEmpty() || username_ota.isEmpty() || password_ota.isEmpty())
+    if (!check)
     {
-        startAccessPoint();
+        if (!LittleFS.begin(true))
+        {
+            Serial.println("❌ Lỗi khởi động LittleFS!");
+        }
+        loadInfoFromFile();
+        pinMode(BOOT, INPUT_PULLUP);
+    }
+
+    if (NAME_DEVICE.isEmpty() || WIFI_SSID.isEmpty() || WIFI_PASS.isEmpty() || IO_USERNAME.isEmpty() || IO_KEY.isEmpty() || EMAIL.isEmpty())
+    {
+        if (!check)
+        {
+            startAccessPoint();
+        }
+        checkResetButton();
         return false;
     }
-    for (int i = 0; i < 6; i++)
-    {
-        pinMode(relay_pins[i], OUTPUT);
-        digitalWrite(relay_pins[i], LOW);
-    }
+    checkResetButton();
     return true;
 }

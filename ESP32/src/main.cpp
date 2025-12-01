@@ -5,21 +5,10 @@ void setup()
 {
   Serial.begin(115200);
   Serial2.begin(BAUD_RATE_2, SERIAL_8N1, TXD_RELAY, RXD_RELAY);
-  Serial.println("Starting...");
-
-  if (!LittleFS.begin(true))
-  {
-    Serial.println("An Error has occurred while mounting LittleFS");
-  }
-
-#ifdef M5_CORE2
-  M5_init();
-#endif
 
   // FreeRTOS tasks
-  if (check_info())
+  if (check_info_File(0))
   {
-    connect_intit();
     device_intit();
     task_intit();
   }
@@ -27,7 +16,19 @@ void setup()
 
 void loop()
 {
-  // ElegantOTA.loop();
+
   if (ss.available() > 0)
     gps.encode(ss.read());
+  if (check_info_File(1))
+  {
+    if (!Wifi_reconnect())
+    {
+      Webserver_stop();
+    }
+    else
+    {
+      MQTT_reconnect();
+    }
+    Webserver_reconnect();
+  }
 }

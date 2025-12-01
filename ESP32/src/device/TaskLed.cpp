@@ -14,7 +14,7 @@ void TaskLed(void *pvParameters)
 
     while (true)
     {
-        if (WiFi.status() == WL_CONNECTED && client.connected())
+        if (WiFi.status() == WL_CONNECTED)
         {
             if (client.connected())
             {

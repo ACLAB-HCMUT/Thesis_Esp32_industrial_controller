@@ -4,10 +4,12 @@
 #include "esp_timer.h"
 
 WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP, "pool.ntp.org", 7 * 3600);
+
+// ❗ KHÔNG đặt offset trong NTPClient
+NTPClient timeClient(ntpUDP, "pool.ntp.org");
 
 unsigned long baseTime = 0;
-unsigned long baseMicros = 0;
+unsigned long baseMillis = 0;
 
 String current = "";
 String check_time = "";
@@ -18,6 +20,7 @@ String getDayOfWeek(unsigned long epochTime)
 {
     time_t rawTime = epochTime;
     struct tm *timeInfo = localtime(&rawTime);
+
     String days[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
     return days[timeInfo->tm_wday];
 }
@@ -27,28 +30,31 @@ void syncTimeOnceWithNTP()
     if (WiFi.status() == WL_CONNECTED)
     {
         timeClient.begin();
+
         if (timeClient.update())
         {
-            baseTime = timeClient.getEpochTime();
-            baseMicros = esp_timer_get_time() / 1000;
-            Serial.println("Thời gian từ NTP: " + String(baseTime));
+            baseTime = timeClient.getEpochTime(); // Lấy epoch UTC
+            baseMillis = millis();
+
+            Serial.println("NTP synced epoch: " + String(baseTime));
         }
         else
         {
-            Serial.println("Không thể cập nhật NTP!");
+            Serial.println("Failed to update NTP!");
         }
+
         timeClient.end();
     }
     else
     {
-        Serial.println("Không có WiFi, không thể đồng bộ NTP.");
+        Serial.println("WiFi not connected, cannot sync NTP");
     }
 }
 
 unsigned long getCurrentTime()
 {
-    unsigned long elapsedMillis = (esp_timer_get_time() / 1000) - baseMicros;
-    return baseTime + (elapsedMillis / 1000);
+    unsigned long elapsed = millis() - baseMillis;
+    return baseTime + (elapsed / 1000);
 }
 
 String formatTime(unsigned long epochTime)
@@ -58,7 +64,6 @@ String formatTime(unsigned long epochTime)
 
     char buffer[6];
     sprintf(buffer, "%02d:%02d", timeInfo->tm_hour, timeInfo->tm_min);
-
     return String(buffer);
 }
 
@@ -80,24 +85,33 @@ String formatDateTime(unsigned long epochTime)
 
 void TaskTime(void *pvParameters)
 {
+    // ❗ SET MÚI GIỜ CHUẨN CHO VIỆT NAM (GMT+7)
+    setenv("TZ", "UTC-7", 1);
+    tzset();
+
     while (WiFi.status() != WL_CONNECTED)
     {
+        Serial.println("Waiting WiFi...");
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
+
     syncTimeOnceWithNTP();
 
     while (true)
     {
-        unsigned long currentTime = getCurrentTime();
-        String current_time = formatTime(currentTime);
-        String dayOfWeek = getDayOfWeek(currentTime);
-        date = formatDateTime(currentTime);
+        unsigned long currentEpoch = getCurrentTime();
 
-        current = dayOfWeek + " " + current_time;
-        check_different_time = (check_time != current_time);
-        check_time = current_time;
+        String timeStr = formatTime(currentEpoch);
+        String dayStr = getDayOfWeek(currentEpoch);
+
+        date = formatDateTime(currentEpoch);
+        current = dayStr + " " + timeStr;
+
+        check_different_time = (check_time != timeStr);
+        check_time = timeStr;
 
         String data = "{\"current\":\"" + current + "\"}";
+
         if (ws.count() > 0)
         {
             ws.textAll(data);

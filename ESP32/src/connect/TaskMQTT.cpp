@@ -30,12 +30,17 @@ void publishData(String feed, String data)
     }
 }
 
-void reconnectMQTT()
+void MQTT_reconnect()
 {
-    while (!client.connected())
+    if (!client.connected())
     {
+        client.setServer(MQTT_SERVER, MQTT_PORT);
+        client.setCallback(callback);
         Serial.println("Connecting to MQTT...");
         String clientId = "ESP32Client" + String(random(0, 1000));
+        Serial.println(clientId.c_str());
+        Serial.println(IO_USERNAME);
+        Serial.println(IO_KEY);
         if (client.connect(clientId.c_str(), IO_USERNAME.c_str(), IO_KEY.c_str()))
         {
             Serial.println("MQTT Connected");
@@ -43,45 +48,16 @@ void reconnectMQTT()
             client.subscribe((String(IO_USERNAME) + "/feeds/relay").c_str());
             client.subscribe((String(IO_USERNAME) + "/feeds/schedule").c_str());
 
-            String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + WiFi.localIP().toString() + "\"}";
-            publishData("ip", data);
             Serial.println("Start");
         }
         else
         {
             Serial.print("MQTT connection failed, rc=");
             Serial.println(client.state());
-            vTaskDelay(5000 / portTICK_PERIOD_MS);
         }
     }
-}
-
-void TaskMQTT(void *pvParameters)
-{
-    while (WiFi.status() != WL_CONNECTED)
+    else
     {
-        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
+        client.loop();
     }
-
-    client.setServer(MQTT_SERVER, MQTT_PORT);
-    client.setCallback(callback);
-
-    while (true)
-    {
-        if (WiFi.status() == WL_CONNECTED && !client.connected())
-        {
-            reconnectMQTT();
-        }
-        if (client.connected())
-        {
-            client.loop();
-        }
-
-        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
-    }
-}
-
-void mqtt_init()
-{
-    xTaskCreate(TaskMQTT, "TaskMQTT", 8192, NULL, 1, NULL);
 }

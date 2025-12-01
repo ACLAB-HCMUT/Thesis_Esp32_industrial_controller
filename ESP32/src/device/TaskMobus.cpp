@@ -42,7 +42,10 @@ void sendValue(int index, String state)
         if (client.connected())
         {
             String relayStr = String(index) + "-" + state;
-            String data = "{\"email\":\"" + String(EMAIL) + "\",\"data\":\"" + relayStr + "\"}";
+            String data = "{\"email\":\"" + String(EMAIL) +
+                          "\",\"device_id\":\"" + String(Device_ID) +
+                          "\",\"data\":\"" + relayStr +
+                          "\"}";
             publishData("relay", data);
         }
         if (ws.count() > 0)

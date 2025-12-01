@@ -2,67 +2,88 @@
 <html>
 
 <head>
+  <meta charset="UTF-8">
   <title>ESP32_WEB_SERVER</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Leaflet map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Modern Gauge -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.8/raphael.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.3.5/justgage.min.js"></script>
+
   <script src="script.js"></script>
 </head>
 
 <body>
+
+  <!-- NAV BAR -->
   <div class="topnav">
     <h1>ESP WebSocket Server</h1>
   </div>
-  <div class="content">
-    <div class="card">
-      <p><span id="current">00:00</span></p>
+
+  <div class="content content-center">
+
+    <!-- TIME -->
+    <div class="time-card">
+      <div class="time-icon">🕒</div>
+      <div class="time-text" id="current">Thu • 11:50</div>
+    </div>
+
+    <!-- GAUGES -->
+    <div class="content gauge-row">
+
+      <div class="gauge-card">
+        <h2>Temperature</h2>
+        <div id="tempGauge" class="modern-gauge"></div>
+      </div>
+
+      <div class="gauge-card">
+        <h2>Humidity</h2>
+        <div id="humiGauge" class="modern-gauge"></div>
+      </div>
+
+    </div>
+
+    <!-- GPS MAP -->
+    <div class="card map-card">
+      <h2>GPS Location</h2>
+      <p>Lat: <span id="latitude">0.00</span> — Lon: <span id="longitude">0.00</span></p>
+      <div id="map"></div>
+    </div>
+
+    <!-- RELAYS -->
+    <div class="relay-grid">
+
+      <div class="card relay-card" id="card1" onclick="toggleRelay(1)">
+        <h2>Relay 1</h2>
+      </div>
+
+      <div class="card relay-card" id="card2" onclick="toggleRelay(2)">
+        <h2>Relay 2</h2>
+      </div>
+
+      <div class="card relay-card" id="card3" onclick="toggleRelay(3)">
+        <h2>Relay 3</h2>
+      </div>
+
+      <div class="card relay-card" id="card4" onclick="toggleRelay(4)">
+        <h2>Relay 4</h2>
+      </div>
+
+      <div class="card relay-card" id="card5" onclick="toggleRelay(5)">
+        <h2>Relay 5</h2>
+      </div>
+
+      <div class="card relay-card" id="card6" onclick="toggleRelay(6)">
+        <h2>Relay 6</h2>
+      </div>
+
     </div>
   </div>
-  <div class="content">
-    <div class="card">
-      <p>Temperature : <span id="temperature">0.00</span> &deg;C</p>
-      <p>Humidity : <span id="humidity">0.00</span> %</p>
-      <p>Coordinate X : <span id="latitude">0.00</span></p>
-      <p>Coordinate Y : <span id="longitude">0.00</span></p>
-    </div>
-  </div>
-  <div class="content content-container">
-    <div class="card">
-      <h2>Relay 1</h2>
-      <p class="state">State : <span id="state1">OFF</span></p>
-      <p><button onclick="toggleButton(1)" class="button">Toggle</button></p>
-    </div>
-    <div class="card">
-      <h2>Relay 2</h2>
-      <p class="state">State : <span id="state2">OFF</span></p>
-      <p><button onclick="toggleButton(2)" class="button">Toggle</button></p>
-    </div>
-    <div class="card">
-      <h2>Relay 3</h2>
-      <p class="state">State : <span id="state3">OFF</span></p>
-      <p><button onclick="toggleButton(3)" class="button">Toggle</button></p>
-    </div>
-    <div class="card">
-      <h2>Relay 4</h2>
-      <p class="state">State : <span id="state4">OFF</span></p>
-      <p><button onclick="toggleButton(4)" class="button">Toggle</button></p>
-    </div>
-    <div class="card">
-      <h2>Relay 5</h2>
-      <p class="state">State : <span id="state5">OFF</span></p>
-      <p><button onclick="toggleButton(5)" class="button">Toggle</button></p>
-    </div>
-    <div class="card">
-      <h2>Relay 6</h2>
-      <p class="state">State : <span id="state6">OFF</span></p>
-      <p><button onclick="toggleButton(6)" class="button">Toggle</button></p>
-    </div>
-  </div>
-  <div class="content">
-    <div class="card">
-      <h2>Schedule</h2>
-      <div id="scheduleContainer"></div>
-    </div>
-  </div>
-  <script src="script.js"></script>
+
 </body>
 
 </html>

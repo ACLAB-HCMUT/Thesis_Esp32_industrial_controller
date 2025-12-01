@@ -56,7 +56,8 @@
         "sstream": "cpp",
         "streambuf": "cpp",
         "cinttypes": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "print": "cpp"
     },
     "cmake.ignoreCMakeListsMissing": true
 }

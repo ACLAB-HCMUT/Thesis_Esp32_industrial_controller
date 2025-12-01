@@ -3,15 +3,6 @@
 
 #include "globals.h"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-    void TaskWifi(void *pvParameters);
-
-#ifdef __cplusplus
-}
-#endif
+extern bool Wifi_reconnect();
 
 #endif /* INC_TASKWIFI_H_ */

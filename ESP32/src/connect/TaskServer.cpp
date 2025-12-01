@@ -3,7 +3,20 @@
 AsyncWebServer server(httpPort);
 AsyncWebSocket ws("/ws");
 
-bool isServerRunning = false;
+bool webserver_isrunning = false;
+
+void Webserver_sendata(String data)
+{
+    if (ws.count() > 0)
+    {
+        ws.textAll(data); // Gửi đến tất cả client đang kết nối
+        Serial.println("📤 Đã gửi dữ liệu qua WebSocket: " + data);
+    }
+    else
+    {
+        Serial.println("⚠️ Không có client WebSocket nào đang kết nối!");
+    }
+}
 
 void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len)
 {
@@ -24,6 +37,7 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
             String message;
             message += String((char *)data).substring(0, len);
             parseJson(message, true);
+            // handleWebSocketMessage(message);
         }
     }
 }
@@ -38,43 +52,31 @@ void connnectWSV()
               { request->send(LittleFS, "/script.js", "application/javascript"); });
     server.on("/styles.css", HTTP_GET, [](AsyncWebServerRequest *request)
               { request->send(LittleFS, "/styles.css", "text/css"); });
-    // ElegantOTA.begin(&server);
-    // ElegantOTA.setAuth(username_ota.c_str(), password_ota.c_str());
     server.begin();
-    isServerRunning = true;
-}
-
-void stopServer()
-{
-    if (isServerRunning)
+    if (!username_ota.isEmpty() && !password_ota.isEmpty())
     {
-        ws.closeAll();
-        server.end();
-        isServerRunning = false;
+        ElegantOTA.setAuth(username_ota.c_str(), password_ota.c_str());
     }
-}
-
-void TaskServer(void *pvParameters)
-{
-    while (true)
+    else
     {
-        if (WiFi.status() == WL_CONNECTED)
-        {
-            if (!isServerRunning)
-            {
-                connnectWSV();
-            }
-        }
-        else
-        {
-            stopServer();
-        }
-
-        vTaskDelay(delay_connect / portTICK_PERIOD_MS);
+        ElegantOTA.clearAuth();
     }
+    ElegantOTA.begin(&server);
+    webserver_isrunning = true;
 }
 
-void server_init()
+void Webserver_stop()
 {
-    xTaskCreate(TaskServer, "TaskServer", 8192, NULL, 1, NULL);
+    ws.closeAll();
+    server.end();
+    webserver_isrunning = false;
+}
+
+void Webserver_reconnect()
+{
+    if (!webserver_isrunning)
+    {
+        connnectWSV();
+    }
+    ElegantOTA.loop();
 }

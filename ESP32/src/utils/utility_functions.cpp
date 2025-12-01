@@ -11,7 +11,7 @@ void parseJson(String message, bool server)
 
     if (!server)
     {
-        if (doc["email"].as<String>() != EMAIL)
+        if (doc["email"].as<String>() != EMAIL || doc["device_id"].as<String>() != Device_ID)
         {
             return;
         }
@@ -140,6 +140,7 @@ void parseJson(String message, bool server)
             newSchedule.lastTriggered = ""; // Initialize last triggered
 
             schedules.add(newSchedule); // Add the new schedule to the linked list
+            schedules.printList();
         }
 
         saveSchedulesToFile(); // Save changes
